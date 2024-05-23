@@ -5,10 +5,8 @@ const NavBar = () => {
     <>
       <div>
         <Link to='/home'>Home</Link>
-        <Link to='/records'>Records</Link>
-        <Link to='/artists'>Artists</Link>
-        <Link to='/genres'>Genres</Link>
-        <Link to='/register'>Register</Link>
+        <Link to='/about'>About</Link>
+        <Link to='/register'>Create Account</Link>
         <Link to='/login'>Login</Link>
         <Link to='/account'>Account</Link>
       </div>

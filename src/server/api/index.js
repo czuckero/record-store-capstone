@@ -1,42 +1,53 @@
-const express = require('express');
+require("dotenv").config();
+const express = require("express");
 const apiRouter = express.Router();
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
+const volleyball = require("volleyball");
+const { getUserById } = require("../db/users");
 
-const volleyball = require('volleyball')
-apiRouter.use(volleyball)
+apiRouter.use(volleyball);
 
-// TO BE COMPLETED - set `req.user` if possible, using token sent in the request header
 apiRouter.use(async (req, res, next) => {
-  const auth = req.header('Authorization');
-  
-  if (!auth) { 
-    next();
-  } 
-  else if (auth.startsWith('REPLACE_ME')) {
-    // TODO - Get JUST the token out of 'auth'
-    const token = 'REPLACE_ME';
-    
-    try {
-      const parsedToken = 'REPLACE_ME';
-      // TODO - Call 'jwt.verify()' to see if the token is valid. If it is, use it to get the user's 'id'. Look up the user with their 'id' and set 'req.user'
+  const auth = req.header("Authorization");
 
+  if (!auth) {
+    next();
+  } else if (auth.startsWith("Bearer ")) {
+    const token = auth.slice(7);
+
+    try {
+      const { id } = jwt.verify(token, process.env.JWT_SECRET);
+      if (id) {
+        req.user = await getUserById(id);
+      }
+      next();
     } catch (error) {
       next(error);
     }
-  } 
-  else {
+  } else {
     next({
-      name: 'AuthorizationHeaderError',
-      message: `Authorization token must start with 'Bearer'`
+      name: "AuthorizationHeaderError",
+      message: "Authorization token must start with 'Bearer'",
     });
   }
 });
 
-const usersRouter = require('./users');
-apiRouter.use('/users', usersRouter);
+const artistsRouter = require("./artists");
+const authRouter = require("./auth");
+const cartRouter = require("./cart");
+const genresRouter = require("./genres");
+const recordsRouter = require("./records");
+const usersRouter = require("./users");
+
+apiRouter.use("/artist", artistsRouter);
+apiRouter.use("/auth", authRouter);
+apiRouter.use("/cart", cartRouter);
+apiRouter.use("/genres", genresRouter);
+apiRouter.use("/records", recordsRouter);
+apiRouter.use("/users", usersRouter);
 
 apiRouter.use((err, req, res, next) => {
-    res.status(500).send(err)
-  })
+  res.status(500).send(err);
+});
 
 module.exports = apiRouter;

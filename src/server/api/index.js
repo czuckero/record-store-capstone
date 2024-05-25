@@ -32,6 +32,7 @@ apiRouter.use(async (req, res, next) => {
   }
 });
 
+const adminRouter = require("./admin");
 const artistsRouter = require("./artists");
 const authRouter = require("./auth");
 const cartRouter = require("./cart");
@@ -39,6 +40,7 @@ const genresRouter = require("./genres");
 const recordsRouter = require("./records");
 const usersRouter = require("./users");
 
+apiRouter.use("/admin", adminRouter);
 apiRouter.use("/artist", artistsRouter);
 apiRouter.use("/auth", authRouter);
 apiRouter.use("/cart", cartRouter);

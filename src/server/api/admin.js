@@ -1,39 +1,39 @@
+// admin router
+
 const express = require("express");
 const adminRouter = express.Router();
-const {
-  createArtistByAdmin,
-  createRecordByAdmin,
-  getAllUsers,
-} = require("./admin");
+const db = require("../db");
 
-const { isAdmin } = require("../middleware/auth");
+const { isAdmin } = require("../middleware");
 
-//GET /api/users/:id (admin only)
 adminRouter.get("/users", isAdmin, async (req, res, next) => {
   try {
-    const users = await getAllUsers();
+    const users = await db.users.getAllUsers();
     res.json(users);
   } catch (error) {
     next(error);
   }
 });
 
-// POST /api/artist/:id (admin only)
 adminRouter.post("/artists", isAdmin, async (req, res, next) => {
   try {
     const { name, bio, genre, img } = req.body;
-    const artist = await createArtistByAdmin({ name, bio, genre, img });
+    const artist = await db.artists.createArtistByAdmin({
+      name,
+      bio,
+      genre,
+      img,
+    });
     res.json(artist);
   } catch (error) {
     next(error);
   }
 });
 
-// POST /api/records/:id (admin only)
 adminRouter.post("/records", isAdmin, async (req, res, next) => {
   try {
     const { genre, artist_id, title, price, newRecord, img } = req.body;
-    const record = await createRecordByAdmin({
+    const record = await db.records.createRecordByAdmin({
       genre,
       artist_id,
       title,

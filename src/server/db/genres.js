@@ -1,4 +1,4 @@
-// server/db/genres.js
+// handles genre-related stuff
 
 const db = require("./client");
 

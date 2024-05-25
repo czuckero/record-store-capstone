@@ -1,8 +1,7 @@
-//export all database operations
+// server/db/index.js
+
+const users = require("./users");
 
 module.exports = {
-  ...require("./users"),
-  ...require("./artists"),
-  ...require("./records"),
-  ...require("./cart"),
+  ..."./users",
 };

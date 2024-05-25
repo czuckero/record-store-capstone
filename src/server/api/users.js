@@ -1,3 +1,5 @@
+// user api routes
+
 const express = require("express");
 const usersRouter = express.Router();
 
@@ -5,18 +7,7 @@ const { createUser, getUser, getUserByEmail, getAllUsers } = require("../db");
 
 const jwt = require("jsonwebtoken");
 
-usersRouter.get("/", async (req, res, next) => {
-  try {
-    const users = await getAllUsers();
-
-    res.send({
-      users,
-    });
-  } catch ({ name, message }) {
-    next({ name, message });
-  }
-});
-
+// POST /api/users/login
 usersRouter.post("/login", async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -54,6 +45,7 @@ usersRouter.post("/login", async (req, res, next) => {
   }
 });
 
+// POST /api/users/register
 usersRouter.post("/register", async (req, res, next) => {
   const { name, email, password } = req.body;
 

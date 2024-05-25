@@ -1,4 +1,4 @@
-// handles record-related database operations
+// handles record-related stuff
 
 const db = require("./client");
 

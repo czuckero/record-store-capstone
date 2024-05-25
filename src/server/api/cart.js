@@ -1,8 +1,10 @@
+// cart api routes
+
 const express = require("express");
 const cartRouter = express.Router();
 const { addToCart, removeFromCart } = require("../db/cart");
 
-//POST /api/cart
+// POST /api/cart
 cartRouter.post("/", async (req, res, next) => {
   const { user_id, record_id, quantity, totalCost } = req.body;
   try {
@@ -18,7 +20,7 @@ cartRouter.post("/", async (req, res, next) => {
   }
 });
 
-//PUT /api/cart/:recordId
+// PUT /api/cart/:recordId
 cartRouter.put("/:recordId", async (req, res, next) => {
   const { recordId } = req.params;
   const { quantity, totalCost } = req.body;

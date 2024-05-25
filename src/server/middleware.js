@@ -1,4 +1,5 @@
-// logged in middleware
+// middleware file cause ** o r g a n i z a t i o n **
+
 const isLoggedIn = (req, res, next) => {
   if (!req.user) {
     return res.status(401).json({

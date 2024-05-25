@@ -1,10 +1,12 @@
+// user authorization routes
+
 const express = require("express");
 const authRouter = express.Router();
 const { getUser, createUser } = require("../db/users");
 const jwt = require("jsonwebtoken");
 const { getCartItems } = require("../db/cart");
 
-//POST /api/auth/login
+// POST /api/auth/login
 authRouter.post("/login", async (req, res, next) => {
   const { email, password } = req.body;
   try {
@@ -25,7 +27,7 @@ authRouter.post("/login", async (req, res, next) => {
   }
 });
 
-//POST /api/auth/register
+// POST /api/auth/register
 authRouter.post("/register", async (req, res, next) => {
   const { username, email, password } = req.body;
   try {
@@ -47,7 +49,7 @@ authRouter.post("/register", async (req, res, next) => {
   }
 });
 
-//GET /api/auth/me/cart
+// GET /api/auth/me/cart
 authRouter.get("/me/cart", async (req, res, next) => {
   try {
     const userId = req.user.id;

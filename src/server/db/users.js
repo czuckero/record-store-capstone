@@ -1,4 +1,4 @@
-// handles user-related database operations
+// handles user-related stuff
 
 const db = require("./client");
 const bcrypt = require("bcrypt");

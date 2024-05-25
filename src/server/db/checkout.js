@@ -1,3 +1,5 @@
+// handles checkout-related stuff
+
 const db = require("./client");
 
 const checkout = async (userId, cart) => {

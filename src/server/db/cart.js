@@ -1,4 +1,4 @@
-// handles cart-related database operations
+// handles cart-related stuff
 
 const db = require("./client");
 

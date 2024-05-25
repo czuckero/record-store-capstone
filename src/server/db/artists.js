@@ -1,3 +1,5 @@
+// handles artist-related stuff
+
 const db = require("./client");
 
 const createArtist = async ({ name, bio, genre, img }) => {

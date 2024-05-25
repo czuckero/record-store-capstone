@@ -6,7 +6,20 @@ const {
   getAllUsers,
 } = require("./admin");
 
-adminRouter.post("/artists", async (req, res, next) => {
+const { isAdmin } = require("../middleware/auth");
+
+//GET /api/users/:id (admin only)
+adminRouter.get("/users", isAdmin, async (req, res, next) => {
+  try {
+    const users = await getAllUsers();
+    res.json(users);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// POST /api/artist/:id (admin only)
+adminRouter.post("/artists", isAdmin, async (req, res, next) => {
   try {
     const { name, bio, genre, img } = req.body;
     const artist = await createArtistByAdmin({ name, bio, genre, img });
@@ -16,7 +29,8 @@ adminRouter.post("/artists", async (req, res, next) => {
   }
 });
 
-adminRouter.post("/records", async (req, res, next) => {
+// POST /api/records/:id (admin only)
+adminRouter.post("/records", isAdmin, async (req, res, next) => {
   try {
     const { genre, artist_id, title, price, newRecord, img } = req.body;
     const record = await createRecordByAdmin({
@@ -28,15 +42,6 @@ adminRouter.post("/records", async (req, res, next) => {
       img,
     });
     res.json(record);
-  } catch (error) {
-    next(error);
-  }
-});
-
-adminRouter.get("/users", async (req, res, next) => {
-  try {
-    const users = await getAllUsers();
-    res.json(users);
   } catch (error) {
     next(error);
   }

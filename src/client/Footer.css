@@ -1,0 +1,34 @@
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .newsletter {
+    margin-bottom: 20px;
+  }
+  
+  .newsletter label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .newsletter input {
+    padding: 10px;
+    margin-right: 10px;
+  }
+  
+  .newsletter button {
+    padding: 10px;
+  }
+  
+  .footer-links {
+    margin-top: 10px;
+  }
+  
+  .footer-links a {
+    color: white;
+    text-decoration: none;
+  }
+  

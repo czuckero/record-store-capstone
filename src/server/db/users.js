@@ -2,23 +2,26 @@
 
 const db = require("./client");
 const bcrypt = require("bcrypt");
-const SALT_COUNT = 10;
 
 const createUser = async ({ username, email, password, isAdmin = false }) => {
-  const hashedPassword = await bcrypt.hash(password, SALT_COUNT);
   try {
     const {
       rows: [user],
     } = await db.query(
       `--sql
-      INSERT INTO users (username, email, password, admin)
-      VALUES ($1, $2, $3, $4)
-      RETURNING *;
-    `,
-      [username, email, hashedPassword, isAdmin]
+      INSERT INTO users (id, username, email, password, admin)
+      VALUES ($1, $2, $3, $4, $5)
+      RETURNING *
+    `
     );
-
-    return user;
+    const response = await client.query(SQL, [
+      uuid.v4(),
+      username,
+      email,
+      await bcrypt.hash(password, 5),
+      isAdmin,
+    ]);
+    return response.rows[0];
   } catch (err) {
     throw err;
   }

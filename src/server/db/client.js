@@ -1,12 +1,8 @@
-const { Client } = require("pg");
+const pg = require("pg");
 const connectionString =
-<<<<<<< HEAD
-  process.env.DATABASE_URL || "http://localhost:5432/record-store";
-=======
   process.env.DATABASE_URL || "postgres://localhost/record-store";
->>>>>>> bad79e6 (updated carts removed artists and genres)
 
-const db = new Client({
+const db = new pg.Client({
   connectionString,
   ssl:
     process.env.NODE_ENV === "production"

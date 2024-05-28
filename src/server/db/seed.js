@@ -34,6 +34,7 @@ const dropTables = async () => {
   try {
     await db.query(`--sql
       DROP TABLE IF EXISTS cart_items;
+      DROP TABLE IF EXISTS carts;
       DROP TABLE IF EXISTS records;
       DROP TABLE IF EXISTS users;
     `);
@@ -55,36 +56,24 @@ const createTables = async () => {
       CREATE TABLE records(
         id UUID PRIMARY KEY,
         genre VARCHAR(255),
-        artist_id UUID REFERENCES artists(id),
         title VARCHAR(255) NOT NULL,
         price DECIMAL(10,2) NOT NULL,
         new BOOLEAN DEFAULT true,
         img TEXT
       );
-      CREATE TABLE shoppingCart(
+      CREATE TABLE carts(
         id UUID PRIMARY KEY,
-        user_id UUID REFERENCES users(id),
+        user_id UUID REFERENCES users(id)
       );
       CREATE TABLE cart_items(
         id UUID PRIMARY KEY,
-        shoppingCart_id UUID REFERENCES shoppingCart(id),
+        carts_id UUID REFERENCES carts(id),
         record_id UUID REFERENCES records(id),
-        quantity INTEGER DEFAULT 1,
+        quantity INTEGER DEFAULT 1
       );
     `);
   } catch (err) {
     throw err;
-  }
-};
-
-const insertUsers = async () => {
-  try {
-    for (const user of users) {
-      await createUser(user);
-    }
-    console.log("Seed data inserted successfully.");
-  } catch (error) {
-    console.error("Error inserting seed data:", error);
   }
 };
 
@@ -93,7 +82,7 @@ const seedDatabase = async () => {
     await db.connect();
     await dropTables();
     await createTables();
-    await insertUsers();
+    await createUsers();
   } catch (err) {
     throw err;
   } finally {

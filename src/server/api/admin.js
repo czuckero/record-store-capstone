@@ -4,7 +4,7 @@ const express = require("express");
 const adminRouter = express.Router();
 const db = require("../db");
 
-const { isAdmin } = require("../middleware");
+const { isAdmin } = require("../middleware/auth");
 
 adminRouter.get("/users", isAdmin, async (req, res, next) => {
   try {

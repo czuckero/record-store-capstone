@@ -32,7 +32,7 @@ const getRecords = async () => {
   try {
     const { rows: records } = await db.query(
       `--sql
-      SELECT * FROM records
+      SELECT * FROM records;
       `
     );
     return records;
@@ -41,7 +41,7 @@ const getRecords = async () => {
   }
 };
 
-const updateStock = async () => {
+const updateStock = async (newStock, record_id) => {
   try {
     const {
       rows: [record],

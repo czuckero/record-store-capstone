@@ -33,9 +33,8 @@ const users = [
 const dropTables = async () => {
   try {
     await db.query(`--sql
-      DROP TABLE IF EXISTS cart;
+      DROP TABLE IF EXISTS cart_items;
       DROP TABLE IF EXISTS records;
-      DROP TABLE IF EXISTS artists;
       DROP TABLE IF EXISTS users;
     `);
   } catch (err) {
@@ -53,28 +52,24 @@ const createTables = async () => {
         password VARCHAR(255) NOT NULL,
         admin BOOLEAN DEFAULT false
       );
-      CREATE TABLE artists(
-        id UUID PRIMARY KEY DEFAULT,
-        name VARCHAR(255) NOT NULL,
-        bio TEXT,
-        genre VARCHAR(255),
-        img TEXT
-      );
       CREATE TABLE records(
         id UUID PRIMARY KEY,
         genre VARCHAR(255),
         artist_id UUID REFERENCES artists(id),
         title VARCHAR(255) NOT NULL,
-        price INTEGER NOT NULL,
+        price DECIMAL(10,2) NOT NULL,
         new BOOLEAN DEFAULT true,
         img TEXT
       );
-      CREATE TABLE cart(
+      CREATE TABLE shoppingCart(
         id UUID PRIMARY KEY,
         user_id UUID REFERENCES users(id),
+      );
+      CREATE TABLE cart_items(
+        id UUID PRIMARY KEY,
+        shoppingCart_id UUID REFERENCES shoppingCart(id),
         record_id UUID REFERENCES records(id),
         quantity INTEGER DEFAULT 1,
-        totalCost INTEGER
       );
     `);
   } catch (err) {

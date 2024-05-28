@@ -1,5 +1,3 @@
-// handles cart-related stuff
-
 const db = require("./client");
 
 const addToCart = async ({ user_id, record_id, quantity, totalCost }) => {
@@ -8,7 +6,7 @@ const addToCart = async ({ user_id, record_id, quantity, totalCost }) => {
       rows: [cartItem],
     } = await db.query(
       `--sql
-      INSERT INTO cart (user_id, record_id, quantity, totalCost)
+      INSERT INTO cart_items (user_id, record_id, quantity, totalCost)
       VALUES ($1, $2, $3, $4)
       RETURNING *;
     `,
@@ -26,7 +24,7 @@ const removeFromCart = async ({ user_id, record_id }) => {
       rows: [cartItem],
     } = await db.query(
       `--sql
-      DELETE FROM cart
+      DELETE FROM cart_items
       WHERE user_id=$1 AND record_id=$2
       RETURNING *;
     `,
@@ -38,16 +36,20 @@ const removeFromCart = async ({ user_id, record_id }) => {
   }
 };
 
-const getCartItems = async (user_id) => {
+const updateCart = async ({ user_id, record_id, quantity, totalCost }) => {
   try {
-    const { rows: cartItems } = await db.query(
+    const {
+      rows: [cartItem],
+    } = await db.query(
       `--sql
-      SELECT * FROM cart
-      WHERE user_id=$1;
+      UPDATE cart_items
+      SET quantity=$1, totalCost=$2
+      WHERE user_id=$3 AND record_id=$4
+      RETURNING *;
     `,
-      [user_id]
+      [quantity, totalCost, user_id, record_id]
     );
-    return cartItems;
+    return cartItem;
   } catch (err) {
     throw err;
   }
@@ -56,5 +58,5 @@ const getCartItems = async (user_id) => {
 module.exports = {
   addToCart,
   removeFromCart,
-  getCartItems,
+  updateCart,
 };

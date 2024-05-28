@@ -48,7 +48,7 @@ const getUserByEmail = async (email) => {
     } = await db.query(
       `--sql 
       SELECT * 
-      FROM user 
+      FROM users
       WHERE email=$1
       `,
       [email]

@@ -2,9 +2,9 @@
 
 const express = require("express");
 const authRouter = express.Router();
-const { getUser, createUser } = require("../db/users");
+const { getUser, createUser, getUserByEmail } = require("../db/users");
 const jwt = require("jsonwebtoken");
-const { getCartItems } = require("../db/cart");
+const { getCartItems } = require("../db/Carts");
 
 // POST /api/auth/login
 authRouter.post("/login", async (req, res, next) => {

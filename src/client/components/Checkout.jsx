@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from './Navbar';
-import './Checkout.css';
+import './CSS/Checkout.css';
 
 const Checkout = () => {
   return (

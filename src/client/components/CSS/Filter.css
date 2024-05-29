@@ -1,0 +1,16 @@
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .filter {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .filter label {
+    margin-bottom: 5px;
+  }
+  

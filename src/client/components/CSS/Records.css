@@ -1,0 +1,43 @@
+.records {
+    padding: 20px;
+  }
+  
+  .records h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .album-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .album-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    width: 200px;
+  }
+  
+  .album-item img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .album-item h3 {
+    font-size: 18px;
+    margin: 10px 0 5px;
+  }
+  
+  .album-item h4 {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  
+  .album-item p {
+    font-size: 14px;
+    color: #555;
+  }
+  

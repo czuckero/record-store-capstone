@@ -1,11 +1,9 @@
-//seed database with initial data
-
-const db = require("./client");
 const { createUser } = require("./users");
+const db = require("./client");
 
 const users = [
   {
-    username: "czuckero",
+    username: "czuck",
     email: "zuck@gmail.com",
     password: "password1",
     admin: true,
@@ -34,6 +32,7 @@ const dropTables = async () => {
   try {
     await db.query(`--sql
       DROP TABLE IF EXISTS cart_items;
+      DROP TABLE IF EXISTS carts;
       DROP TABLE IF EXISTS records;
       DROP TABLE IF EXISTS users;
     `);
@@ -55,21 +54,20 @@ const createTables = async () => {
       CREATE TABLE records(
         id UUID PRIMARY KEY,
         genre VARCHAR(255),
-        artist_id UUID REFERENCES artists(id),
         title VARCHAR(255) NOT NULL,
         price DECIMAL(10,2) NOT NULL,
         new BOOLEAN DEFAULT true,
         img TEXT
       );
-      CREATE TABLE shoppingCart(
+      CREATE TABLE carts(
         id UUID PRIMARY KEY,
-        user_id UUID REFERENCES users(id),
+        user_id UUID REFERENCES users(id)
       );
       CREATE TABLE cart_items(
         id UUID PRIMARY KEY,
-        shoppingCart_id UUID REFERENCES shoppingCart(id),
+        cart_id UUID REFERENCES carts(id),
         record_id UUID REFERENCES records(id),
-        quantity INTEGER DEFAULT 1,
+        quantity INTEGER DEFAULT 1
       );
     `);
   } catch (err) {
@@ -80,7 +78,12 @@ const createTables = async () => {
 const insertUsers = async () => {
   try {
     for (const user of users) {
-      await createUser(user);
+      await createUser({
+        username: user.username,
+        email: user.email,
+        password: user.password,
+        isAdmin: user.admin,
+      });
     }
     console.log("Seed data inserted successfully.");
   } catch (error) {
@@ -95,7 +98,7 @@ const seedDatabase = async () => {
     await createTables();
     await insertUsers();
   } catch (err) {
-    throw err;
+    console.error("Error seeding database:", err);
   } finally {
     await db.end();
   }

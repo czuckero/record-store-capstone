@@ -1,23 +1,31 @@
-// handles user-related stuff
-
 const db = require("./client");
 const bcrypt = require("bcrypt");
-const SALT_COUNT = 10;
+const uuid = require("uuid");
 
-const createUser = async ({ username, email, password, isAdmin = false }) => {
-  const hashedPassword = await bcrypt.hash(password, SALT_COUNT);
+const createUser = async (userData) => {
+  if (
+    !userData ||
+    !userData.username ||
+    !userData.email ||
+    !userData.password
+  ) {
+    throw new Error(
+      "Missing required fields: username, email, and password are required"
+    );
+  }
+
+  const { username, email, password, isAdmin = false } = userData;
+
   try {
+    const hashedPassword = await bcrypt.hash(password, 5);
     const {
       rows: [user],
     } = await db.query(
-      `--sql
-      INSERT INTO users (username, email, password, admin)
-      VALUES ($1, $2, $3, $4)
-      RETURNING *;
-    `,
-      [username, email, hashedPassword, isAdmin]
+      `INSERT INTO users (id, username, email, password, admin)
+       VALUES ($1, $2, $3, $4, $5)
+       RETURNING *`,
+      [uuid.v4(), username, email, hashedPassword, isAdmin]
     );
-
     return user;
   } catch (err) {
     throw err;
@@ -45,14 +53,7 @@ const getUserByEmail = async (email) => {
   try {
     const {
       rows: [user],
-    } = await db.query(
-      `--sql 
-      SELECT * 
-      FROM users
-      WHERE email=$1
-      `,
-      [email]
-    );
+    } = await db.query(`SELECT * FROM users WHERE email=$1`, [email]);
 
     if (!user) {
       return;
@@ -65,11 +66,7 @@ const getUserByEmail = async (email) => {
 
 const getUsers = async () => {
   try {
-    const { rows: users } = await db.query(
-      `--sql
-      SELECT * FROM users;
-      `
-    );
+    const { rows: users } = await db.query(`SELECT * FROM users`);
     return users;
   } catch (error) {
     throw error;

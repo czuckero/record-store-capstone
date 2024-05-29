@@ -1,0 +1,19 @@
+.about-container {
+    padding: 20px;
+    margin-top: 60px; /* Adjust based on the height of your navbar */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .about-container h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .about-container p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  

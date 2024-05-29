@@ -3,7 +3,7 @@ const db = require("./client");
 
 const users = [
   {
-    username: "czuckero",
+    username: "czuck",
     email: "zuck@gmail.com",
     password: "password1",
     admin: true,
@@ -30,7 +30,7 @@ const users = [
 
 const dropTables = async () => {
   try {
-    await db.query(`
+    await db.query(`--sql
       DROP TABLE IF EXISTS cart_items;
       DROP TABLE IF EXISTS carts;
       DROP TABLE IF EXISTS records;
@@ -43,7 +43,7 @@ const dropTables = async () => {
 
 const createTables = async () => {
   try {
-    await db.query(`
+    await db.query(`--sql
       CREATE TABLE users(
         id UUID PRIMARY KEY,
         username VARCHAR(255) NOT NULL,

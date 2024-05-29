@@ -1,7 +1,5 @@
-//seed database with initial data
-
-const db = require("./client");
 const { createUser } = require("./users");
+const db = require("./client");
 
 const users = [
   {
@@ -32,7 +30,7 @@ const users = [
 
 const dropTables = async () => {
   try {
-    await db.query(`--sql
+    await db.query(`
       DROP TABLE IF EXISTS cart_items;
       DROP TABLE IF EXISTS carts;
       DROP TABLE IF EXISTS records;
@@ -45,7 +43,7 @@ const dropTables = async () => {
 
 const createTables = async () => {
   try {
-    await db.query(`--sql
+    await db.query(`
       CREATE TABLE users(
         id UUID PRIMARY KEY,
         username VARCHAR(255) NOT NULL,
@@ -67,7 +65,7 @@ const createTables = async () => {
       );
       CREATE TABLE cart_items(
         id UUID PRIMARY KEY,
-        carts_id UUID REFERENCES carts(id),
+        cart_id UUID REFERENCES carts(id),
         record_id UUID REFERENCES records(id),
         quantity INTEGER DEFAULT 1
       );
@@ -77,14 +75,30 @@ const createTables = async () => {
   }
 };
 
+const insertUsers = async () => {
+  try {
+    for (const user of users) {
+      await createUser({
+        username: user.username,
+        email: user.email,
+        password: user.password,
+        isAdmin: user.admin,
+      });
+    }
+    console.log("Seed data inserted successfully.");
+  } catch (error) {
+    console.error("Error inserting seed data:", error);
+  }
+};
+
 const seedDatabase = async () => {
   try {
     await db.connect();
     await dropTables();
     await createTables();
-    await createUsers();
+    await insertUsers();
   } catch (err) {
-    throw err;
+    console.error("Error seeding database:", err);
   } finally {
     await db.end();
   }

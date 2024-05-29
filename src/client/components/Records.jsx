@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import React from 'react';
-import './Records.css';
+// import './Records.css';
 
 const Records = () => {
   const albums = [

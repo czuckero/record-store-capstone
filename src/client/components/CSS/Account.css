@@ -1,0 +1,77 @@
+.account-container {
+    padding: 20px;
+    margin-top: 60px; /* Adjust based on the height of your navbar */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .account-container h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .user-info, .update-password, .purchase-history {
+    margin-bottom: 30px;
+  }
+  
+  .user-info p, .purchase-history p {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  
+  .update-password h2, .purchase-history h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .update-password form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .update-password label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 18px;
+  }
+  
+  .update-password input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  button[type="submit"] {
+    padding: 10px 20px;
+    font-size: 18px;
+    color: white;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #555;
+  }
+  
+  .purchase-history ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .purchase-history li {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  

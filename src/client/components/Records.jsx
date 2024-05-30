@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import React from 'react';
 import './CSS/Records.css';
 
-
 const Records = () => {
   const albums = [
     { title: 'Record Title A', artist: 'Artist Name A', price: '$40.00', imgSrc: 'https://lh4.googleusercontent.com/proxy/2RdB-f83jxLIbwOV5NDlrUun46sq97bnANYrigIJV6vLJUB9LCSRu41NU13OMpPuJIKtFj-AU-ZFRCpACmbTQaggxnW0d6aXW1zV' },

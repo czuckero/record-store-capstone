@@ -1,10 +1,11 @@
 // handles record-related stuff
 
 const db = require("./client");
+const uuid = require("uuid");
 
 const createRecord = async ({
+  artist = "",
   genre = "",
-  artist_id,
   title,
   price,
   newRecord = true,
@@ -15,13 +16,12 @@ const createRecord = async ({
       rows: [record],
     } = await db.query(
       `--sql
-      INSERT INTO records (genre, artist_id, title, price, new, img)
-      VALUES ($1, $2, $3, $4, $5, $6)
+      INSERT INTO records (id, artist, genre, title, price, new, img)
+      VALUES ($1, $2, $3, $4, $5, $6, $7)
       RETURNING *;
     `,
-      [genre, artist_id, title, price, newRecord, img]
+      [uuid.v4(), artist, genre, title, price, newRecord, img]
     );
-
     return record;
   } catch (err) {
     throw err;

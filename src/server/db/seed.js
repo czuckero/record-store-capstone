@@ -1,5 +1,9 @@
 const { createUser } = require("./users");
+const { createRecord } = require("./records");
+const { createCart } = require("./carts");
+const { addToCart } = require("./cartItems");
 const db = require("./client");
+const { v4: uuidv4 } = require("uuid");
 
 const users = [
   {
@@ -28,6 +32,89 @@ const users = [
   },
 ];
 
+const records = [
+  {
+    artist: "Michael Jackson",
+    genre: "Pop/R&B",
+    title: "Thriller",
+    price: "26.99",
+    new: true,
+    img: "",
+  },
+  {
+    artist: "Metallica",
+    genre: "Rock",
+    title: "Metallica",
+    price: "35.99",
+    new: true,
+    img: "",
+  },
+  {
+    artist: "Glass Animals",
+    genre: "Indie",
+    title: "Dreamland",
+    price: "23.99",
+    new: true,
+    img: "",
+  },
+  {
+    artist: "Kendrick Lamar",
+    genre: "Hip-Hop/Rap",
+    title: "good kid, m.A.A.d city",
+    price: "35.99",
+    new: true,
+    img: "",
+  },
+  {
+    artist: "Taylor Swift",
+    genre: "Pop",
+    title: "Midnights",
+    price: "24.95",
+    new: true,
+    img: "",
+  },
+  {
+    artist: "John Coltrane",
+    genre: "Jazz",
+    title: "Blue Train",
+    price: "29.95",
+    new: false,
+    img: "",
+  },
+  {
+    artist: "D'Angelo",
+    genre: "Neo Soul",
+    title: "Voodoo",
+    price: "54.99",
+    new: true,
+    img: "",
+  },
+  {
+    artist: "Johnny Cash",
+    genre: "Country",
+    title: "At Folsom Prison",
+    price: "24.99",
+    new: false,
+    img: "",
+  },
+  {
+    artist: "Leonard Cohen",
+    genre: "Folk",
+    title: "Songs of Love and Hate",
+    price: "24.99",
+    new: false,
+    img: "",
+  },
+  {
+    artist: "ABBA",
+    genre: "Disco",
+    title: "Gold",
+    price: "38.99",
+    new: true,
+    img: "",
+  },
+];
+
 const dropTables = async () => {
   try {
     await db.query(`--sql
@@ -53,6 +140,7 @@ const createTables = async () => {
       );
       CREATE TABLE records(
         id UUID PRIMARY KEY,
+        artist VARCHAR(255),
         genre VARCHAR(255),
         title VARCHAR(255) NOT NULL,
         price DECIMAL(10,2) NOT NULL,
@@ -67,7 +155,8 @@ const createTables = async () => {
         id UUID PRIMARY KEY,
         cart_id UUID REFERENCES carts(id),
         record_id UUID REFERENCES records(id),
-        quantity INTEGER DEFAULT 1
+        quantity INTEGER DEFAULT 1,
+        total_cost DECIMAL(10,2) NOT NULL
       );
     `);
   } catch (err) {
@@ -85,7 +174,74 @@ const insertUsers = async () => {
         isAdmin: user.admin,
       });
     }
-    console.log("Seed data inserted successfully.");
+    console.log("Seed user data inserted successfully.");
+  } catch (error) {
+    console.error("Error inserting seed data:", error);
+  }
+};
+
+const insertRecords = async () => {
+  try {
+    for (const record of records) {
+      await createRecord({
+        artist: record.artist,
+        genre: record.genre,
+        title: record.title,
+        price: record.price,
+        new: record.newRecord,
+        img: record.img,
+      });
+    }
+    console.log("Seed record data inserted successfully.");
+  } catch (error) {
+    console.error("Error inserting seed data:", error);
+  }
+};
+
+const insertCarts = async () => {
+  try {
+    const { rows: insertedUsers } = await db.query(
+      `--sql
+      SELECT *
+      FROM users;
+      `
+    );
+    for (const user of insertedUsers) {
+      await createCart({
+        user_id: user.id,
+      });
+    }
+    console.log("Seed cart data inserted successfully.");
+  } catch (error) {
+    console.error("Error inserting seed data:", error);
+  }
+};
+
+const insertCartItems = async () => {
+  try {
+    const { rows: carts } = await db.query(
+      `--sql
+      SELECT *
+      FROM carts;
+      `
+    );
+    const { rows: records } = await db.query(
+      `--sql
+      SELECT *
+      FROM records;
+      `
+    );
+    for (const cart of carts) {
+      for (const record of records) {
+        await addToCart({
+          user_id: cart.user_id,
+          record_id: record.id,
+          quantity: 1,
+          totalCost: record.price,
+        });
+      }
+    }
+    console.log("Seed cart item data inserted successfully.");
   } catch (error) {
     console.error("Error inserting seed data:", error);
   }
@@ -97,6 +253,9 @@ const seedDatabase = async () => {
     await dropTables();
     await createTables();
     await insertUsers();
+    await insertRecords();
+    await insertCarts();
+    await insertCartItems();
   } catch (err) {
     console.error("Error seeding database:", err);
   } finally {

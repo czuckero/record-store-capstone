@@ -32,14 +32,12 @@ apiRouter.use(async (req, res, next) => {
 });
 
 const adminRouter = require("./admin");
-const authRouter = require("./auth");
 const cartItemsRouter = require("./cartItems");
 const recordsRouter = require("./records");
 const cartsRouter = require("./carts");
 const usersRouter = require("./users");
 
 apiRouter.use("/admin", adminRouter);
-apiRouter.use("/auth", authRouter);
 apiRouter.use("/cart", cartItemsRouter);
 apiRouter.use("/records", recordsRouter);
 apiRouter.use("/carts", cartsRouter);

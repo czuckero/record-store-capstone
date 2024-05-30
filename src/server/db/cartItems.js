@@ -1,16 +1,17 @@
 const db = require("./client");
+const uuid = require("uuid");
 
-const addToCart = async ({ user_id, record_id, quantity, totalCost }) => {
+const addToCart = async ({ cart_id, record_id, quantity, totalCost }) => {
   try {
     const {
       rows: [cartItem],
     } = await db.query(
       `--sql
-      INSERT INTO cart_items (user_id, record_id, quantity, totalCost)
-      VALUES ($1, $2, $3, $4)
+      INSERT INTO cart_items (id, cart_id, record_id, quantity, total_cost)
+      VALUES ($1, $2, $3, $4, $5)
       RETURNING *;
     `,
-      [user_id, record_id, quantity, totalCost]
+      [uuid.v4(), cart_id, record_id, quantity, totalCost]
     );
     return cartItem;
   } catch (err) {
@@ -18,17 +19,17 @@ const addToCart = async ({ user_id, record_id, quantity, totalCost }) => {
   }
 };
 
-const removeFromCart = async ({ user_id, record_id }) => {
+const removeFromCart = async ({ cart_id, record_id }) => {
   try {
     const {
       rows: [cartItem],
     } = await db.query(
       `--sql
       DELETE FROM cart_items
-      WHERE user_id=$1 AND record_id=$2
+      WHERE cart_id=$1 AND record_id=$2
       RETURNING *;
     `,
-      [user_id, record_id]
+      [cart_id, record_id]
     );
     return cartItem;
   } catch (err) {
@@ -36,18 +37,18 @@ const removeFromCart = async ({ user_id, record_id }) => {
   }
 };
 
-const updateCart = async ({ user_id, record_id, quantity, totalCost }) => {
+const updateCart = async ({ cart_id, record_id, quantity, totalCost }) => {
   try {
     const {
       rows: [cartItem],
     } = await db.query(
       `--sql
       UPDATE cart_items
-      SET quantity=$1, totalCost=$2
-      WHERE user_id=$3 AND record_id=$4
+      SET quantity=$1, total_cost=$2
+      WHERE cart_id=$3 AND record_id=$4
       RETURNING *;
     `,
-      [quantity, totalCost, user_id, record_id]
+      [quantity, totalCost, cart_id, record_id]
     );
     return cartItem;
   } catch (err) {

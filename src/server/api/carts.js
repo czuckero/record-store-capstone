@@ -1,6 +1,6 @@
 const express = require("express");
 const cartRouter = express.Router();
-const { getCartItems, clearCart } = require("../db/carts");
+const { createCart, getCartItems, clearCart } = require("../db/carts");
 const { authenticateUser, isLoggedIn } = require("../middleware/auth");
 
 // Middleware to ensure the user is authenticated

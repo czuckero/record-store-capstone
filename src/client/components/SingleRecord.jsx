@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Navbar from './Navbar';
 import './CSS/SingleRecord.css';
 
 const SingleRecord = () => {
   return (
     <>
-      <Navbar />
       <div className="record-container">
         <h1>Album Title</h1>
         <img src="https://via.placeholder.com/400" alt="Album Cover" className="record-image" />

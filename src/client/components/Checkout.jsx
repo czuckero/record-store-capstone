@@ -1,11 +1,9 @@
 import React from 'react';
-import Navbar from './Navbar';
 import './CSS/Checkout.css';
 
 const Checkout = () => {
   return (
     <>
-      <Navbar />
       <div className="checkout-container">
         <h1>Checkout</h1>
         <form className="checkout-form">

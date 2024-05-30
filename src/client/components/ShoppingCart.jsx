@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Navbar from './Navbar';
 import './CSS/ShoppingCart.css';
 
 const ShoppingCart = () => {
@@ -21,7 +20,6 @@ const ShoppingCart = () => {
 
   return (
     <>
-      <Navbar />
       <div className="shopping-cart-container">
         <h1>Shopping Cart</h1>
         <ul className="cart-items">

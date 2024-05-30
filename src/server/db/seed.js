@@ -225,6 +225,7 @@ const insertCartItems = async () => {
       FROM carts;
       `
     );
+
     const { rows: records } = await db.query(
       `--sql
       SELECT *
@@ -234,7 +235,7 @@ const insertCartItems = async () => {
     for (const cart of carts) {
       for (const record of records) {
         await addToCart({
-          user_id: cart.user_id,
+          cart_id: cart.id,
           record_id: record.id,
           quantity: 1,
           totalCost: record.price,

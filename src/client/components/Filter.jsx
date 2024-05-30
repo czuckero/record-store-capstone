@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import React from 'react';
-import './Filters.css';
+import './CSS/Filters.css';
 
 const Filters = () => {
   return (

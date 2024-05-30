@@ -1,7 +1,4 @@
-import { useState } from "react";
-
 import React, { useState } from 'react';
-import Navbar from './Navbar';
 import './CSS/Registration.css';
 
 const Registration = () => {
@@ -28,7 +25,6 @@ const Registration = () => {
 
   return (
     <>
-      <Navbar />
       <div className="registration-container">
         <h1>Sign Up</h1>
         <form className="registration-form" onSubmit={handleSubmit}>

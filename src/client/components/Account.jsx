@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from './Navbar';
 import './CSS/Account.css';
 
 const Account = () => {
@@ -36,7 +35,6 @@ const Account = () => {
 
   return (
     <>
-      <Navbar />
       <div className="account-container">
         <h1>Account Information</h1>
         <div className="user-info">

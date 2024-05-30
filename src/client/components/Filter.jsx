@@ -9,21 +9,28 @@ const Filters = () => {
       <div className="filter">
         <label>Filter by Artist:</label>
         <select>
-          <option>Artist 1</option>
-          <option>Artist 2</option>
-          <option>Artist 3</option>
-          <option>Artist 4</option>
-          <option>Artist 5</option>
+          <option>Michael Jackson</option>
+          <option>Metallica</option>
+          <option>ABBA</option>
+          <option>Johnny Cash</option>
+          <option>Kendrick Lamar</option>
+          <option>Taylor Swift</option>
+          <option>Glass Animals</option>
+          <option>Leonard Cohen</option>
+          <option>D'Angelo</option>
+          <option>John Coltrane</option>
         </select>
       </div>
       <div className="filter">
         <label>Filter by Genre:</label>
         <select>
-          <option>Genre 1</option>
-          <option>Genre 2</option>
-          <option>Genre 3</option>
-          <option>Genre 4</option>
-          <option>Genre 5</option>
+          <option>R&B</option>
+          <option>POP</option>
+          <option>Rock</option>
+          <option>Folk</option>
+          <option>Country</option>
+          <option>Indie</option>
+          <option>Disco</option>
         </select>
       </div>
       <div className="filter">

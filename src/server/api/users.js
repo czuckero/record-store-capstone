@@ -7,8 +7,23 @@ const { createUser, getUser, getUserByEmail } = require("../db");
 
 const jwt = require("jsonwebtoken");
 
-// POST /api/users/login
-usersRouter.post("/login", async (req, res, next) => {
+// GET /api/user/:id
+usersRouter.get("/api/user/:id", async (req, res, next) => {
+  const userId = req.params.id;
+
+  try {
+    const user = await getUserById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.json({ user });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// POST /api/auth/login
+usersRouter.post("/api/auth/login", async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
     next({
@@ -45,8 +60,8 @@ usersRouter.post("/login", async (req, res, next) => {
   }
 });
 
-// POST /api/users/register
-usersRouter.post("/register", async (req, res, next) => {
+// POST /api/auth/register
+usersRouter.post("/api/auth/register", async (req, res, next) => {
   const { name, email, password } = req.body;
 
   try {

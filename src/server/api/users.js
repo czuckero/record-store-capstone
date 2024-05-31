@@ -8,7 +8,7 @@ const { createUser, getUser, getUserByEmail } = require("../db");
 const jwt = require("jsonwebtoken");
 
 // GET /api/user/:id
-usersRouter.get("/api/user/:id", async (req, res, next) => {
+usersRouter.get("/user/:id", async (req, res, next) => {
   const userId = req.params.id;
 
   try {
@@ -23,7 +23,7 @@ usersRouter.get("/api/user/:id", async (req, res, next) => {
 });
 
 // POST /api/auth/login
-usersRouter.post("/api/auth/login", async (req, res, next) => {
+usersRouter.post("/auth/login", async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
     next({
@@ -61,7 +61,7 @@ usersRouter.post("/api/auth/login", async (req, res, next) => {
 });
 
 // POST /api/auth/register
-usersRouter.post("/api/auth/register", async (req, res, next) => {
+usersRouter.post("/auth/register", async (req, res, next) => {
   const { name, email, password } = req.body;
 
   try {

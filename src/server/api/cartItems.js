@@ -20,7 +20,7 @@ cartRouter.post("/", isLoggedIn, async (req, res, next) => {
 });
 
 // PUT /api/cart/:recordId
-cartRouter.put("/:recordId", isLoggedIn, async (req, res, next) => {
+cartRouter.put("/cart/:recordId", isLoggedIn, async (req, res, next) => {
   const { recordId } = req.params;
   const { quantity, totalCost } = req.body;
   try {
@@ -37,7 +37,7 @@ cartRouter.put("/:recordId", isLoggedIn, async (req, res, next) => {
 });
 
 // DELETE /api/cart/:recordId
-cartRouter.delete("/:recordId", isLoggedIn, async (req, res, next) => {
+cartRouter.delete("/cart/:recordId", isLoggedIn, async (req, res, next) => {
   const { recordId } = req.params;
   try {
     const cartItem = await removeFromCart({

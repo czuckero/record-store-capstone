@@ -54,7 +54,7 @@ const getCartItems = async (user_id) => {
 
 const clearCart = async (user_id) => {
   try {
-    const { rows: carts } = await db.query(
+    const { rows: cart } = await db.query(
       `--sql
       SELECT id FROM carts WHERE user_id=$1;
       `,

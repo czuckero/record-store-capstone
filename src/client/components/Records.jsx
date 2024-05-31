@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import React from 'react';
 import './CSS/Records.css';
+import { fetchAllRecords } from "../API";
 
 const Records = () => {
+  const [records, setRecords] = useState([]);
+
   const albums = [
     { title: 'Gold', artist: 'ABBA', price: '$38.99', imgSrc: 'https://m.media-amazon.com/images/I/91cPxQP9NmL._UF1000,1000_QL80_.jpg' },
     { title: 'At Folsom Prison', artist: 'Johnny Cash', price: '$24.99', imgSrc: 'https://m.media-amazon.com/images/I/91cgDY8ocrL._UF1000,1000_QL80_.jpg' },
@@ -16,6 +19,19 @@ const Records = () => {
     { title: 'Black Album', artist: 'Metallica', price: '$35.99', imgSrc: 'https://i.ebayimg.com/images/g/6vcAAOSwXHpca1W1/s-l1600.jpg' },
     { title: 'Thriller', artist: 'Michael Jackson', price: '$26.99', imgSrc: 'https://m.media-amazon.com/images/M/MV5BODhhZjJlYTktZDQ2MS00Yzk4LWFlOTQtYTgyOGE1ZGE5YWEyL2ltYWdlXkEyXkFqcGdeQXVyMzA5MjgyMjI@._V1_.jpg' },
   ];
+
+  useEffect(() => {
+    async function getAllRecords() {
+      try {
+        const response = await fetchAllRecords();
+        console.log(response);
+        setRecords(response)
+      } catch (error) {
+        throw error;
+      }
+    }
+    getAllRecords();
+  }, []);
 
   return (
     <div className="records">

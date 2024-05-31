@@ -1,4 +1,4 @@
-const APIURL = "insert_api_url_here"
+const APIURL = "localhost"
 
 // Fetches the list of records
 export async function fetchAllRecords() {

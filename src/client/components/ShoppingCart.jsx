@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import './CSS/ShoppingCart.css';
 
 const ShoppingCart = () => {
+  const navigate = useNavigate();
+
   const [cartItems, setCartItems] = useState([
     { id: 1, name: 'Album A', price: 40.00, quantity: 1 },
     { id: 2, name: 'Album B', price: 35.00, quantity: 2 },
@@ -39,7 +42,7 @@ const ShoppingCart = () => {
         </ul>
         <div className="cart-total">
           <h2>Total: ${totalAmount.toFixed(2)}</h2>
-          <button className="checkout-button">Proceed to Checkout</button>
+          <button onClick={() => navigate('/checkout')} className="checkout-button">Proceed to Checkout</button>
         </div>
       </div>
     </>

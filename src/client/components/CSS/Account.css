@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400&display=swap');
+
 .account-container {
   padding: 20px;
-  margin-top: 60px; 
+  margin-top: 60px; /* Adjust based on the height of your navbar */
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
@@ -9,12 +11,13 @@
   border: 1px solid #607D8B; /* Slate Gray */
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: 'Merriweather', serif;
 }
 
 .account-container h1 {
   font-size: 36px;
   margin-bottom: 20px;
-  text-align: center;
   color: #4A90E2; /* Cool Blue */
 }
 
@@ -55,6 +58,8 @@
   border: 1px solid #607D8B; /* Slate Gray */
   border-radius: 5px;
   box-sizing: border-box;
+  background-color: #FFFFFF; /* White */
+  color: #37474F; /* Charcoal Gray */
 }
 
 button[type="submit"] {
@@ -84,5 +89,6 @@ button[type="submit"]:hover {
   margin-bottom: 10px;
   background-color: #ECEFF1; /* Soft Gray */
 }
+
 
   

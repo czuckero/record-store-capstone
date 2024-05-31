@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400&display=swap');
+
 .about-container {
   padding: 20px;
   margin-top: 60px; 
@@ -9,6 +11,7 @@
   border: 1px solid #607D8B; /* Slate Gray */
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Merriweather', serif;
 }
 
 .about-container h1 {
@@ -23,5 +26,6 @@
   margin-bottom: 20px;
   color: #607D8B; /* Slate Gray */
 }
+
 
   

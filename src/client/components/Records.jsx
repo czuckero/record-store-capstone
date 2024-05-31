@@ -27,7 +27,7 @@ const Records = () => {
         console.log(response);
         setRecords(response)
       } catch (error) {
-        throw error
+        throw error;
       }
     }
     getAllRecords();

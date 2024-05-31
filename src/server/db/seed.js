@@ -39,7 +39,7 @@ const records = [
     title: "Thriller",
     price: "26.99",
     new: true,
-    img: "",
+    img: "https://m.media-amazon.com/images/M/MV5BODhhZjJlYTktZDQ2MS00Yzk4LWFlOTQtYTgyOGE1ZGE5YWEyL2ltYWdlXkEyXkFqcGdeQXVyMzA5MjgyMjI@._V1_.jpg",
   },
   {
     artist: "Metallica",
@@ -47,7 +47,7 @@ const records = [
     title: "Metallica",
     price: "35.99",
     new: true,
-    img: "",
+    img: "https://i.ebayimg.com/images/g/6vcAAOSwXHpca1W1/s-l1600.jpg",
   },
   {
     artist: "Glass Animals",
@@ -55,7 +55,7 @@ const records = [
     title: "Dreamland",
     price: "23.99",
     new: true,
-    img: "",
+    img: "https://i.scdn.co/image/ab67616d0000b27360d9f3955a8cc8eb67265a38",
   },
   {
     artist: "Kendrick Lamar",
@@ -63,7 +63,7 @@ const records = [
     title: "good kid, m.A.A.d city",
     price: "35.99",
     new: true,
-    img: "",
+    img: "https://m.media-amazon.com/images/I/71YMac+JmAL._UF1000,1000_QL80_.jpg",
   },
   {
     artist: "Taylor Swift",
@@ -71,7 +71,7 @@ const records = [
     title: "Midnights",
     price: "24.95",
     new: true,
-    img: "",
+    img: "https://i.scdn.co/image/ab67616d0000b273fa747621a53c8e2cc436dee",
   },
   {
     artist: "John Coltrane",
@@ -79,7 +79,7 @@ const records = [
     title: "Blue Train",
     price: "29.95",
     new: false,
-    img: "",
+    img: "https://cdn11.bigcommerce.com/s-w8qmypftv/images/stencil/1280x1280/products/1642082/4036926/NjctNDc5OC5qcGVn__44909.1680473732.jpg?c=2",
   },
   {
     artist: "D'Angelo",
@@ -87,7 +87,7 @@ const records = [
     title: "Voodoo",
     price: "54.99",
     new: true,
-    img: "",
+    img: "https://m.media-amazon.com/images/I/4118ZBDVFVL._UF1000,1000_QL80_.jpg",
   },
   {
     artist: "Johnny Cash",
@@ -95,7 +95,7 @@ const records = [
     title: "At Folsom Prison",
     price: "24.99",
     new: false,
-    img: "",
+    img: "https://m.media-amazon.com/images/I/91cgDY8ocrL._UF1000,1000_QL80_.jpg",
   },
   {
     artist: "Leonard Cohen",
@@ -103,7 +103,7 @@ const records = [
     title: "Songs of Love and Hate",
     price: "24.99",
     new: false,
-    img: "",
+    img: "https://cdn-p.smehost.net/sites/81c947ec3e5441a5a09cf933b1bfcf4f/wp-content/uploads/2021/03/LeonardCohen50thHeader.jpg",
   },
   {
     artist: "ABBA",
@@ -111,7 +111,7 @@ const records = [
     title: "Gold",
     price: "38.99",
     new: true,
-    img: "",
+    img: "https://m.media-amazon.com/images/I/91cPxQP9NmL._UF1000,1000_QL80_.jpg",
   },
 ];
 

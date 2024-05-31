@@ -1,34 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400&display=swap');
+
 .footer {
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .newsletter {
-    margin-bottom: 20px;
-  }
-  
-  .newsletter label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .newsletter input {
-    padding: 10px;
-    margin-right: 10px;
-  }
-  
-  .newsletter button {
-    padding: 10px;
-  }
-  
-  .footer-links {
-    margin-top: 10px;
-  }
-  
-  .footer-links a {
-    color: white;
-    text-decoration: none;
-  }
+  background-color: #4A90E2; /* Cool Blue */
+  color: #FFFFFF; /* White */
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #607D8B; /* Slate Gray */
+  font-family: 'Merriweather', serif;
+}
+
+.newsletter {
+  margin-bottom: 20px;
+}
+
+.newsletter label {
+  display: block;
+  margin-bottom: 5px;
+  color: #FFFFFF; /* White */
+  font-size: 16px;
+}
+
+.newsletter input {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #607D8B; /* Slate Gray */
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.newsletter button {
+  padding: 10px 20px;
+  background-color: #00796B; /* Teal */
+  color: #FFFFFF; /* White */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.newsletter button:hover {
+  background-color: #005b4f; /* Darker Teal */
+}
+
+.footer-links {
+  margin-top: 10px;
+}
+
+.footer-links a {
+  color: #FFFFFF; /* White */
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+
   

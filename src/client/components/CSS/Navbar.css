@@ -1,44 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400&display=swap');
+
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
-    position: sticky;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-  }
-  
-  .navbar-logo {
-    font-size: 24px;
-  }
-  
-  .navbar-logo a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .navbar-links {
-    list-style-type: none;
-    display: flex;
-    gap: 20px;
-    align-items: center;
-  }
-  
-  .navbar-links li {
-    display: inline;
-  }
-  
-  .navbar-links a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .navbar-links input {
-    padding: 5px;
-    border: none;
-    border-radius: 3px;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #4A90E2; /* Cool Blue */
+  color: white;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 1px solid #607D8B; /* Slate Gray */
+  font-family: 'Merriweather', serif;
+}
+
+.navbar-logo {
+  font-size: 24px;
+}
+
+.navbar-logo a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-links {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.navbar-links li {
+  display: inline;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+  color: #A5D6A7; /* Pale Mint */
+}
+
+.navbar-links input {
+  padding: 5px;
+  border: 1px solid #607D8B; /* Slate Gray */
+  border-radius: 3px;
+  background-color: #FFFFFF; /* White */
+  color: #37474F; /* Charcoal Gray */
+}
+
+
   

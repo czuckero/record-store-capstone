@@ -1,15 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400&display=swap');
+
 .records {
   padding: 20px;
-  margin-top: 60px;
+  margin-top: 60px; 
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+  background-color: #F5F5F5; /* White Smoke */
+  color: #37474F; /* Charcoal Gray */
+  border: 1px solid #607D8B; /* Slate Gray */
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Merriweather', serif;
 }
 
 .records h2 {
   font-size: 36px;
   margin-bottom: 20px;
+  color: #4A90E2; /* Cool Blue */
 }
 
 .album-list {
@@ -20,30 +29,36 @@
 }
 
 .album-item {
-  border: 1px solid #ccc;
+  border: 1px solid #607D8B; /* Slate Gray */
   padding: 10px;
   text-align: center;
   width: 200px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ECEFF1; /* Soft Gray */
+  border-radius: 5px;
 }
 
 .album-item img {
   width: 100%;
   height: auto;
+  border-radius: 5px;
 }
 
 .album-item h3 {
   font-size: 18px;
   margin: 10px 0 5px;
+  color: #37474F; /* Charcoal Gray */
 }
 
 .album-item h4 {
   font-size: 16px;
   margin: 5px 0;
-  color: #555;
+  color: #607D8B; /* Slate Gray */
 }
 
 .album-item p {
   font-size: 14px;
-  color: #888;
+  color: #8BC34A; /* Seafoam Green */
 }
+
+

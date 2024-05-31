@@ -15,21 +15,6 @@ adminRouter.get("/users", isAdmin, async (req, res, next) => {
   }
 });
 
-adminRouter.post("/artists", isAdmin, async (req, res, next) => {
-  try {
-    const { name, bio, genre, img } = req.body;
-    const artist = await db.artists.createArtistByAdmin({
-      name,
-      bio,
-      genre,
-      img,
-    });
-    res.json(artist);
-  } catch (error) {
-    next(error);
-  }
-});
-
 adminRouter.post("/records", isAdmin, async (req, res, next) => {
   try {
     const { genre, artist_id, title, price, newRecord, img } = req.body;
@@ -42,6 +27,18 @@ adminRouter.post("/records", isAdmin, async (req, res, next) => {
       img,
     });
     res.json(record);
+  } catch (error) {
+    next(error);
+  }
+});
+
+adminRouter.delete("/records/:recordId", isAdmin, async (req, res, next) => {
+  try {
+    const recordId = req.params.recordId;
+    
+    await db.records.deleteRecordById(recordId);
+
+    res.json({ message: "Record deleted successfully" });
   } catch (error) {
     next(error);
   }

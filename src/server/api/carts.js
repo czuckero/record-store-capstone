@@ -7,7 +7,7 @@ const { authenticateUser, isLoggedIn } = require("../middleware/auth");
 cartRouter.use(authenticateUser);
 
 // GET /api/cart - Get all cart items for the user
-cartRouter.get("/", isLoggedIn, async (req, res, next) => {
+cartRouter.get("/user/cart", isLoggedIn, async (req, res, next) => {
   try {
     const cartItems = await getCartItems(req.user.id);
     res.send(cartItems);
@@ -17,7 +17,7 @@ cartRouter.get("/", isLoggedIn, async (req, res, next) => {
 });
 
 // DELETE /api/cart - Clear the cart
-cartRouter.delete("/", isLoggedIn, async (req, res, next) => {
+cartRouter.delete("/cart", isLoggedIn, async (req, res, next) => {
   try {
     await clearCart(req.user.id);
     res.status(204).send(); // 204 No Content

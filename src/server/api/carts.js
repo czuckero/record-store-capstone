@@ -1,13 +1,14 @@
 const express = require("express");
 const cartRouter = express.Router();
-const { createCart, getCartItems, clearCart } = require("../db/carts");
+const { getCartItems, clearCart } = require("../db/carts");
 const { authenticateUser, isLoggedIn } = require("../middleware/auth");
 
 // Middleware to ensure the user is authenticated
 cartRouter.use(authenticateUser);
 
-// GET /api/cart - Get all cart items for the user
-cartRouter.get("/user/cart", isLoggedIn, async (req, res, next) => {
+// GET /api/cart
+// only logged in users can access their cart
+cartRouter.get("/users/cart", isLoggedIn, async (req, res, next) => {
   try {
     const cartItems = await getCartItems(req.user.id);
     res.send(cartItems);
@@ -16,7 +17,8 @@ cartRouter.get("/user/cart", isLoggedIn, async (req, res, next) => {
   }
 });
 
-// DELETE /api/cart - Clear the cart
+// DELETE /api/cart
+// only logged in users can clear their cart
 cartRouter.delete("/cart", isLoggedIn, async (req, res, next) => {
   try {
     await clearCart(req.user.id);

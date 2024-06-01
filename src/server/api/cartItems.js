@@ -4,14 +4,15 @@ const { addToCart, removeFromCart, updateCart } = require("../db/cartItems");
 const { isLoggedIn } = require("../middleware/auth");
 
 // POST /api/cart
+// adds a new item to logged in user's cart
 cartRouter.post("/", isLoggedIn, async (req, res, next) => {
-  const { user_id, record_id, quantity, totalCost } = req.body;
+  const { record_id, quantity, price } = req.body;
   try {
     const cartItem = await addToCart({
-      user_id,
+      user_id: req.user.id,
       record_id,
       quantity,
-      totalCost,
+      price,
     });
     res.send(cartItem);
   } catch (err) {
@@ -20,15 +21,16 @@ cartRouter.post("/", isLoggedIn, async (req, res, next) => {
 });
 
 // PUT /api/cart/:recordId
-cartRouter.put("/cart/:recordId", isLoggedIn, async (req, res, next) => {
+// updates a record in a logged in user's cart
+cartRouter.put("/:recordId", isLoggedIn, async (req, res, next) => {
   const { recordId } = req.params;
-  const { quantity, totalCost } = req.body;
+  const { quantity, price } = req.body;
   try {
     const cartItem = await updateCart({
       user_id: req.user.id,
       record_id: recordId,
       quantity,
-      totalCost,
+      price,
     });
     res.send(cartItem);
   } catch (err) {
@@ -37,7 +39,8 @@ cartRouter.put("/cart/:recordId", isLoggedIn, async (req, res, next) => {
 });
 
 // DELETE /api/cart/:recordId
-cartRouter.delete("/cart/:recordId", isLoggedIn, async (req, res, next) => {
+// deletes a record from a logged in user's cart
+cartRouter.delete("/:recordId", isLoggedIn, async (req, res, next) => {
   const { recordId } = req.params;
   try {
     const cartItem = await removeFromCart({

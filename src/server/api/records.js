@@ -2,14 +2,10 @@
 
 const express = require("express");
 const recordsRouter = express.Router();
-const {
-  getRecords,
-  getRecordById,
-  getRecordsByArtistId,
-} = require("../db/records");
+const { getRecords, getRecordById } = require("../db/records");
 
 //GET /api/records
-recordsRouter.get("/records", async (req, res, next) => {
+recordsRouter.get("/", async (req, res, next) => {
   try {
     const records = await getRecords();
     res.send(records);
@@ -19,7 +15,7 @@ recordsRouter.get("/records", async (req, res, next) => {
 });
 
 //GET /api/records/:id
-recordsRouter.get("/records/:id", async (req, res, next) => {
+recordsRouter.get("/:id", async (req, res, next) => {
   const { id } = req.params;
   try {
     const record = await getRecordById(id);

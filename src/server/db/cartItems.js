@@ -1,17 +1,19 @@
+// handles cart items related stuff
+
 const db = require("./client");
 const uuid = require("uuid");
 
-const addToCart = async ({ cart_id, record_id, quantity, totalCost }) => {
+const addToCart = async ({ cart_id, record_id, quantity, price }) => {
   try {
     const {
       rows: [cartItem],
     } = await db.query(
       `--sql
-      INSERT INTO cart_items (id, cart_id, record_id, quantity, total_cost)
+      INSERT INTO cart_items (id, cart_id, record_id, quantity, price)
       VALUES ($1, $2, $3, $4, $5)
       RETURNING *;
     `,
-      [uuid.v4(), cart_id, record_id, quantity, totalCost]
+      [uuid.v4(), cart_id, record_id, quantity, price]
     );
     return cartItem;
   } catch (err) {
@@ -37,18 +39,18 @@ const removeFromCart = async ({ cart_id, record_id }) => {
   }
 };
 
-const updateCart = async ({ cart_id, record_id, quantity, totalCost }) => {
+const updateCart = async ({ cart_id, record_id, quantity, price }) => {
   try {
     const {
       rows: [cartItem],
     } = await db.query(
       `--sql
       UPDATE cart_items
-      SET quantity=$1, total_cost=$2
+      SET quantity=$1, price=$2
       WHERE cart_id=$3 AND record_id=$4
       RETURNING *;
     `,
-      [quantity, totalCost, cart_id, record_id]
+      [quantity, price, cart_id, record_id]
     );
     return cartItem;
   } catch (err) {

@@ -32,7 +32,8 @@ const getRecords = async () => {
   try {
     const { rows: records } = await db.query(
       `--sql
-      SELECT * FROM records;
+      SELECT *
+      FROM records;
       `
     );
     return records;
@@ -41,18 +42,67 @@ const getRecords = async () => {
   }
 };
 
-const updateStock = async (newStock, record_id) => {
+const getRecordById = async () => {
+  try {
+    const {
+      rows: [record],
+    } = await db.query(
+      `--sql
+      SELECT *
+      FROM records
+      WHERE id = $1
+      `,
+      [record_id]
+    );
+  } catch (error) {
+    throw error;
+  }
+};
+
+const updateRecord = async ({
+  id,
+  artist,
+  genre,
+  title,
+  price,
+  newRecord,
+  img,
+}) => {
   try {
     const {
       rows: [record],
     } = await db.query(
       `--sql
       UPDATE records
-      SET stock=$1
+      SET artist = $2,
+      genre = $3,
+      title = $4,
+      price = $5,
+      new = $6,
+      img = $7
+      WHERE id = $1
+      RETURNING *
+      `,
+      [id, artist, genre, title, price, newRecord, img]
+    );
+    return record;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const updateQuantity = async (newQuantity, record_id) => {
+  try {
+    const {
+      rows: [record],
+    } = await db.query(
+      `--sql
+      UPDATE records
+      SET quantity=$1
       WHERE id=$2
       RETURNING *;
       `,
-      [newStock, record_id]
+      [newQuantity, record_id]
     );
     return record;
   } catch (error) {
@@ -63,5 +113,7 @@ const updateStock = async (newStock, record_id) => {
 module.exports = {
   createRecord,
   getRecords,
-  updateStock,
+  getRecordById,
+  updateRecord,
+  updateQuantity,
 };

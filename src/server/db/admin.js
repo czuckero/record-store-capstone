@@ -1,6 +1,5 @@
 // handles admin-related stuff
 
-const db = require("./client");
 const { createArtist } = require("./artists");
 const { createRecord } = require("./records");
 const { getUsers } = require("./users");

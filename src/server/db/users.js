@@ -1,21 +1,10 @@
+// handles user-related stuff
+
 const db = require("./client");
 const bcrypt = require("bcrypt");
 const uuid = require("uuid");
 
-const createUser = async (userData) => {
-  if (
-    !userData ||
-    !userData.username ||
-    !userData.email ||
-    !userData.password
-  ) {
-    throw new Error(
-      "Missing required fields: username, email, and password are required"
-    );
-  }
-
-  const { username, email, password, isAdmin = false } = userData;
-
+const createUser = async ({ username, email, password, isAdmin = false }) => {
   try {
     const hashedPassword = await bcrypt.hash(password, 5);
     const {
@@ -64,6 +53,25 @@ const getUserByEmail = async (email) => {
   }
 };
 
+const getUserById = async (id) => {
+  try {
+    const {
+      rows: [user],
+    } = await db.query(
+      `--sql
+      SELECT * FROM users WHERE id = $1`,
+      [id]
+    );
+
+    if (!user) {
+      return;
+    }
+    return user;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const getUsers = async () => {
   try {
     const { rows: users } = await db.query(`SELECT * FROM users`);
@@ -77,5 +85,6 @@ module.exports = {
   createUser,
   getUser,
   getUserByEmail,
+  getUserById,
   getUsers,
 };

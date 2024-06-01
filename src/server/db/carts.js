@@ -1,3 +1,5 @@
+// handles cart-related stuff
+
 const db = require("./client");
 const uuid = require("uuid");
 
@@ -16,6 +18,24 @@ const createCart = async ({ user_id }) => {
     return cart;
   } catch (err) {
     throw err;
+  }
+};
+
+const getCartByUserId = async (userId) => {
+  try {
+    const { rows: carts } = await db.query(
+      `--sql
+      SELECT * FROM carts WHERE user_id = $1`,
+      [userId]
+    );
+
+    if (carts.length === 0) {
+      return null;
+    }
+
+    return carts[0];
+  } catch (error) {
+    throw error;
   }
 };
 
@@ -82,6 +102,7 @@ const clearCart = async (user_id) => {
 
 module.exports = {
   createCart,
+  getCartByUserId,
   getCartItems,
   clearCart,
 };

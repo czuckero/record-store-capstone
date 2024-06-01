@@ -2,28 +2,65 @@
 
 const express = require("express");
 const usersRouter = express.Router();
-
-const { createUser, getUser, getUserByEmail } = require("../db");
-
+const { isLoggedIn } = require("../middleware/auth");
+const {
+  createUser,
+  getUser,
+  getUserByEmail,
+  getUserById,
+} = require("../db/users");
 const jwt = require("jsonwebtoken");
+const {
+  addToCart,
+  updateCart,
+  removeFromCart,
+  getCartItems,
+} = require("../db/cartItems");
 
-// GET /api/user/:id
-usersRouter.get("/user/:id", async (req, res, next) => {
-  const userId = req.params.id;
+// POST /api/users/register
+// handles user registration
+usersRouter.post("/user/register", async (req, res, next) => {
+  const { name, email, password } = req.body;
 
   try {
-    const user = await getUserById(userId);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
+    const existingUser = await getUserByEmail(email);
+
+    if (existingUser) {
+      next({
+        name: "UserExistsError",
+        message: "A user with that email already exists",
+      });
     }
-    res.json({ user });
-  } catch (error) {
-    next(error);
+
+    const user = await createUser({
+      name,
+      email,
+      password,
+    });
+
+    const token = jwt.sign(
+      {
+        id: user.id,
+        email,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1w",
+      }
+    );
+
+    res.send({
+      message: "Sign up successful!",
+      token,
+    });
+  } catch ({ name, message }) {
+    next({ name, message });
   }
 });
 
-// POST /api/auth/login
-usersRouter.post("/auth/login", async (req, res, next) => {
+// POST /api/users/login
+// handles user login
+usersRouter.post("/user/login", async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
     next({
@@ -60,43 +97,88 @@ usersRouter.post("/auth/login", async (req, res, next) => {
   }
 });
 
-// POST /api/auth/register
-usersRouter.post("/auth/register", async (req, res, next) => {
-  const { name, email, password } = req.body;
-
+// GET /api/users/:id
+// gets user by their ID
+usersRouter.get("/:id", isLoggedIn, async (req, res, next) => {
+  const userId = req.params.id;
   try {
-    const _user = await getUserByEmail(email);
-
-    if (_user) {
-      next({
-        name: "UserExistsError",
-        message: "A user with that email already exists",
-      });
+    const user = await getUserById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
     }
+    res.json({ user });
+  } catch (error) {
+    next(error);
+  }
+});
 
-    const user = await createUser({
-      name,
-      email,
-      password,
-    });
-
-    const token = jwt.sign(
-      {
-        id: user.id,
-        email,
-      },
-      process.env.JWT_SECRET,
-      {
-        expiresIn: "1w",
+// POST /api/users/:userId/cart/cartItems
+// adds an item to user's cart
+usersRouter.post(
+  "/:userId/cart/cartItems",
+  isLoggedIn,
+  async (req, res, next) => {
+    const { userId } = req.params;
+    const { record_id, quantity, price } = req.body;
+    try {
+      const cartItem = await addToCart({ userId, record_id, quantity, price });
+      if (!cartItem) {
+        return res.status(400).json({ error: "Unable to add record to cart" });
       }
-    );
+      res.json({ message: "Record added to cart", cartItem });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
-    res.send({
-      message: "Sign up successful!",
-      token,
-    });
-  } catch ({ name, message }) {
-    next({ name, message });
+// PUT /api/users/:userId/cart/:cartItemId
+// updates an item in user's cart
+usersRouter.put(
+  "/:userId/cart/:cartItemId",
+  isLoggedIn,
+  async (req, res, next) => {
+    const { userId, cartItemId } = req.params;
+    const { quantity, price } = req.body;
+    try {
+      const cartItem = await updateCart({
+        userId,
+        cartItemId,
+        quantity,
+        price,
+      });
+      res.json({ message: "Record updated successfully", cartItem });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+// DELETE /api/users/:userId/cart/cartItems/:cartItemId
+// removes an item from user's cart
+usersRouter.delete(
+  "/:userId/cart/cartItems/:cartItemId",
+  isLoggedIn,
+  async (req, res, next) => {
+    const { userId, cartItemId } = req.params;
+    try {
+      await removeFromCart({ userId, cartItemId });
+      res.json({ message: "Record removed successfully" });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+// GET /api/users/:userId/cart
+// gets items in user's cart
+usersRouter.get("/:userId/cart", isLoggedIn, async (req, res, next) => {
+  const { userId } = req.params;
+  try {
+    const cartItems = await getCartItems(userId);
+    res.json(cartItems);
+  } catch (error) {
+    next(error);
   }
 });
 

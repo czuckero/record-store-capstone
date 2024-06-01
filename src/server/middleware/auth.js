@@ -18,8 +18,6 @@ const authenticateUser = (req, res, next) => {
   }
 };
 
-module.exports = { authenticateUser };
-
 // check if user is logged in
 const isLoggedIn = (req, res, next) => {
   if (!req.user) {

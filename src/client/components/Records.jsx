@@ -6,6 +6,7 @@ import { fetchAllRecords } from "../API";
 
 const Records = () => {
   const [records, setRecords] = useState([]);
+  const navigate = useNavigate();
 
   const albums = [
     { title: 'Gold', artist: 'ABBA', price: '$38.99', imgSrc: 'https://m.media-amazon.com/images/I/91cPxQP9NmL._UF1000,1000_QL80_.jpg' },
@@ -37,12 +38,12 @@ const Records = () => {
     <div className="records">
       <h2>Shop Records</h2>
       <div className="album-list">
-        {albums.map((album, index) => (
-          <div key={index} className="album-item">
-            <img src={album.imgSrc} alt={album.title} />
-            <h3>{album.title}</h3>
-            <h4>{album.artist}</h4>
-            <p>{album.price}</p>
+        {records.map((record, index) => (
+          <div onClick={() => {navigate(`/records/${record.id}`)}} key={index} className="album-item">
+            <img src={record.img} alt={record.title} />
+            <h3>{record.title}</h3>
+            <h4>{record.artist}</h4>
+            <p>{record.price}</p>
           </div>
         ))}
       </div>

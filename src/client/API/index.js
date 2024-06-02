@@ -2,7 +2,7 @@ const APIURL = "localhost"
 
 // Fetches the list of records
 export async function fetchAllRecords() {
-  const response = await fetch(`/api/records`);
+  const response = await fetch(`localhost:5432/api/records`);
   const result = await response.json();
   return result;
 };

@@ -42,7 +42,7 @@ const getRecords = async () => {
   }
 };
 
-const getRecordById = async () => {
+const getRecordById = async (record_id) => {
   try {
     const {
       rows: [record],
@@ -54,6 +54,7 @@ const getRecordById = async () => {
       `,
       [record_id]
     );
+    return record
   } catch (error) {
     throw error;
   }

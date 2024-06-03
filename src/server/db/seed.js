@@ -156,7 +156,7 @@ const createTables = async () => {
         cart_id UUID REFERENCES carts(id),
         record_id UUID REFERENCES records(id),
         quantity INTEGER DEFAULT 1,
-        total_cost DECIMAL(10,2) NOT NULL
+        price DECIMAL(10,2) NOT NULL
       );
     `);
   } catch (err) {
@@ -238,7 +238,7 @@ const insertCartItems = async () => {
           cart_id: cart.id,
           record_id: record.id,
           quantity: 1,
-          totalCost: record.price,
+          price: record.price,
         });
       }
     }

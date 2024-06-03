@@ -1,22 +1,22 @@
-const APIURL = "localhost"
+const APIURL = "http://localhost:3000"
 
 // Fetches the list of records
 export async function fetchAllRecords() {
-  const response = await fetch(`localhost:5432/api/records`);
+  const response = await fetch(`${APIURL}/api/records`);
   const result = await response.json();
   return result;
 };
 
 // Fetches the details of a single record
 export async function fetchSingleRecord(recordId) {
-  const response = await fetch(`/api/records/${recordId}`);
+  const response = await fetch(`${APIURL}/api/records/${recordId}`);
   const result = await response.json();
   return result;
 };
 
 // Create an account
 export async function registerUser(formData) {
-  const response = await fetch(`/api/auth/register`, {
+  const response = await fetch(`${APIURL}/api/auth/register`, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
@@ -29,7 +29,7 @@ export async function registerUser(formData) {
 
 // Login into an account 
 export async function login(userData) {
-  const response = await fetch(`/api/auth/login`,
+  const response = await fetch(`${APIURL}/api/auth/login`,
   {
     method: "POST", 
     headers: { 
@@ -43,7 +43,7 @@ export async function login(userData) {
 
 // Fetches a user's account details
 export async function fetchUserData(token) {
-  const response = await fetch(`/api/auth/me`, {
+  const response = await fetch(`${APIURL}/api/auth/me`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
@@ -55,7 +55,7 @@ export async function fetchUserData(token) {
 
 // Fetches the items in a user's cart
 export async function fetchUserCartItems(token, userId) {
-  const response = await fetch(`/api/users/${userId}/cart/cartItems`, {
+  const response = await fetch(`${APIURL}/api/users/${userId}/cart/cartItems`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
@@ -67,7 +67,7 @@ export async function fetchUserCartItems(token, userId) {
 
 // Adds an item to a user's cart
 export async function addItemToUserCart(cartId, recordId, quantity) {
-  const response = await fetch(`/api/users/${cartId}/cart/cartItems`, {
+  const response = await fetch(`${APIURL}/api/users/${cartId}/cart/cartItems`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ export async function addItemToUserCart(cartId, recordId, quantity) {
 
 // Removes an item from a user's cart
 export async function deleteItemFromUserCart(userId, cartId, cartItemId) {
-  const response = await fetch(`/api/users/${userId}/cart/${cartId}/cartItems/${cartItemId}`, {
+  const response = await fetch(`${APIURL}/api/users/${userId}/cart/${cartId}/cartItems/${cartItemId}`, {
     method: 'DELETE',
   });
   const result = response.json();
@@ -92,7 +92,7 @@ export async function deleteItemFromUserCart(userId, cartId, cartItemId) {
 
 // Changes the quantity of an item in a user's cart
 export async function updateCartItemQuantity(userId, cartId, cartItemId, newQuantity) {
-  const response = await fetch(`/api/users/${userId}/cart/${cartId}/cartItems/${cartItemId}`, {
+  const response = await fetch(`${APIURL}/api/users/${userId}/cart/${cartId}/cartItems/${cartItemId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

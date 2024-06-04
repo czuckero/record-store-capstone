@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './CSS/Account.css';
+import { fetchUserData } from '../API';
 
-const Account = () => {
+const Account = ({ token }) => {
   const [userData, setUserData] = useState({
     username: 'JohnDoe',
     email: 'john.doe@example.com',
@@ -18,6 +19,18 @@ const Account = () => {
     newPassword: '',
     confirmNewPassword: ''
   });
+
+  // useEffect(() => {
+  //   async function getUserData() {
+  //     try {
+  //       const response = await fetchUserData(token);
+  //       console.log(response);
+  //     } catch (error) {
+  //       throw error
+  //     }
+  //   }
+  //   getUserData();
+  // }, [token]);
 
   const handlePasswordChange = (e) => {
     const { name, value } = e.target;

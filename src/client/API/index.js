@@ -16,7 +16,7 @@ export async function fetchSingleRecord(recordId) {
 
 // Create an account
 export async function registerUser(formData) {
-  const response = await fetch(`${APIURL}/api/auth/register`, {
+  const response = await fetch(`${APIURL}/api/users/register`, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
@@ -43,7 +43,7 @@ export async function login(userData) {
 
 // Fetches a user's account details
 export async function fetchUserData(token) {
-  const response = await fetch(`${APIURL}/api/auth/me`, {
+  const response = await fetch(`${APIURL}/api/users/me`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`

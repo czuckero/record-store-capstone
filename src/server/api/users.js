@@ -36,7 +36,7 @@ usersRouter.post("/register", async (req, res, next) => {
       username,
       email,
       password,
-      isAdmin
+      isAdmin,
     });
 
     const token = jwt.sign(
@@ -56,12 +56,12 @@ usersRouter.post("/register", async (req, res, next) => {
     });
   } catch ({ username, message }) {
     next({ username, message });
-  };
+  }
 });
 
 // POST /api/users/login
 // handles user login
-usersRouter.post("/user/login", async (req, res, next) => {
+usersRouter.post("/login", async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
     next({

@@ -8,7 +8,7 @@ cartRouter.use(authenticateUser);
 
 // GET /api/cart
 // only logged in users can access their cart
-cartRouter.get("/users/cart", isLoggedIn, async (req, res, next) => {
+cartRouter.get("/user/cart", isLoggedIn, async (req, res, next) => {
   try {
     const cartItems = await getCartItems(req.user.id);
     res.send(cartItems);

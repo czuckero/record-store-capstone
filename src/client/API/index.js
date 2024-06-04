@@ -29,7 +29,7 @@ export async function registerUser(formData) {
 
 // Login into an account 
 export async function login(userData) {
-  const response = await fetch(`${APIURL}/api/auth/login`,
+  const response = await fetch(`${APIURL}/api/users/login`,
   {
     method: "POST", 
     headers: { 

@@ -19,23 +19,24 @@ const {
 
 // POST /api/users/register
 // handles user registration
-usersRouter.post("/user/register", async (req, res, next) => {
-  const { name, email, password } = req.body;
+usersRouter.post("/register", async (req, res, next) => {
+  const { username, email, password, isAdmin } = req.body;
 
   try {
     const existingUser = await getUserByEmail(email);
 
     if (existingUser) {
       next({
-        name: "UserExistsError",
+        username: "UserExistsError",
         message: "A user with that email already exists",
       });
     }
 
     const user = await createUser({
-      name,
+      username,
       email,
       password,
+      isAdmin
     });
 
     const token = jwt.sign(
@@ -53,9 +54,9 @@ usersRouter.post("/user/register", async (req, res, next) => {
       message: "Sign up successful!",
       token,
     });
-  } catch ({ name, message }) {
-    next({ name, message });
-  }
+  } catch ({ username, message }) {
+    next({ username, message });
+  };
 });
 
 // POST /api/users/login

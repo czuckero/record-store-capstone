@@ -26,7 +26,7 @@ function App() {
           <Route path='/about' element={ <About /> } />
           <Route path='/records/:id' element={ <SingleRecord /> } />
           <Route path='/register' element={ <Registration setToken={setToken} /> } />
-          <Route path='/login' element={ <Login /> } />
+          <Route path='/login' element={ <Login setToken={setToken} /> } />
           <Route path='/account' element={ <Account token={token} /> } />
           <Route path='/cart' element={ <ShoppingCart />} />
           <Route path='/checkout' element={ <Checkout /> } />

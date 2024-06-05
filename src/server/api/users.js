@@ -98,21 +98,6 @@ usersRouter.post("/login", async (req, res, next) => {
   }
 });
 
-// GET /api/users/:id
-// gets user by their ID
-usersRouter.get("/:id", isLoggedIn, async (req, res, next) => {
-  const userId = req.params.id;
-  try {
-    const user = await getUserById(userId);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-    res.json({ user });
-  } catch (error) {
-    next(error);
-  }
-});
-
 // POST /api/users/:userId/cart/cartItems
 // adds an item to user's cart
 usersRouter.post(

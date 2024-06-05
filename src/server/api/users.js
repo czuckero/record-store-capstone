@@ -118,6 +118,18 @@ usersRouter.post(
   }
 );
 
+usersRouter.get(
+  "/me",
+  isLoggedIn,
+  async (req, res, next) => {
+    try {
+      res.send(req.user);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 // PUT /api/users/:userId/cart/:cartItemId
 // updates an item in user's cart
 usersRouter.put(

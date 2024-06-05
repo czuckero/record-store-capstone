@@ -20,17 +20,17 @@ const Account = ({ token }) => {
     confirmNewPassword: ''
   });
 
-  // useEffect(() => {
-  //   async function getUserData() {
-  //     try {
-  //       const response = await fetchUserData(token);
-  //       console.log(response);
-  //     } catch (error) {
-  //       throw error
-  //     }
-  //   }
-  //   getUserData();
-  // }, [token]);
+  useEffect(() => {
+    async function getUserData() {
+      try {
+        const response = await fetchUserData(token);
+        console.log(response);
+      } catch (error) {
+        throw error
+      }
+    }
+    getUserData();
+  }, [token]);
 
   const handlePasswordChange = (e) => {
     const { name, value } = e.target;

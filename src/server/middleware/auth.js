@@ -19,13 +19,18 @@ const authenticateUser = (req, res, next) => {
 };
 
 // check if user is logged in
-const isLoggedIn = (req, res, next) => {
-  if (!req.user) {
-    return res.status(401).json({
-      message: "Unauthorized: You must be logged in.",
-    });
+const isLoggedIn = async (req, res, next) => {
+  try {
+    req.user = await findUserByToken(req.headers.authorization);
+    if (!req.user) {
+      return res.status(401).json({
+        message: "Unauthorized: You must be logged in.",
+      });
+    }
+    next();
+  } catch (error) {
+    next(error);
   }
-  next();
 };
 
 // check if user is admin

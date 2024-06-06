@@ -16,7 +16,7 @@ const ShoppingCart = ({ token }) => {
     async function getUserCartItems() {
       try {
         const response = await fetchUserCartItems(token);
-        console.log(response);
+        // console.log(response);
         // setCartItems(response);
       } catch (error) {
         throw error

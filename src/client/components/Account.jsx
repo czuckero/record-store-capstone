@@ -6,12 +6,12 @@ const Account = ({ token }) => {
   const [userData, setUserData] = useState({
     username: "JohnDoe",
     email: "john.doe@example.com",
-    registrationDate: "2023-01-15",
-    purchaseHistory: [
-      { id: 1, item: "Album A", date: "2023-03-10", amount: "$40.00" },
-      { id: 2, item: "Album B", date: "2023-04-22", amount: "$35.00" },
-      { id: 3, item: "Album C", date: "2023-05-18", amount: "$45.00" },
-    ],
+    // registrationDate: "2023-01-15",
+    // purchaseHistory: [
+    //   { id: 1, item: "Album A", date: "2023-03-10", amount: "$40.00" },
+    //   { id: 2, item: "Album B", date: "2023-04-22", amount: "$35.00" },
+    //   { id: 3, item: "Album C", date: "2023-05-18", amount: "$45.00" },
+    // ],
   });
 
   const [passwordData, setPasswordData] = useState({
@@ -25,6 +25,7 @@ const Account = ({ token }) => {
       try {
         const response = await fetchUserData(token);
         console.log(response);
+        setUserData(response)
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -58,8 +59,8 @@ const Account = ({ token }) => {
             <strong>Email:</strong> {userData.email}
           </p>
           <p>
-            <strong>Registered on:</strong>{" "}
-            {new Date(userData.registrationDate).toLocaleDateString()}
+            {/* <strong>Registered on:</strong>{" "}
+            {new Date(userData.registrationDate).toLocaleDateString()} */}
           </p>
         </div>
 
@@ -100,7 +101,7 @@ const Account = ({ token }) => {
           </form>
         </div>
 
-        <div className="purchase-history">
+        {/* <div className="purchase-history">
           <h2>Purchase History</h2>
           <ul>
             {userData.purchaseHistory.map((purchase) => (
@@ -118,7 +119,7 @@ const Account = ({ token }) => {
               </li>
             ))}
           </ul>
-        </div>
+        </div> */}
       </div>
     </>
   );

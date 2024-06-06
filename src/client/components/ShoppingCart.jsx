@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import './CSS/ShoppingCart.css';
+import { fetchUserCartItems } from '../API';
 
-const ShoppingCart = () => {
+const ShoppingCart = ({ token }) => {
   const navigate = useNavigate();
 
   const [cartItems, setCartItems] = useState([
@@ -10,6 +11,19 @@ const ShoppingCart = () => {
     { id: 2, name: 'Album B', price: 35.00, quantity: 2 },
     { id: 3, name: 'Album C', price: 45.00, quantity: 1 },
   ]);
+
+  useEffect(() => {
+    async function getUserCartItems() {
+      try {
+        const response = await fetchUserCartItems(token);
+        // console.log(response);
+        // setCartItems(response);
+      } catch (error) {
+        throw error
+      }
+    }
+    getUserCartItems();
+  }, []);
 
   const handleQuantityChange = (id, quantity) => {
     setCartItems(cartItems.map(item => item.id === id ? { ...item, quantity } : item));

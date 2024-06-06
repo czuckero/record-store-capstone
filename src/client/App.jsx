@@ -28,7 +28,7 @@ function App() {
           <Route path='/register' element={ <Registration setToken={setToken} /> } />
           <Route path='/login' element={ <Login setToken={setToken} /> } />
           <Route path='/account' element={ <Account token={token} /> } />
-          <Route path='/cart' element={ <ShoppingCart />} />
+          <Route path='/cart' element={ <ShoppingCart token={token} />} />
           <Route path='/checkout' element={ <Checkout /> } />
         </Routes>
       </div>

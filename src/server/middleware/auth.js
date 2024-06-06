@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { findUserByToken } = require("../db/users");
+const db = require("../db");
 
 const authenticateUser = async ({ username, password }) => {
   const SQL = `--sql
@@ -25,6 +26,7 @@ const authenticateUser = async ({ username, password }) => {
 
 const isLoggedIn = async (req, res, next) => {
   try {
+    console.log("is logged in");
     req.headers.authorization = req.headers.authorization.replace(
       "Bearer ",
       ""

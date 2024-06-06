@@ -10,12 +10,13 @@ const {
 const { authenticateUser, isLoggedIn } = require("../middleware/auth");
 
 // Middleware to ensure the user is authenticated
-cartRouter.use(authenticateUser);
+// cartRouter.use(authenticateUser);
 
 // GET /api/cart
 // Only logged in users can access their cart
-cartRouter.get("/cart", isLoggedIn, async (req, res, next) => {
+cartRouter.get("/", isLoggedIn, async (req, res, next) => {
   try {
+    console.log("helloooooo");
     const cartItems = await getCartItems(req.user.id);
     console.log(req.user.id);
     res.send(cartItems);

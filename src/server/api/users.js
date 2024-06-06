@@ -7,7 +7,7 @@ const {
   createUser,
   getUser,
   getUserByEmail,
-  getUserById,
+  createUserAndGenerateToken,
 } = require("../db/users");
 const jwt = require("jsonwebtoken");
 const {
@@ -23,11 +23,12 @@ usersRouter.post("/register", async (req, res, next) => {
   const { username, email, password, isAdmin } = req.body;
 
   try {
+    res.send(await createUserAndGenerateToken(req.body));
     const existingUser = await getUserByEmail(email);
 
     if (existingUser) {
       next({
-        username: "UserExistsError",
+        username: "User Exists Error",
         message: "A user with that email already exists",
       });
     }
@@ -50,7 +51,7 @@ usersRouter.post("/register", async (req, res, next) => {
       }
     );
 
-    res.send({
+    res.send(201).json({
       message: "Sign up successful!",
       token,
     });
@@ -98,6 +99,16 @@ usersRouter.post("/login", async (req, res, next) => {
   }
 });
 
+// GET /api/users/me
+// views account details
+usersRouter.get("/me", isLoggedIn, async (req, res, next) => {
+  try {
+    res.send(req.user);
+  } catch (error) {
+    next(error);
+  }
+});
+
 // POST /api/users/:userId/cart/cartItems
 // adds an item to user's cart
 usersRouter.post(
@@ -112,18 +123,6 @@ usersRouter.post(
         return res.status(400).json({ error: "Unable to add record to cart" });
       }
       res.json({ message: "Record added to cart", cartItem });
-    } catch (error) {
-      next(error);
-    }
-  }
-);
-
-usersRouter.get(
-  "/me",
-  isLoggedIn,
-  async (req, res, next) => {
-    try {
-      res.send(req.user);
     } catch (error) {
       next(error);
     }

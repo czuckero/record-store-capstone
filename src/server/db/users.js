@@ -33,9 +33,10 @@ const findUserByToken = async (token) => {
   let id;
   try {
     const payload = await jwt.verify(token, JWT_SECRET);
-    console.log("payload", payload);
+    console.log("Token payload:", payload);
     id = payload.id;
   } catch (ex) {
+    console.error("Error verifying token:", ex.message);
     const error = Error("not authorized");
     error.status = 401;
     throw error;

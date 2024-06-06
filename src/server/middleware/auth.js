@@ -23,23 +23,6 @@ const authenticateUser = async ({ username, password }) => {
   return { token };
 };
 
-// const isLoggedIn = async (req, res, next) => {
-//   try {
-//     const token = req.headers.authorization?.replace("Bearer ", "");
-//     if (!token) {
-//       return res.status(401).json({
-//         message: "Unauthorized: You must be logged in.",
-//       });
-//     }
-
-//     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-//     req.user = decoded;
-//     next();
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
 const isLoggedIn = async (req, res, next) => {
   try {
     req.user = await findUserByToken(req.headers.authorization);

@@ -11,6 +11,7 @@ cartRouter.use(authenticateUser);
 cartRouter.get("/cart", isLoggedIn, async (req, res, next) => {
   try {
     const cartItems = await getCartItems(req.user.id);
+    console.log(req.user.id);
     res.send(cartItems);
   } catch (err) {
     next(err);

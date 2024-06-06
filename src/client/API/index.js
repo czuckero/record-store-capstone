@@ -54,8 +54,8 @@ export async function fetchUserData(token) {
 };
 
 // Fetches the items in a user's cart
-export async function fetchUserCartItems(token, userId) {
-  const response = await fetch(`${APIURL}/api/users/${userId}/cart/cartItems`, {
+export async function fetchUserCartItems(token) {
+  const response = await fetch(`${APIURL}/api/users/cart`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`

@@ -15,7 +15,7 @@ const {
   updateCart,
   removeFromCart,
   getCartItems,
-} = require("../db/cartItems");
+} = require("../db/carts");
 
 // POST /api/users/register
 // handles user registration

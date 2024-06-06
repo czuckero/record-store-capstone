@@ -54,7 +54,7 @@ const getRecordById = async (record_id) => {
       `,
       [record_id]
     );
-    return record
+    return record;
   } catch (error) {
     throw error;
   }

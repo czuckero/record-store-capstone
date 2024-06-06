@@ -15,8 +15,13 @@ db.connect();
 const apiRouter = require("./api");
 app.use("/api", apiRouter);
 
+// Define a test route
+app.put("/test", (req, res) => {
+  res.send("PUT request to /test is working");
+});
+
 const PORT = process.env.PORT || 3000;
 
-router.listen(app, 3000, () =>
+router.listen(app, PORT, () =>
   console.log(`Server is listening on port ${PORT}...`)
 );

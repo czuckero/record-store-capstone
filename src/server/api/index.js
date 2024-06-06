@@ -32,15 +32,13 @@ apiRouter.use(async (req, res, next) => {
 });
 
 const adminRouter = require("./admin");
-const cartItemsRouter = require("./cartItems");
 const recordsRouter = require("./records");
-const cartsRouter = require("./carts");
+const cartRouter = require("./carts");
 const usersRouter = require("./users");
 
 apiRouter.use("/admin", adminRouter);
-apiRouter.use("/cart", cartItemsRouter);
 apiRouter.use("/records", recordsRouter);
-apiRouter.use("/carts", cartsRouter);
+apiRouter.use("/carts", cartRouter);
 apiRouter.use("/users", usersRouter);
 
 apiRouter.use((err, req, res, next) => {

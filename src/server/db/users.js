@@ -3,6 +3,8 @@
 const db = require("./client");
 const bcrypt = require("bcrypt");
 const uuid = require("uuid");
+const jwt = require("jsonwebtoken");
+const { JWT_SECRET } = process.env;
 
 const createUser = async ({ username, email, password, isAdmin = false }) => {
   try {
@@ -19,6 +21,28 @@ const createUser = async ({ username, email, password, isAdmin = false }) => {
   } catch (err) {
     throw err;
   }
+};
+
+const findUserByToken = async (token) => {
+  let id;
+  try {
+    const payload = jwt.verify(token, JWT_SECRET);
+    id = payload.id;
+  } catch (ex) {
+    const error = Error("not authorized");
+    error.status = 401;
+    throw error;
+  }
+  const SQL = `--sql
+    SELECT id, username FROM users WHERE id=$1;
+  `;
+  const response = await db.query(SQL, [id]);
+  if (!response.rows.length) {
+    const error = Error("not authorized");
+    error.status = 401;
+    throw error;
+  }
+  return response.rows[0];
 };
 
 const getUser = async ({ email, password }) => {
@@ -87,4 +111,5 @@ module.exports = {
   getUserByEmail,
   getUserById,
   getUsers,
+  findUserByToken,
 };

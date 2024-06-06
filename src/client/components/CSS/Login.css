@@ -2,14 +2,14 @@
 
 .login-container {
   padding: 20px;
-  margin-top: 60px; /* Adjust based on the height of your navbar */
+  margin-top: 60px; 
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  background-color: #F5F5F5; /* White Smoke */
-  color: #37474F; /* Charcoal Gray */
-  border: 1px solid #607D8B; /* Slate Gray */
+  background-color: #000000;
+  color: #37474F; 
+  border: 1px solid #607D8B; 
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: 'Merriweather', serif;
@@ -18,7 +18,7 @@
 .login-container h2 {
   font-size: 36px;
   margin-bottom: 20px;
-  color: #4A90E2; /* Cool Blue */
+  color: #ffffff; 
 }
 
 .login-form {
@@ -32,25 +32,25 @@
   flex-direction: column;
   align-items: flex-start;
   font-size: 18px;
-  color: #607D8B; /* Slate Gray */
+  color: #607D8B; 
 }
 
 .login-form input {
   width: 100%;
   padding: 10px;
   margin-top: 5px;
-  border: 1px solid #607D8B; /* Slate Gray */
+  border: 1px solid #607D8B; 
   border-radius: 5px;
   box-sizing: border-box;
-  background-color: #FFFFFF; /* White */
-  color: #37474F; /* Charcoal Gray */
+  background-color: #FFFFFF; 
+  color: #37474F; 
 }
 
 button[type="submit"] {
   padding: 10px 20px;
   font-size: 18px;
   color: white;
-  background-color: #4A90E2; /* Cool Blue */
+  background-color: #d49c45; 
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -58,11 +58,11 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background-color: #00796B; /* Teal */
+  background-color: #d49c45; 
 }
 
 .message {
   margin-top: 20px;
   font-size: 18px;
-  color: #37474F; /* Charcoal Gray */
+  color: #37474F; 
 }

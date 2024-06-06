@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400&display=swap');
 
 .footer {
-  background-color: #4A90E2; /* Cool Blue */
-  color: #FFFFFF; /* White */
+  background-color: #000000; 
+  color: #FFFFFF; 
   padding: 20px;
   text-align: center;
-  border-top: 1px solid #607D8B; /* Slate Gray */
+  border-top: 1px solid #607D8B; 
   font-family: 'Merriweather', serif;
 }
 
@@ -16,29 +16,29 @@
 .newsletter label {
   display: block;
   margin-bottom: 5px;
-  color: #FFFFFF; /* White */
+  color: #FFFFFF; 
   font-size: 16px;
 }
 
 .newsletter input {
   padding: 10px;
   margin-right: 10px;
-  border: 1px solid #607D8B; /* Slate Gray */
+  border: 1px solid #607D8B; 
   border-radius: 5px;
   box-sizing: border-box;
 }
 
 .newsletter button {
   padding: 10px 20px;
-  background-color: #00796B; /* Teal */
-  color: #FFFFFF; /* White */
+  background-color: #00796B; 
+  color: #FFFFFF; 
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .newsletter button:hover {
-  background-color: #005b4f; /* Darker Teal */
+  background-color: #005b4f; 
 }
 
 .footer-links {
@@ -46,7 +46,7 @@
 }
 
 .footer-links a {
-  color: #FFFFFF; /* White */
+  color: #FFFFFF; 
   text-decoration: none;
   margin: 0 10px;
 }

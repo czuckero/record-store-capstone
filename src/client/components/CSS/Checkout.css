@@ -6,9 +6,9 @@
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
-  background-color: #F5F5F5; /* White Smoke */
-  color: #37474F; /* Charcoal Gray */
-  border: 1px solid #607D8B; /* Slate Gray */
+  background-color: #000000; 
+  color: #37474F; 
+  border: 1px solid #607D8B; 
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: 'Merriweather', serif;
@@ -18,7 +18,7 @@
   font-size: 36px;
   margin-bottom: 20px;
   text-align: center;
-  color: #4A90E2; /* Cool Blue */
+  color: #ffffff; 
 }
 
 .checkout-form {
@@ -29,22 +29,22 @@
 
 .section {
   padding: 20px;
-  border: 1px solid #607D8B; /* Slate Gray */
+  border: 1px solid #607D8B; 
   border-radius: 5px;
-  background-color: #ECEFF1; /* Soft Gray */
+  background-color: #ECEFF1;
 }
 
 .section h2 {
   font-size: 24px;
   margin-bottom: 10px;
-  color: #4A90E2; /* Cool Blue */
+  color: #4A90E2; 
 }
 
 .section label {
   display: block;
   margin-bottom: 10px;
   font-size: 16px;
-  color: #607D8B; /* Slate Gray */
+  color: #607D8B; 
 }
 
 .section input {
@@ -52,11 +52,11 @@
   padding: 8px;
   margin-top: 5px;
   margin-bottom: 15px;
-  border: 1px solid #607D8B; /* Slate Gray */
+  border: 1px solid #607D8B; 
   border-radius: 5px;
   box-sizing: border-box;
-  background-color: #FFFFFF; /* White */
-  color: #37474F; /* Charcoal Gray */
+  background-color: #FFFFFF; 
+  color: #37474F; 
 }
 
 .order-summary {
@@ -68,21 +68,21 @@
 .order-summary li {
   padding: 5px 0;
   font-size: 16px;
-  color: #607D8B; /* Slate Gray */
+  color: #607D8B; 
 }
 
 .total {
   font-size: 18px;
   font-weight: bold;
   margin-top: 10px;
-  color: #4A90E2; /* Cool Blue */
+  color: #4A90E2; 
 }
 
 button[type="submit"] {
   padding: 10px 20px;
   font-size: 18px;
   color: white;
-  background-color: #4A90E2; /* Cool Blue */
+  background-color: #4A90E2; 
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -90,7 +90,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background-color: #00796B; /* Teal */
+  background-color: #00796B; 
 }
 
 

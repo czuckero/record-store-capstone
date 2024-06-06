@@ -5,13 +5,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #4A90E2; /* Cool Blue */
+  background-color: #0b0835; /* Cool Blue */
   color: white;
   position: sticky;
   top: 0;
   width: 100%;
   z-index: 1000;
-  border-bottom: 1px solid #607D8B; /* Slate Gray */
+  border-bottom: 2px solid #623c87; /* Slate Gray */
   font-family: 'Merriweather', serif;
 }
 

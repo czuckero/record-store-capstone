@@ -1,42 +1,57 @@
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const { findUserByToken } = require("../db/users");
 
-// authenticate
-const authenticateUser = (req, res, next) => {
-  const token = req.header("Authorization")?.replace("Bearer ", "");
-  if (!token) {
-    return res
-      .status(401)
-      .json({ message: "Unauthorized: No token provided." });
+const authenticateUser = async ({ username, password }) => {
+  const SQL = `--sql
+    SELECT id, password, admin
+    FROM users
+    WHERE username = $1
+  `;
+  const response = await db.query(SQL, [username]);
+  if (
+    !response.rows.length ||
+    !(await bcrypt.compare(password, response.rows[0].password))
+  ) {
+    const error = new Error("Unauthorized: Invalid credentials.");
+    error.status = 401;
+    throw error;
   }
 
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded; // Assumes the token contains the user's info
-    next();
-  } catch (err) {
-    res.status(401).json({ message: "Unauthorized: Invalid token." });
-  }
+  const token = jwt.sign({ id: response.rows[0].id }, process.env.JWT_SECRET);
+  console.log("Generated Token:", token);
+  return { token };
 };
 
-// check if user is logged in
+// const isLoggedIn = async (req, res, next) => {
+//   try {
+//     const token = req.headers.authorization?.replace("Bearer ", "");
+//     if (!token) {
+//       return res.status(401).json({
+//         message: "Unauthorized: You must be logged in.",
+//       });
+//     }
+
+//     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+//     req.user = decoded;
+//     next();
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+
 const isLoggedIn = async (req, res, next) => {
   try {
     req.user = await findUserByToken(req.headers.authorization);
-    if (!req.user) {
-      return res.status(401).json({
-        message: "Unauthorized: You must be logged in.",
-      });
-    }
     next();
   } catch (error) {
     next(error);
   }
 };
 
-// check if user is admin
 const isAdmin = (req, res, next) => {
   if (!req.user || !req.user.admin) {
-    return res.status(403).json({ message: "Unauthorized: admin only" });
+    return res.status(403).json({ message: "Unauthorized: Admin only." });
   }
   next();
 };

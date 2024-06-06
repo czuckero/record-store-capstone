@@ -4,7 +4,7 @@ const db = require("./client");
 const bcrypt = require("bcrypt");
 const uuid = require("uuid");
 const jwt = require("jsonwebtoken");
-const { JWT_SECRET } = process.env;
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const createUser = async ({ username, email, password, isAdmin = false }) => {
   try {
@@ -23,10 +23,17 @@ const createUser = async ({ username, email, password, isAdmin = false }) => {
   }
 };
 
+const createUserAndGenerateToken = async ({ username, email, password }) => {
+  const user = await createUser({ username, email, password });
+  const token = await jwt.sign({ id: user.id }, JWT_SECRET);
+  return { token };
+};
+
 const findUserByToken = async (token) => {
   let id;
   try {
-    const payload = jwt.verify(token, JWT_SECRET);
+    const payload = await jwt.verify(token, JWT_SECRET);
+    console.log("payload", payload);
     id = payload.id;
   } catch (ex) {
     const error = Error("not authorized");
@@ -107,6 +114,7 @@ const getUsers = async () => {
 
 module.exports = {
   createUser,
+  createUserAndGenerateToken,
   getUser,
   getUserByEmail,
   getUserById,

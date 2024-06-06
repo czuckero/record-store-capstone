@@ -43,7 +43,7 @@ const findUserByToken = async (token) => {
     throw error;
   }
   const SQL = `--sql
-    SELECT id, username FROM users WHERE id=$1;
+    SELECT id, username, email FROM users WHERE id=$1;
   `;
   const response = await db.query(SQL, [id]);
   if (!response.rows.length) {

@@ -1,8 +1,8 @@
-// handles cart-related stuff
-
+// server/db/cart.js
 const db = require("./client");
 const uuid = require("uuid");
 
+// Function to create a new cart for a user
 const createCart = async ({ user_id }) => {
   try {
     const {
@@ -21,6 +21,7 @@ const createCart = async ({ user_id }) => {
   }
 };
 
+// Function to get cart by user ID
 const getCartByUserId = async (userId) => {
   try {
     const { rows: carts } = await db.query(
@@ -39,7 +40,9 @@ const getCartByUserId = async (userId) => {
   }
 };
 
+// Function to get cart items by user ID
 const getCartItems = async (user_id) => {
+  console.log("lincoln");
   try {
     const { rows: cart } = await db.query(
       `--sql
@@ -72,6 +75,7 @@ const getCartItems = async (user_id) => {
   }
 };
 
+// Function to clear cart by user ID
 const clearCart = async (user_id) => {
   try {
     const { rows: cart } = await db.query(
@@ -100,9 +104,70 @@ const clearCart = async (user_id) => {
   }
 };
 
+// Function to add item to cart
+const addToCart = async ({ cart_id, record_id, quantity, price }) => {
+  try {
+    const {
+      rows: [cartItem],
+    } = await db.query(
+      `--sql
+      INSERT INTO cart_items (id, cart_id, record_id, quantity, price)
+      VALUES ($1, $2, $3, $4, $5)
+      RETURNING *;
+    `,
+      [uuid.v4(), cart_id, record_id, quantity, price]
+    );
+    return cartItem;
+  } catch (err) {
+    throw err;
+  }
+};
+
+// Function to remove item from cart
+const removeFromCart = async ({ cart_id, record_id }) => {
+  try {
+    const {
+      rows: [cartItem],
+    } = await db.query(
+      `--sql
+      DELETE FROM cart_items
+      WHERE cart_id=$1 AND record_id=$2
+      RETURNING *;
+    `,
+      [cart_id, record_id]
+    );
+    return cartItem;
+  } catch (err) {
+    throw err;
+  }
+};
+
+// Function to update item in cart
+const updateCart = async ({ cart_id, record_id, quantity, price }) => {
+  try {
+    const {
+      rows: [cartItem],
+    } = await db.query(
+      `--sql
+      UPDATE cart_items
+      SET quantity=$1, price=$2
+      WHERE cart_id=$3 AND record_id=$4
+      RETURNING *;
+    `,
+      [quantity, price, cart_id, record_id]
+    );
+    return cartItem;
+  } catch (err) {
+    throw err;
+  }
+};
+
 module.exports = {
   createCart,
   getCartByUserId,
   getCartItems,
   clearCart,
+  addToCart,
+  removeFromCart,
+  updateCart,
 };

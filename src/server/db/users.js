@@ -30,6 +30,7 @@ const createUserAndGenerateToken = async ({ username, email, password }) => {
 };
 
 const findUserByToken = async (token) => {
+  console.log(token);
   let id;
   try {
     const payload = await jwt.verify(token, JWT_SECRET);

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import './CSS/Login.css';
 import { login } from '../API';
 import { useNavigate } from 'react-router-dom';
+
 
 const Login = ({ setToken }) => {
   const [email, setEmail] = useState('');
@@ -37,9 +39,9 @@ const Login = ({ setToken }) => {
   };
 
   return (
-    <div>
+    <div className="login-container">
       <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="login-form" onSubmit={handleSubmit}>
         <div>
           <label htmlFor='email'>Email:</label>
           <input
@@ -62,9 +64,10 @@ const Login = ({ setToken }) => {
         </div>
         <button type='submit'>Login</button>
       </form>
-      <p>{message}</p>
+      <p className="message">{message}</p>
     </div>
   );
 };
 
 export default Login;
+

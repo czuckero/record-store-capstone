@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400&display=swap');
 
-.checkout-container {
+.login-container {
   padding: 20px;
   margin-top: 60px; 
-  max-width: 800px;
+  max-width: 500px;
   margin-left: auto;
   margin-right: auto;
-  background-color: #000000; 
+  text-align: center;
+  background-color: #000000;
   color: #37474F; 
   border: 1px solid #607D8B; 
   border-radius: 5px;
@@ -14,44 +15,30 @@
   font-family: 'Merriweather', serif;
 }
 
-.checkout-container h1 {
+.login-container h2 {
   font-size: 36px;
   margin-bottom: 20px;
-  text-align: center;
   color: #ffffff; 
 }
 
-.checkout-form {
+.login-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
 }
 
-.section {
-  padding: 20px;
-  border: 1px solid #607D8B; 
-  border-radius: 5px;
-  background-color: #ECEFF1;
-}
-
-.section h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-  color: #4A90E2; 
-}
-
-.section label {
-  display: block;
-  margin-bottom: 10px;
-  font-size: 16px;
+.login-form label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 18px;
   color: #607D8B; 
 }
 
-.section input {
+.login-form input {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   margin-top: 5px;
-  margin-bottom: 15px;
   border: 1px solid #607D8B; 
   border-radius: 5px;
   box-sizing: border-box;
@@ -59,30 +46,11 @@
   color: #37474F; 
 }
 
-.order-summary {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.order-summary li {
-  padding: 5px 0;
-  font-size: 16px;
-  color: #607D8B; 
-}
-
-.total {
-  font-size: 18px;
-  font-weight: bold;
-  margin-top: 10px;
-  color: #4A90E2; 
-}
-
 button[type="submit"] {
   padding: 10px 20px;
   font-size: 18px;
   color: white;
-  background-color: #4A90E2; 
+  background-color: #d49c45; 
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -90,8 +58,11 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background-color: #00796B; 
+  background-color: #d49c45; 
 }
 
-
-  
+.message {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #37474F; 
+}

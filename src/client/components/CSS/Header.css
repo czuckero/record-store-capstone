@@ -1,23 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400&display=swap');
-
 .header {
-  background-color: #ECEFF1; /* Soft Gray */
-  padding: 50px 0;
-  text-align: center;
-  border-bottom: 1px solid #607D8B; /* Slate Gray */
-  font-family: 'Merriweather', serif;
-}
-
-.header h1 {
-  font-size: 48px;
-  margin: 0;
-  color: #4A90E2; /* Cool Blue */
-}
-
-.header p {
-  font-size: 24px;
-  color: #607D8B; /* Slate Gray */
-}
-
-
+    background-color: #f4f4f4;
+    padding: 50px 0;
+    text-align: center;
+  }
+  
+  .header h1 {
+    font-size: 48px;
+    margin: 0;
+  }
+  
+  .header p {
+    font-size: 24px;
+  }
   

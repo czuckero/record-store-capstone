@@ -25,6 +25,10 @@ const authenticateUser = async ({ username, password }) => {
 
 const isLoggedIn = async (req, res, next) => {
   try {
+    req.headers.authorization = req.headers.authorization.replace(
+      "Bearer ",
+      ""
+    );
     req.user = await findUserByToken(req.headers.authorization);
     next();
   } catch (error) {

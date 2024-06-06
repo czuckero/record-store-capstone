@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import './CSS/login.css';
+import './CSS/Login.css';
+import { login } from '../API';
+import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+
+const Login = ({ setToken }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
-  const handleEmailChange = (e) => {
+  const handleEmailChange = async (e) => {
     setEmail(e.target.value);
   };
 
@@ -14,33 +18,24 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const login = async() => {
-    try {
-        const response = await fetch('http://localhost:3000/api/users/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type' : 'application/json'
-            }, 
-            body: JSON.stringify({
-                email,
-                password
-            })
-        });
-        const result = await response.json();
-        setMessage(result.message);
-        if(!response.ok) {
-          throw(result)
-        }
-        setEmail('');
-        setPassword('');
-    } catch (err) {
-        console.error(`${err.name}: ${err.message}`);
-    }
-  }
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login();
+    const userData = {
+      email: email,
+      password: password
+    }
+
+    try {
+      const response = await login(userData);
+      console.log(response);
+      setMessage(response.message)
+      setToken(response.token)
+      if (response.message === 'Login successful!') { 
+        navigate('/account')
+      }
+    } catch (error) {
+      throw error
+    }
   };
 
   return (

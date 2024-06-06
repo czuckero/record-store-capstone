@@ -1,39 +1,44 @@
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const { findUserByToken } = require("../db/users");
 
-// authenticate
-const authenticateUser = (req, res, next) => {
-  const token = req.header("Authorization")?.replace("Bearer ", "");
-  if (!token) {
-    return res
-      .status(401)
-      .json({ message: "Unauthorized: No token provided." });
+const authenticateUser = async ({ username, password }) => {
+  const SQL = `--sql
+    SELECT id, password, admin
+    FROM users
+    WHERE username = $1
+  `;
+  const response = await db.query(SQL, [username]);
+  if (
+    !response.rows.length ||
+    !(await bcrypt.compare(password, response.rows[0].password))
+  ) {
+    const error = new Error("Unauthorized: Invalid credentials.");
+    error.status = 401;
+    throw error;
   }
 
+  const token = jwt.sign({ id: response.rows[0].id }, process.env.JWT_SECRET);
+  console.log("Generated Token:", token);
+  return { token };
+};
+
+const isLoggedIn = async (req, res, next) => {
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded; // Assumes the token contains the user's info
+    req.headers.authorization = req.headers.authorization.replace(
+      "Bearer ",
+      ""
+    );
+    req.user = await findUserByToken(req.headers.authorization);
     next();
-  } catch (err) {
-    res.status(401).json({ message: "Unauthorized: Invalid token." });
+  } catch (error) {
+    next(error);
   }
 };
 
-module.exports = { authenticateUser };
-
-// check if user is logged in
-const isLoggedIn = (req, res, next) => {
-  if (!req.user) {
-    return res.status(401).json({
-      message: "Unauthorized: You must be logged in.",
-    });
-  }
-  next();
-};
-
-// check if user is admin
 const isAdmin = (req, res, next) => {
   if (!req.user || !req.user.admin) {
-    return res.status(403).json({ message: "Unauthorized: admin only" });
+    return res.status(403).json({ message: "Unauthorized: Admin only." });
   }
   next();
 };

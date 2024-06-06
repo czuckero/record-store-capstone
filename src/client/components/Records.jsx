@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import React from 'react';
 import './CSS/Records.css';
+import { fetchAllRecords } from "../API";
 
 const Records = () => {
+  const [records, setRecords] = useState([]);
+  const navigate = useNavigate();
+
   const albums = [
     { title: 'Gold', artist: 'ABBA', price: '$38.99', imgSrc: 'https://m.media-amazon.com/images/I/91cPxQP9NmL._UF1000,1000_QL80_.jpg' },
     { title: 'At Folsom Prison', artist: 'Johnny Cash', price: '$24.99', imgSrc: 'https://m.media-amazon.com/images/I/91cgDY8ocrL._UF1000,1000_QL80_.jpg' },
@@ -17,16 +21,29 @@ const Records = () => {
     { title: 'Thriller', artist: 'Michael Jackson', price: '$26.99', imgSrc: 'https://m.media-amazon.com/images/M/MV5BODhhZjJlYTktZDQ2MS00Yzk4LWFlOTQtYTgyOGE1ZGE5YWEyL2ltYWdlXkEyXkFqcGdeQXVyMzA5MjgyMjI@._V1_.jpg' },
   ];
 
+  useEffect(() => {
+    async function getAllRecords() {
+      try {
+        const response = await fetchAllRecords();
+        console.log(response);
+        setRecords(response)
+      } catch (error) {
+        throw error;
+      }
+    }
+    getAllRecords();
+  }, []);
+
   return (
     <div className="records">
       <h2>Shop Records</h2>
       <div className="album-list">
-        {albums.map((album, index) => (
-          <div key={index} className="album-item">
-            <img src={album.imgSrc} alt={album.title} />
-            <h3>{album.title}</h3>
-            <h4>{album.artist}</h4>
-            <p>{album.price}</p>
+        {records.map((record, index) => (
+          <div onClick={() => {navigate(`/records/${record.id}`)}} key={index} className="album-item">
+            <img src={record.img} alt={record.title} />
+            <h3>{record.title}</h3>
+            <h4>{record.artist}</h4>
+            <p>{record.price}</p>
           </div>
         ))}
       </div>

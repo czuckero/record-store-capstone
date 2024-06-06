@@ -1,21 +1,12 @@
+// handles user-related stuff
+
 const db = require("./client");
 const bcrypt = require("bcrypt");
 const uuid = require("uuid");
+const jwt = require("jsonwebtoken");
+const JWT_SECRET = process.env.JWT_SECRET;
 
-const createUser = async (userData) => {
-  if (
-    !userData ||
-    !userData.username ||
-    !userData.email ||
-    !userData.password
-  ) {
-    throw new Error(
-      "Missing required fields: username, email, and password are required"
-    );
-  }
-
-  const { username, email, password, isAdmin = false } = userData;
-
+const createUser = async ({ username, email, password, isAdmin = false }) => {
   try {
     const hashedPassword = await bcrypt.hash(password, 5);
     const {
@@ -30,6 +21,37 @@ const createUser = async (userData) => {
   } catch (err) {
     throw err;
   }
+};
+
+const createUserAndGenerateToken = async ({ username, email, password }) => {
+  const user = await createUser({ username, email, password });
+  const token = await jwt.sign({ id: user.id }, JWT_SECRET);
+  return { token };
+};
+
+const findUserByToken = async (token) => {
+  console.log(token);
+  let id;
+  try {
+    const payload = await jwt.verify(token, JWT_SECRET);
+    console.log("Token payload:", payload);
+    id = payload.id;
+  } catch (ex) {
+    console.error("Error verifying token:", ex.message);
+    const error = Error("not authorized");
+    error.status = 401;
+    throw error;
+  }
+  const SQL = `--sql
+    SELECT id, username, email FROM users WHERE id=$1;
+  `;
+  const response = await db.query(SQL, [id]);
+  if (!response.rows.length) {
+    const error = Error("not authorized");
+    error.status = 401;
+    throw error;
+  }
+  return response.rows[0];
 };
 
 const getUser = async ({ email, password }) => {
@@ -64,6 +86,25 @@ const getUserByEmail = async (email) => {
   }
 };
 
+const getUserById = async (id) => {
+  try {
+    const {
+      rows: [user],
+    } = await db.query(
+      `--sql
+      SELECT * FROM users WHERE id = $1`,
+      [id]
+    );
+
+    if (!user) {
+      return;
+    }
+    return user;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const getUsers = async () => {
   try {
     const { rows: users } = await db.query(`SELECT * FROM users`);
@@ -75,7 +116,10 @@ const getUsers = async () => {
 
 module.exports = {
   createUser,
+  createUserAndGenerateToken,
   getUser,
   getUserByEmail,
+  getUserById,
   getUsers,
+  findUserByToken,
 };

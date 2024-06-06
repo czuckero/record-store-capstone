@@ -5,13 +5,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #0b0835; /* Cool Blue */
+  background-color: #0b0835; 
   color: white;
   position: sticky;
   top: 0;
   width: 100%;
   z-index: 1000;
-  border-bottom: 2px solid #623c87; /* Slate Gray */
+  border-bottom: 2px solid #623c87; 
   font-family: 'Merriweather', serif;
 }
 
@@ -42,15 +42,15 @@
 }
 
 .navbar-links a:hover {
-  color: #A5D6A7; /* Pale Mint */
+  color: #A5D6A7; 
 }
 
 .navbar-links input {
   padding: 5px;
-  border: 1px solid #607D8B; /* Slate Gray */
+  border: 1px solid #607D8B; 
   border-radius: 3px;
-  background-color: #FFFFFF; /* White */
-  color: #37474F; /* Charcoal Gray */
+  background-color: #FFFFFF; 
+  color: #37474F; 
 }
 
 

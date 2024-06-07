@@ -7,9 +7,9 @@ const ShoppingCart = ({ token }) => {
   const navigate = useNavigate();
 
   const [cartItems, setCartItems] = useState([
-    { id: 1, name: 'Album A', price: 40.00, quantity: 1 },
-    { id: 2, name: 'Album B', price: 35.00, quantity: 2 },
-    { id: 3, name: 'Album C', price: 45.00, quantity: 1 },
+    // { id: 1, name: 'Album A', price: 40.00, quantity: 1 },
+    // { id: 2, name: 'Album B', price: 35.00, quantity: 2 },
+    // { id: 3, name: 'Album C', price: 45.00, quantity: 1 },
   ]);
 
   useEffect(() => {

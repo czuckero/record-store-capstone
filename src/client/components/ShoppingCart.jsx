@@ -16,14 +16,14 @@ const ShoppingCart = ({ token }) => {
     async function getUserCartItems() {
       try {
         const response = await fetchUserCartItems(token);
-        // console.log(response);
-        // setCartItems(response);
+        console.log(response);
+        setCartItems(response);
       } catch (error) {
         throw error
       }
     }
     getUserCartItems();
-  }, []);
+  }, [token]);
 
   const handleQuantityChange = (id, quantity) => {
     setCartItems(cartItems.map(item => item.id === id ? { ...item, quantity } : item));
@@ -33,34 +33,45 @@ const ShoppingCart = ({ token }) => {
     setCartItems(cartItems.filter(item => item.id !== id));
   };
 
-  const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  if (token) {
+    const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
-  return (
-    <>
-      <div className="shopping-cart-container">
-        <h1>Shopping Cart</h1>
-        <ul className="cart-items">
-          {cartItems.map(item => (
-            <li key={item.id} className="cart-item">
-              <span>{item.name}</span>
-              <span>${item.price.toFixed(2)}</span>
-              <input
-                type="number"
-                min="1"
-                value={item.quantity}
-                onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value))}
-              />
-              <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
-            </li>
-          ))}
-        </ul>
-        <div className="cart-total">
-          <h2>Total: ${totalAmount.toFixed(2)}</h2>
-          <button onClick={() => navigate('/checkout')} className="checkout-button">Proceed to Checkout</button>
+    return (
+      <>
+        <div className="shopping-cart-container">
+          <h1>Shopping Cart</h1>
+          <ul className="cart-items">
+            {cartItems.map(item => (
+              <li key={item.id} className="cart-item">
+                <span>{item.title}</span>
+                <span>${parseFloat(item.price).toFixed(2)}</span>
+                <input
+                  type="number"
+                  min="1"
+                  value={item.quantity}
+                  onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value))}
+                />
+                <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
+              </li>
+            ))}
+          </ul>
+          <div className="cart-total">
+            <h2>Total: ${totalAmount.toFixed(2)}</h2>
+            <button onClick={() => navigate('/checkout')} className="checkout-button">Proceed to Checkout</button>
+          </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  } else if (token === null) {
+    return (
+      <>
+        <div className="shopping-cart-container">
+          <h1>Shopping Cart</h1>
+          <h2>Create an account or log in to add to your cart!</h2>
+        </div>
+      </>
+    );
+  }
 }
 
 export default ShoppingCart;

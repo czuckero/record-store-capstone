@@ -1,7 +1,6 @@
 const { createUser } = require("./users");
 const { createRecord } = require("./records");
-const { createCart } = require("./carts");
-const { addToCart } = require("./cartItems");
+const { createCart, addToCart } = require("./carts");
 const db = require("./client");
 const { v4: uuidv4 } = require("uuid");
 

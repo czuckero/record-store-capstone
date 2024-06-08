@@ -1,6 +1,5 @@
 // handles admin-related stuff
 
-const { createArtist } = require("./artists");
 const { createRecord } = require("./records");
 const { getUsers } = require("./users");
 
@@ -10,13 +9,13 @@ const createArtistByAdmin = async ({ name, bio, genre, img }) => {
 
 const createRecordByAdmin = async ({
   genre,
-  artist_id,
+  artist,
   title,
   price,
   newRecord,
   img,
 }) => {
-  return await createRecord({ genre, artist_id, title, price, newRecord, img });
+  return await createRecord({ genre, artist, title, price, newRecord, img });
 };
 
 const getAllUsers = async () => {

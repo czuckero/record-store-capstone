@@ -7,7 +7,7 @@ const {
   removeFromCart,
   updateCart,
 } = require("../db/carts");
-const { authenticateUser, isLoggedIn } = require("../middleware/auth");
+const { isLoggedIn } = require("../middleware/auth");
 
 // Middleware to ensure the user is authenticated
 // cartRouter.use(authenticateUser);

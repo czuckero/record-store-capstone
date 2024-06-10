@@ -105,8 +105,14 @@ const clearCart = async (user_id) => {
 };
 
 // Function to add item to cart
-const addToCart = async ({ cart_id, record_id, quantity, price }) => {
+const addToCart = async ({ user_id, record_id, quantity, price }) => {
   try {
+    let cart = await getCartByUserId(user_id);
+    if (!cart) {
+      cart = await createCart({ user_id });
+    }
+    const cart_id = cart.id;
+
     const {
       rows: [cartItem],
     } = await db.query(
@@ -124,8 +130,14 @@ const addToCart = async ({ cart_id, record_id, quantity, price }) => {
 };
 
 // Function to remove item from cart
-const removeFromCart = async ({ cart_id, record_id }) => {
+const removeFromCart = async ({ user_id, record_id }) => {
   try {
+    const cart = await getCartByUserId(user_id);
+    if (!cart) {
+      throw new Error("Cart not found");
+    }
+    const cart_id = cart.id;
+
     const {
       rows: [cartItem],
     } = await db.query(
@@ -143,8 +155,14 @@ const removeFromCart = async ({ cart_id, record_id }) => {
 };
 
 // Function to update item in cart
-const updateCart = async ({ cart_id, record_id, quantity, price }) => {
+const updateCart = async ({ user_id, record_id, quantity, price }) => {
   try {
+    const cart = await getCartByUserId(user_id);
+    if (!cart) {
+      throw new Error("Cart not found");
+    }
+    const cart_id = cart.id;
+
     const {
       rows: [cartItem],
     } = await db.query(

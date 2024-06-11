@@ -4,7 +4,11 @@
 const express = require("express");
 const adminRouter = express.Router();
 const db = require("../db");
-const { createRecord } = require("../db/records");
+const {
+  createRecord,
+  updateRecord,
+  deleteRecordById,
+} = require("../db/records");
 const { getAllUsers } = require("../db/admin");
 const { isLoggedIn, isAdmin } = require("../middleware/auth");
 
@@ -50,7 +54,9 @@ adminRouter.put("/records/:recordId", isAdmin, async (req, res, next) => {
   const recordId = req.params.recordId;
   const { genre, artist, title, price, newRecord, img } = req.body;
   try {
-    const updatedRecord = await db.records.updateRecord({
+    console.log(`Updating record with ID: ${recordId}`);
+    console.log("Received data:", req.body);
+    const updatedRecord = await updateRecord({
       id: recordId,
       genre,
       artist,
@@ -59,8 +65,10 @@ adminRouter.put("/records/:recordId", isAdmin, async (req, res, next) => {
       newRecord,
       img,
     });
+    console.log("Updated record:", updatedRecord);
     res.json(updatedRecord);
   } catch (error) {
+    console.error("Error updating record:", error);
     next(error);
   }
 });
@@ -69,10 +77,15 @@ adminRouter.put("/records/:recordId", isAdmin, async (req, res, next) => {
 // admin can delete a record by id
 adminRouter.delete("/records/:recordId", isAdmin, async (req, res, next) => {
   try {
-    await db.records.deleteRecordById(req.params.recordId);
+    const recordId = req.params.recordId;
+    console.log(`Deleting record with ID: ${recordId}`);
+    await deleteRecordById(recordId);
     res.json({ message: "Record deleted successfully" });
   } catch (error) {
-    next(error);
+    console.error("Error deleting record:", error);
+    res
+      .status(500)
+      .json({ message: "Error deleting record", error: error.message });
   }
 });
 

@@ -6,6 +6,7 @@ import { addItemToUserCart, fetchSingleRecord } from "../API";
 const SingleRecord = ({ token }) => {
   const { recordId } = useParams();
   const [record, setRecord] = useState([]);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     async function getSingleRecord() {
@@ -33,6 +34,7 @@ const SingleRecord = ({ token }) => {
       }
     } else {
       console.log("must log in");
+      setMessage("Create an account or log in to add items to your cart")
     }
   }
 
@@ -54,6 +56,7 @@ const SingleRecord = ({ token }) => {
             </p>
             <h3>{record.price}</h3>
             <button onClick={() => handleAddToCart()} type="submit">Add to Cart</button>
+            {message && <h3>{message}</h3>}
           </div>
         </div>
         }

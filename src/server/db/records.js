@@ -111,10 +111,28 @@ const updateQuantity = async (newQuantity, record_id) => {
   }
 };
 
+const deleteRecordById = async (record_id) => {
+  try {
+    const result = await db.query(
+      `--sql
+      DELETE FROM records
+      WHERE id = $1;
+      `,
+      [record_id]
+    );
+    console.log(`Deleted record with ID: ${record_id}`, result);
+    return result;
+  } catch (error) {
+    console.error("Error in deleteRecordById:", error);
+    throw error;
+  }
+};
+
 module.exports = {
   createRecord,
   getRecords,
   getRecordById,
   updateRecord,
   updateQuantity,
+  deleteRecordById,
 };

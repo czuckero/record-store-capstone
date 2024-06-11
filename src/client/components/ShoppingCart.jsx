@@ -30,7 +30,6 @@ const ShoppingCart = ({ token }) => {
   };
 
   const handleRemoveItem = async (cartItemId) => {
-
     try {
       await deleteItemFromUserCart(token, cartItemId);
       setCartItems(cartItems.filter(item => item.id !== cartItemId));

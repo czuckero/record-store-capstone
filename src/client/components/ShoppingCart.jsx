@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import './CSS/ShoppingCart.css';
-import { fetchUserCartItems } from '../API';
+import { deleteItemFromUserCart, fetchUserCartItems } from '../API';
 
 const ShoppingCart = ({ token }) => {
   const navigate = useNavigate();
@@ -23,14 +23,20 @@ const ShoppingCart = ({ token }) => {
       }
     }
     getUserCartItems();
-  }, [token]);
+  }, []);
 
   const handleQuantityChange = (id, quantity) => {
     setCartItems(cartItems.map(item => item.id === id ? { ...item, quantity } : item));
   };
 
-  const handleRemoveItem = (id) => {
-    setCartItems(cartItems.filter(item => item.id !== id));
+  const handleRemoveItem = async (cartItemId) => {
+    try {
+      await deleteItemFromUserCart(token, cartItemId);
+      setCartItems(cartItems.filter(item => item.id !== cartItemId));
+      console.log(cartItemId, "item deleted");
+    } catch (error) {
+      throw error
+    }
   };
 
   if (token) {

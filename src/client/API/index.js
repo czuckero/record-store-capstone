@@ -84,9 +84,13 @@ export async function addItemToUserCart(recordId, token, quantity, price) {
 };
 
 // Removes an item from a user's cart
-export async function deleteItemFromUserCart(userId, cartId, cartItemId) {
-  const response = await fetch(`${APIURL}/api/users/${userId}/cart/${cartId}/cartItems/${cartItemId}`, {
-    method: 'DELETE',
+export async function deleteItemFromUserCart(token, cartItemId) {
+  const response = await fetch(`${APIURL}/api/cart/cartItems/${cartItemId}`, {
+    method: 'DELETE', 
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
   });
   const result = response.json();
   return result;

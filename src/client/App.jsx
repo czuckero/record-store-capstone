@@ -24,7 +24,7 @@ function App() {
         <Routes>
           <Route path='/home' element={ <Records /> } />
           <Route path='/about' element={ <About /> } />
-          <Route path='/records/:id' element={ <SingleRecord /> } />
+          <Route path='/records/:recordId' element={ <SingleRecord token={token} /> } />
           <Route path='/register' element={ <Registration setToken={setToken} /> } />
           <Route path='/login' element={ <Login setToken={setToken} /> } />
           <Route path='/account' element={ <Account token={token} /> } />

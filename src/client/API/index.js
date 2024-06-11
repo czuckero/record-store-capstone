@@ -66,15 +66,17 @@ export async function fetchUserCartItems(token) {
 };
 
 // Adds an item to a user's cart
-export async function addItemToUserCart(cartId, recordId, quantity) {
-  const response = await fetch(`${APIURL}/api/users/${cartId}/cart/cartItems`, {
+export async function addItemToUserCart(recordId, token, quantity, price) {
+  const response = await fetch(`${APIURL}/api/cart/cartItems`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
     },
     body: JSON.stringify({
       record_id: recordId,
       quantity: quantity,
+      price: price,
     })
   });
   const result = await response.json();

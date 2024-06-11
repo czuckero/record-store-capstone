@@ -5,35 +5,26 @@ const express = require("express");
 const adminRouter = express.Router();
 const db = require("../db");
 const { createRecord } = require("../db/records");
-const { isAdmin } = require("../middleware/auth");
+const { getAllUsers } = require("../db/admin");
+const { isLoggedIn, isAdmin } = require("../middleware/auth");
 
-// GET /api/users (admin only)
+// GET /api/admin (admin only)
 // admin can view a list of users
-adminRouter.get("/users", isAdmin, async (req, res, next) => {
+adminRouter.get("/", isLoggedIn, isAdmin, async (req, res, next) => {
   try {
-    const users = await db.users.getAllUsers();
-    res.json(users);
+    console.log("viewing all users");
+    const users = await getAllUsers();
+    console.log("Fetched all users: ", users);
+    res.status(200).json(users);
   } catch (error) {
-    next(error);
+    console.error("Unable to retrieve users:", error);
+    res
+      .status(500)
+      .json({ message: "Unable to retrieve users", error: error.message });
   }
 });
 
-// GET /api/users/:id (admin only)
-// admin can view a single user
-adminRouter.get("/users/:userId", isAdmin, async (req, res, next) => {
-  const userId = req.params.userId;
-  try {
-    const user = await db.users.getUserById(userId);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-    res.json(user);
-  } catch (error) {
-    next(error);
-  }
-});
-
-// POST /api/records (admin only)
+// POST /api/admin/records (admin only)
 // admin can create a record
 adminRouter.post("/records", isAdmin, async (req, res, next) => {
   const { genre, artist, title, price, newRecord, img } = req.body;
@@ -52,7 +43,7 @@ adminRouter.post("/records", isAdmin, async (req, res, next) => {
   }
 });
 
-// PUT /api/records (admin only)
+// PUT /api/admin/records (admin only)
 adminRouter.put("/records/:recordId", isAdmin, async (req, res, next) => {
   const recordId = req.params.recordId;
   const { genre, artist, title, price, newRecord, img } = req.body;
@@ -72,7 +63,7 @@ adminRouter.put("/records/:recordId", isAdmin, async (req, res, next) => {
   }
 });
 
-// DELETE /api/records/:recordId (admin only)
+// DELETE /api/admin/records/:recordId (admin only)
 // admin can delete a record by id
 adminRouter.delete("/records/:recordId", isAdmin, async (req, res, next) => {
   try {

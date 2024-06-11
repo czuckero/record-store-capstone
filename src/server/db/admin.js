@@ -3,10 +3,6 @@
 const { createRecord } = require("./records");
 const { getUsers } = require("./users");
 
-const createArtistByAdmin = async ({ name, bio, genre, img }) => {
-  return await createArtist({ name, bio, genre, img });
-};
-
 const createRecordByAdmin = async ({
   genre,
   artist,
@@ -23,7 +19,6 @@ const getAllUsers = async () => {
 };
 
 module.exports = {
-  createArtistByAdmin,
   createRecordByAdmin,
   getAllUsers,
 };

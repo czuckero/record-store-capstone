@@ -18,7 +18,10 @@ const isLoggedIn = async (req, res, next) => {
 };
 
 const isAdmin = (req, res, next) => {
-  if (!req.user || !req.user.admin) {
+  console.log("is Admin");
+  console.log("user:", req.user);
+  console.log("admin:", req.user.isadmin);
+  if (!req.user || !req.user.isadmin) {
     return res.status(403).json({ message: "Unauthorized: Admin only." });
   }
   next();

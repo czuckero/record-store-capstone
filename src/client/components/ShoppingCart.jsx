@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import './CSS/ShoppingCart.css';
-import { deleteItemFromUserCart, fetchUserCartItems } from '../API';
+import { deleteItemFromUserCart, fetchUserCartItems, updateCartItemQuantity } from '../API';
 
 const ShoppingCart = ({ token }) => {
   const navigate = useNavigate();
@@ -25,8 +25,13 @@ const ShoppingCart = ({ token }) => {
     getUserCartItems();
   }, []);
 
-  const handleQuantityChange = (id, quantity) => {
-    setCartItems(cartItems.map(item => item.id === id ? { ...item, quantity } : item));
+  const handleQuantityChange = async (record_id, quantity, price) => {
+    try {
+      await updateCartItemQuantity(token, record_id, quantity, price);
+      setCartItems(cartItems.map(item => item.id === record_id ? { ...item, quantity, price } : item));
+    } catch (error) {
+      throw error
+    }
   };
 
   const handleRemoveItem = async (cartItemId) => {
@@ -55,7 +60,7 @@ const ShoppingCart = ({ token }) => {
                   type="number"
                   min="1"
                   value={item.quantity}
-                  onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value))}
+                  onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value), item.price)}
                 />
                 <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
               </li>

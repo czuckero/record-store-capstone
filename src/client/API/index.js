@@ -97,16 +97,19 @@ export async function deleteItemFromUserCart(token, cartItemId) {
 };
 
 // Changes the quantity of an item in a user's cart
-export async function updateCartItemQuantity(userId, cartId, cartItemId, newQuantity) {
-  const response = await fetch(`${APIURL}/api/users/${userId}/cart/${cartId}/cartItems/${cartItemId}`, {
+export async function updateCartItemQuantity(token, record_id, quantity, price) {
+  const response = await fetch(`${APIURL}/api/cart/cartItems`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
     },
     body: JSON.stringify({
-      quantity: newQuantity,
+      record_id: record_id,
+      quantity: quantity,
+      price: price
     })
   });
-  const result = response.json();
+  const result = await response.json();
   return result;
 };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./CSS/Account.css";
 import { fetchUserData } from "../API";
+import { useNavigate } from "react-router-dom";
 
 const Account = ({ token }) => {
   const [userData, setUserData] = useState({
@@ -13,6 +14,7 @@ const Account = ({ token }) => {
     //   { id: 3, item: "Album C", date: "2023-05-18", amount: "$45.00" },
     // ],
   });
+  const navigate = useNavigate();
 
   const [passwordData, setPasswordData] = useState({
     currentPassword: "",
@@ -46,83 +48,93 @@ const Account = ({ token }) => {
     // Add password update logic here
     console.log("Password data submitted:", passwordData);
   };
-
-  return (
-    <>
-      <div className="account-container">
-        <h1>Account Information</h1>
-        <div className="user-info">
-          <p>
-            <strong>Username:</strong> {userData.username}
-          </p>
-          <p>
-            <strong>Email:</strong> {userData.email}
-          </p>
-          <p>
-            {/* <strong>Registered on:</strong>{" "}
-            {new Date(userData.registrationDate).toLocaleDateString()} */}
-          </p>
+  if (token) {
+    return (
+      <>
+        <div className="account-container">
+          <h1>Account Information</h1>
+          <div className="user-info">
+            <p>
+              <strong>Username:</strong> {userData.username}
+            </p>
+            <p>
+              <strong>Email:</strong> {userData.email}
+            </p>
+            <p>
+              {/* <strong>Registered on:</strong>{" "}
+              {new Date(userData.registrationDate).toLocaleDateString()} */}
+            </p>
+          </div>
+  
+          <div className="update-password">
+            <h2>Update Password</h2>
+            <form onSubmit={handlePasswordSubmit}>
+              <label>
+                Current Password:
+                <input
+                  type="password"
+                  name="currentPassword"
+                  value={passwordData.currentPassword}
+                  onChange={handlePasswordChange}
+                  required
+                />
+              </label>
+              <label>
+                New Password:
+                <input
+                  type="password"
+                  name="newPassword"
+                  value={passwordData.newPassword}
+                  onChange={handlePasswordChange}
+                  required
+                />
+              </label>
+              <label>
+                Confirm New Password:
+                <input
+                  type="password"
+                  name="confirmNewPassword"
+                  value={passwordData.confirmNewPassword}
+                  onChange={handlePasswordChange}
+                  required
+                />
+              </label>
+              <button type="submit">Update Password</button>
+            </form>
+          </div>
+  
+          {/* <div className="purchase-history">
+            <h2>Purchase History</h2>
+            <ul>
+              {userData.purchaseHistory.map((purchase) => (
+                <li key={purchase.id}>
+                  <p>
+                    <strong>Item:</strong> {purchase.item}
+                  </p>
+                  <p>
+                    <strong>Date:</strong>{" "}
+                    {new Date(purchase.date).toLocaleDateString()}
+                  </p>
+                  <p>
+                    <strong>Amount:</strong> {purchase.amount}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div> */}
         </div>
-
-        <div className="update-password">
-          <h2>Update Password</h2>
-          <form onSubmit={handlePasswordSubmit}>
-            <label>
-              Current Password:
-              <input
-                type="password"
-                name="currentPassword"
-                value={passwordData.currentPassword}
-                onChange={handlePasswordChange}
-                required
-              />
-            </label>
-            <label>
-              New Password:
-              <input
-                type="password"
-                name="newPassword"
-                value={passwordData.newPassword}
-                onChange={handlePasswordChange}
-                required
-              />
-            </label>
-            <label>
-              Confirm New Password:
-              <input
-                type="password"
-                name="confirmNewPassword"
-                value={passwordData.confirmNewPassword}
-                onChange={handlePasswordChange}
-                required
-              />
-            </label>
-            <button type="submit">Update Password</button>
-          </form>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <div className="account-container">
+          <p>You must login to see your account information.</p>
+          <button type='submit' onClick={() => navigate('/login')}>Login</button>
         </div>
-
-        {/* <div className="purchase-history">
-          <h2>Purchase History</h2>
-          <ul>
-            {userData.purchaseHistory.map((purchase) => (
-              <li key={purchase.id}>
-                <p>
-                  <strong>Item:</strong> {purchase.item}
-                </p>
-                <p>
-                  <strong>Date:</strong>{" "}
-                  {new Date(purchase.date).toLocaleDateString()}
-                </p>
-                <p>
-                  <strong>Amount:</strong> {purchase.amount}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </div> */}
-      </div>
-    </>
-  );
+      </>
+    );
+  }
 };
 
 export default Account;

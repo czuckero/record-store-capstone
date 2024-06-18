@@ -55,7 +55,7 @@ export async function fetchUserData(token) {
 
 // Fetches the items in a user's cart
 export async function fetchUserCartItems(token) {
-  const response = await fetch(`${APIURL}/api/users/cart`, {
+  const response = await fetch(`${APIURL}/api/cart`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
@@ -66,15 +66,17 @@ export async function fetchUserCartItems(token) {
 };
 
 // Adds an item to a user's cart
-export async function addItemToUserCart(cartId, recordId, quantity) {
-  const response = await fetch(`${APIURL}/api/users/${cartId}/cart/cartItems`, {
+export async function addItemToUserCart(recordId, token, quantity, price) {
+  const response = await fetch(`${APIURL}/api/cart/cartItems`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
     },
     body: JSON.stringify({
       record_id: recordId,
       quantity: quantity,
+      price: price,
     })
   });
   const result = await response.json();
@@ -82,25 +84,32 @@ export async function addItemToUserCart(cartId, recordId, quantity) {
 };
 
 // Removes an item from a user's cart
-export async function deleteItemFromUserCart(userId, cartId, cartItemId) {
-  const response = await fetch(`${APIURL}/api/users/${userId}/cart/${cartId}/cartItems/${cartItemId}`, {
-    method: 'DELETE',
+export async function deleteItemFromUserCart(token, cartItemId) {
+  const response = await fetch(`${APIURL}/api/cart/cartItems/${cartItemId}`, {
+    method: 'DELETE', 
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
   });
   const result = response.json();
   return result;
 };
 
 // Changes the quantity of an item in a user's cart
-export async function updateCartItemQuantity(userId, cartId, cartItemId, newQuantity) {
-  const response = await fetch(`${APIURL}/api/users/${userId}/cart/${cartId}/cartItems/${cartItemId}`, {
+export async function updateCartItemQuantity(token, record_id, quantity, price) {
+  const response = await fetch(`${APIURL}/api/cart/cartItems`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
     },
     body: JSON.stringify({
-      quantity: newQuantity,
+      record_id: record_id,
+      quantity: quantity,
+      price: price
     })
   });
-  const result = response.json();
+  const result = await response.json();
   return result;
 };

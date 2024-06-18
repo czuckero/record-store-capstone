@@ -1,7 +1,28 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import './CSS/Checkout.css';
+import { fetchUserCartItems } from '../API';
+import { useNavigate } from 'react-router-dom';
 
-const Checkout = () => {
+const Checkout = ({ token }) => {
+  const [cartItems, setCartItems] = useState([])
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    async function getUserCartItems() {
+      try {
+        const response = await fetchUserCartItems(token);
+        console.log(response);
+        setCartItems(response);
+      } catch (error) {
+        throw error
+      }
+    }
+    getUserCartItems();
+  }, []);
+
+  const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+
   return (
     <>
       <div className="checkout-container">
@@ -49,15 +70,21 @@ const Checkout = () => {
 
           <div className="section">
             <h2>Order Summary</h2>
-            <ul className="order-summary">
-              <li>Album A - $40.00</li>
-              <li>Album B - $35.00</li>
-              <li>Album C - $45.00</li>
+            <ul className="cart-items">
+              {cartItems.map(item => (
+                <li key={item.id} className="cart-item">
+                  <span>{item.title}</span>
+                  <span>{item.quantity} x</span>
+                  <span>${parseFloat(item.price).toFixed(2)}</span>
+                </li>
+              ))}
             </ul>
-            <p className="total">Total: $120.00</p>
+            <div className="total">
+              <h2>Total: ${totalAmount.toFixed(2)}</h2>
+            </div>
           </div>
 
-          <button type="submit">Place Order</button>
+          <button onClick={() => navigate('/success')} type="submit">Place Order</button>
         </form>
       </div>
     </>

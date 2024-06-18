@@ -1,30 +1,11 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const db = require("../db");
 const { findUserByToken } = require("../db/users");
-
-const authenticateUser = async ({ username, password }) => {
-  const SQL = `--sql
-    SELECT id, password, admin
-    FROM users
-    WHERE username = $1
-  `;
-  const response = await db.query(SQL, [username]);
-  if (
-    !response.rows.length ||
-    !(await bcrypt.compare(password, response.rows[0].password))
-  ) {
-    const error = new Error("Unauthorized: Invalid credentials.");
-    error.status = 401;
-    throw error;
-  }
-
-  const token = jwt.sign({ id: response.rows[0].id }, process.env.JWT_SECRET);
-  console.log("Generated Token:", token);
-  return { token };
-};
 
 const isLoggedIn = async (req, res, next) => {
   try {
+    console.log("is logged in");
     req.headers.authorization = req.headers.authorization.replace(
       "Bearer ",
       ""
@@ -37,10 +18,13 @@ const isLoggedIn = async (req, res, next) => {
 };
 
 const isAdmin = (req, res, next) => {
-  if (!req.user || !req.user.admin) {
+  console.log("is Admin");
+  console.log("user:", req.user);
+  console.log("admin:", req.user.isadmin);
+  if (!req.user || !req.user.isadmin) {
     return res.status(403).json({ message: "Unauthorized: Admin only." });
   }
   next();
 };
 
-module.exports = { authenticateUser, isLoggedIn, isAdmin };
+module.exports = { isLoggedIn, isAdmin };

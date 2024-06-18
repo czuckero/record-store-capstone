@@ -1,7 +1,6 @@
 const { createUser } = require("./users");
 const { createRecord } = require("./records");
-const { createCart } = require("./carts");
-const { addToCart } = require("./cartItems");
+const { createCart, addToCart } = require("./carts");
 const db = require("./client");
 const { v4: uuidv4 } = require("uuid");
 
@@ -10,25 +9,25 @@ const users = [
     username: "czuck",
     email: "zuck@gmail.com",
     password: "password1",
-    admin: true,
+    isAdmin: true,
   },
   {
     username: "gcurtis",
     email: "gcurtis@gmail.com",
     password: "password2",
-    admin: true,
+    isAdmin: true,
   },
   {
     username: "choang",
     email: "choang@gmail.com",
     password: "password3",
-    admin: true,
+    isAdmin: true,
   },
   {
     username: "lincoln",
     email: "lincoln@gmail.com",
     password: "lincolnrocks",
-    admin: false,
+    isAdmin: false,
   },
 ];
 
@@ -136,7 +135,7 @@ const createTables = async () => {
         username VARCHAR(255) NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
-        admin BOOLEAN DEFAULT false
+        isAdmin BOOLEAN DEFAULT false
       );
       CREATE TABLE records(
         id UUID PRIMARY KEY,

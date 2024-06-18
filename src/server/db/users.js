@@ -12,7 +12,7 @@ const createUser = async ({ username, email, password, isAdmin = false }) => {
     const {
       rows: [user],
     } = await db.query(
-      `INSERT INTO users (id, username, email, password, admin)
+      `INSERT INTO users (id, username, email, password, isAdmin)
        VALUES ($1, $2, $3, $4, $5)
        RETURNING *`,
       [uuid.v4(), username, email, hashedPassword, isAdmin]
@@ -43,7 +43,7 @@ const findUserByToken = async (token) => {
     throw error;
   }
   const SQL = `--sql
-    SELECT id, username, email FROM users WHERE id=$1;
+    SELECT id, username, email, isAdmin FROM users WHERE id=$1;
   `;
   const response = await db.query(SQL, [id]);
   if (!response.rows.length) {
@@ -108,6 +108,7 @@ const getUserById = async (id) => {
 const getUsers = async () => {
   try {
     const { rows: users } = await db.query(`SELECT * FROM users`);
+    console.log(users);
     return users;
   } catch (error) {
     throw error;

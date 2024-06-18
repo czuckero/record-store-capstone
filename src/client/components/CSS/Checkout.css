@@ -93,5 +93,128 @@ button[type="submit"]:hover {
   background-color: #00796B; 
 }
 
+/* Media Queries */
+@media (max-width: 1200px) {
+  .checkout-container {
+    padding: 15px;
+    max-width: 700px;
+  }
+
+  .checkout-container h1 {
+    font-size: 32px;
+  }
+
+  .section {
+    padding: 15px;
+  }
+
+  .section h2 {
+    font-size: 22px;
+  }
+
+  .section label {
+    font-size: 14px;
+  }
+
+  .section input {
+    padding: 7px;
+  }
+
+  .order-summary li {
+    font-size: 14px;
+  }
+
+  .total {
+    font-size: 16px;
+  }
+
+  button[type="submit"] {
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .checkout-container {
+    padding: 10px;
+    max-width: 500px;
+  }
+
+  .checkout-container h1 {
+    font-size: 28px;
+  }
+
+  .section {
+    padding: 10px;
+  }
+
+  .section h2 {
+    font-size: 20px;
+  }
+
+  .section label {
+    font-size: 12px;
+  }
+
+  .section input {
+    padding: 6px;
+  }
+
+  .order-summary li {
+    font-size: 12px;
+  }
+
+  .total {
+    font-size: 14px;
+  }
+
+  button[type="submit"] {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-container {
+    padding: 5px;
+    max-width: 90%;
+  }
+
+  .checkout-container h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  .section {
+    padding: 8px;
+  }
+
+  .section h2 {
+    font-size: 18px;
+  }
+
+  .section label {
+    font-size: 10px;
+  }
+
+  .section input {
+    padding: 4px;
+  }
+
+  .order-summary li {
+    font-size: 10px;
+  }
+
+  .total {
+    font-size: 12px;
+  }
+
+  button[type="submit"] {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+}
+
+
 
   

@@ -49,5 +49,77 @@
   color: #607D8B; 
 }
 
+/* Media Queries */
+@media (max-width: 1200px) {
+  .record-container {
+    padding: 15px;
+    max-width: 700px;
+  }
+
+  .record-container h1 {
+    font-size: 32px;
+  }
+
+  .record-image {
+    max-width: 350px;
+  }
+
+  .record-details h2 {
+    font-size: 22px;
+  }
+
+  .record-details p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .record-container {
+    padding: 10px;
+    max-width: 500px;
+  }
+
+  .record-container h1 {
+    font-size: 28px;
+  }
+
+  .record-image {
+    max-width: 300px;
+  }
+
+  .record-details h2 {
+    font-size: 20px;
+  }
+
+  .record-details p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .record-container {
+    padding: 5px;
+    max-width: 90%;
+  }
+
+  .record-container h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  .record-image {
+    max-width: 250px;
+  }
+
+  .record-details h2 {
+    font-size: 18px;
+  }
+
+  .record-details p {
+    font-size: 12px;
+  }
+}
+
+
 
   

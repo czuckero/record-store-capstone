@@ -66,3 +66,90 @@ button[type="submit"]:hover {
   font-size: 18px;
   color: #37474F; 
 }
+
+/* Media Queries */
+@media (max-width: 1200px) {
+  .login-container {
+    padding: 15px;
+    max-width: 450px;
+  }
+
+  .login-container h2 {
+    font-size: 32px;
+  }
+
+  .login-form label {
+    font-size: 16px;
+  }
+
+  .login-form input {
+    padding: 8px;
+  }
+
+  button[type="submit"] {
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+
+  .message {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    padding: 10px;
+    max-width: 400px;
+  }
+
+  .login-container h2 {
+    font-size: 28px;
+  }
+
+  .login-form label {
+    font-size: 14px;
+  }
+
+  .login-form input {
+    padding: 6px;
+  }
+
+  button[type="submit"] {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .message {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    padding: 5px;
+    max-width: 90%;
+  }
+
+  .login-container h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  .login-form label {
+    font-size: 12px;
+  }
+
+  .login-form input {
+    padding: 4px;
+  }
+
+  button[type="submit"] {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  .message {
+    font-size: 12px;
+  }
+}
+

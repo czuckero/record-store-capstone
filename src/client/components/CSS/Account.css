@@ -9,7 +9,6 @@
   background-color: #000000; 
   color: #37474F; 
   border: 2px solid #2c2c2c; 
-  border: 2px solid ; 
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -35,7 +34,7 @@
 .update-password h2, .purchase-history h2 {
   font-size: 24px;
   margin-bottom: 10px;
-  color: #ffffff; /* Cool Blue */
+  color: #ffffff; 
 }
 
 .update-password form {
@@ -67,7 +66,7 @@ button[type="submit"] {
   padding: 10px 20px;
   font-size: 18px;
   color: white;
-  background-color: #d49c45;
+  background-color: #d49c45; 
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -90,6 +89,105 @@ button[type="submit"]:hover {
   margin-bottom: 10px;
   background-color: #ECEFF1; 
 }
+
+/* Media Queries */
+@media (max-width: 1200px) {
+  .account-container {
+    padding: 15px;
+    max-width: 700px;
+  }
+
+  .account-container h1 {
+    font-size: 32px;
+  }
+
+  .user-info p, .purchase-history p {
+    font-size: 16px;
+  }
+
+  .update-password h2, .purchase-history h2 {
+    font-size: 22px;
+  }
+
+  .update-password label {
+    font-size: 16px;
+  }
+
+  .update-password input {
+    padding: 8px;
+  }
+
+  button[type="submit"] {
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .account-container {
+    padding: 10px;
+    max-width: 500px;
+  }
+
+  .account-container h1 {
+    font-size: 28px;
+  }
+
+  .user-info p, .purchase-history p {
+    font-size: 14px;
+  }
+
+  .update-password h2, .purchase-history h2 {
+    font-size: 20px;
+  }
+
+  .update-password label {
+    font-size: 14px;
+  }
+
+  .update-password input {
+    padding: 6px;
+  }
+
+  button[type="submit"] {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .account-container {
+    padding: 5px;
+    max-width: 90%;
+  }
+
+  .account-container h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  .user-info p, .purchase-history p {
+    font-size: 12px;
+  }
+
+  .update-password h2, .purchase-history h2 {
+    font-size: 18px;
+  }
+
+  .update-password label {
+    font-size: 12px;
+  }
+
+  .update-password input {
+    padding: 4px;
+  }
+
+  button[type="submit"] {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+}
+
 
 
   

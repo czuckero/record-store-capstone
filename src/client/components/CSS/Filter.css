@@ -36,3 +36,65 @@
   color: #37474F; 
 }
 
+/* Media Queries */
+@media (max-width: 1200px) {
+  .filters {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .filter {
+    padding: 8px;
+  }
+
+  .filter label {
+    font-size: 14px;
+  }
+
+  .filter select {
+    padding: 7px;
+  }
+}
+
+@media (max-width: 768px) {
+  .filters {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .filter {
+    padding: 6px;
+  }
+
+  .filter label {
+    font-size: 12px;
+  }
+
+  .filter select {
+    padding: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .filters {
+    padding: 5px;
+    gap: 5px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter {
+    padding: 5px;
+  }
+
+  .filter label {
+    font-size: 12px;
+  }
+
+  .filter select {
+    padding: 5px;
+  }
+}
+
+

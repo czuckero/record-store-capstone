@@ -53,5 +53,73 @@
   color: #37474F; 
 }
 
+/* Media Queries */
+@media (max-width: 1200px) {
+  .navbar {
+    padding: 8px 16px;
+  }
+
+  .navbar-logo {
+    font-size: 22px;
+  }
+
+  .navbar-links {
+    gap: 15px;
+  }
+
+  .navbar-links input {
+    padding: 4px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-logo {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .navbar-links input {
+    padding: 4px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 5px 10px;
+  }
+
+  .navbar-logo {
+    font-size: 18px;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .navbar-links a {
+    font-size: 14px;
+  }
+
+  .navbar-links input {
+    padding: 3px;
+    width: 100%;
+  }
+}
+
+
 
   

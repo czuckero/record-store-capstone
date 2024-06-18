@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import React from 'react';
 import './CSS/Records.css';
 import { fetchAllRecords } from "../API";
 
@@ -25,10 +24,16 @@ const Records = () => {
     async function getAllRecords() {
       try {
         const response = await fetchAllRecords();
-        console.log(response);
-        setRecords(response)
+        console.log('API response:', response);
+        if (response && Array.isArray(response)) {
+          setRecords(response.length ? response : albums);
+        } else {
+          console.error('Invalid response format:', response);
+          setRecords(albums);
+        }
       } catch (error) {
-        throw error;
+        console.error('Error fetching records:', error);
+        setRecords(albums); 
       }
     }
     getAllRecords();
@@ -39,8 +44,8 @@ const Records = () => {
       <h2>Shop Records</h2>
       <div className="album-list">
         {records.map((record, index) => (
-          <div onClick={() => {navigate(`/records/${record.id}`)}} key={index} className="album-item">
-            <img src={record.img} alt={record.title} />
+          <div onClick={() => navigate(`/records/${record.id || index}`)} key={index} className="album-item">
+            <img src={record.imgSrc || record.img} alt={record.title} />
             <h3>{record.title}</h3>
             <h4>{record.artist}</h4>
             <p>{record.price}</p>
@@ -52,4 +57,5 @@ const Records = () => {
 }
 
 export default Records;
+
 

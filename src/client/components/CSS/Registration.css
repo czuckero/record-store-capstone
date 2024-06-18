@@ -61,5 +61,80 @@ button[type="submit"]:hover {
   background-color: #00796B; 
 }
 
+/* Media Queries */
+@media (max-width: 1200px) {
+  .registration-container {
+    padding: 15px;
+    max-width: 450px;
+  }
+
+  .registration-container h1 {
+    font-size: 32px;
+  }
+
+  .registration-form label {
+    font-size: 16px;
+  }
+
+  .registration-form input {
+    padding: 8px;
+  }
+
+  button[type="submit"] {
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .registration-container {
+    padding: 10px;
+    max-width: 400px;
+  }
+
+  .registration-container h1 {
+    font-size: 28px;
+  }
+
+  .registration-form label {
+    font-size: 14px;
+  }
+
+  .registration-form input {
+    padding: 6px;
+  }
+
+  button[type="submit"] {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .registration-container {
+    padding: 5px;
+    max-width: 90%;
+  }
+
+  .registration-container h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  .registration-form label {
+    font-size: 12px;
+  }
+
+  .registration-form input {
+    padding: 4px;
+  }
+
+  button[type="submit"] {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+}
+
+
 
   

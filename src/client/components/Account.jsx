@@ -131,6 +131,8 @@ const Account = ({ token }) => {
         <div className="account-container">
           <p>You must login to see your account information.</p>
           <button type='submit' onClick={() => navigate('/login')}>Login</button>
+          <p>No account? Create one here!</p>
+          <button type='submit' onClick={() => navigate('/register')}>Create Account</button>
         </div>
       </>
     );

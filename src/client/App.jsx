@@ -10,6 +10,7 @@ import Checkout from './components/Checkout';
 import About from './components/About';
 import ShoppingCart from './components/ShoppingCart';
 import Success from './components/Success';
+import Footer from './components/Footer'
 
 import { Routes, Route } from 'react-router-dom'
 
@@ -33,6 +34,9 @@ function App() {
           <Route path='/checkout' element={ <Checkout token={token}/> } />
           <Route path='/success' element={ <Success />} />
         </Routes>
+      </div>
+      <div>
+        <Footer />
       </div>
     </>
   );

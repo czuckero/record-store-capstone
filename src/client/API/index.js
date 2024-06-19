@@ -113,3 +113,14 @@ export async function updateCartItemQuantity(token, record_id, quantity, price) 
   const result = await response.json();
   return result;
 };
+
+// Clear cart once user checks out
+export async function clearUserCart(token) {
+  await fetch(`${APIURL}/api/cart`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+  });
+};

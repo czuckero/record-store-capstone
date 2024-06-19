@@ -5,7 +5,7 @@ import { fetchUserCartItems } from '../API';
 import { useNavigate } from 'react-router-dom';
 import { clearUserCart } from '../API';
 
-const Checkout = ({ token }) => {
+const Checkout = ({ token, setPurchasedItems, setTotalCost }) => {
   const [cartItems, setCartItems] = useState([])
   const navigate = useNavigate();
   
@@ -15,6 +15,7 @@ const Checkout = ({ token }) => {
         const response = await fetchUserCartItems(token);
         console.log(response);
         setCartItems(response);
+        setPurchasedItems(response)
       } catch (error) {
         throw error
       }
@@ -94,6 +95,7 @@ const Checkout = ({ token }) => {
           </div>
 
           <button onClick={() => {
+            setTotalCost(totalAmount.toFixed(2));
             handleClearCart();
             navigate('/success');
           }} type="submit">Place Order</button>

@@ -16,6 +16,8 @@ import { Routes, Route } from 'react-router-dom'
 
 function App() {
   const [token, setToken] = useState(null);
+  const [purchasedItems, setPurchasedItems] = useState([]);
+  const [totalCost, setTotalCost] = useState("")
 
   return (
     <>
@@ -31,8 +33,8 @@ function App() {
           <Route path='/login' element={ <Login setToken={setToken} /> } />
           <Route path='/account' element={ <Account token={token} /> } />
           <Route path='/cart' element={ <ShoppingCart token={token} />} />
-          <Route path='/checkout' element={ <Checkout token={token}/> } />
-          <Route path='/success' element={ <Success />} />
+          <Route path='/checkout' element={ <Checkout token={token} setPurchasedItems={setPurchasedItems} setTotalCost={setTotalCost} /> } />
+          <Route path='/success' element={ <Success purchasedItems={purchasedItems} totalCost={totalCost} />} />
         </Routes>
       </div>
       <div>

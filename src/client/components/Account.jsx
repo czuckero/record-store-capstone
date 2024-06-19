@@ -3,7 +3,7 @@ import "./CSS/Account.css";
 import { fetchUserData } from "../API";
 import { useNavigate } from "react-router-dom";
 
-const Account = ({ token }) => {
+const Account = ({ token, setToken }) => {
   const [userData, setUserData] = useState({
     username: "JohnDoe",
     email: "john.doe@example.com",
@@ -34,6 +34,11 @@ const Account = ({ token }) => {
     }
     getUserData();
   }, [token]);
+
+  const handleLogout = () => {
+    setToken(null);
+    navigate("/login");
+  };
 
   const handlePasswordChange = (e) => {
     const { name, value } = e.target;
@@ -101,6 +106,7 @@ const Account = ({ token }) => {
               </label>
               <button type="submit">Update Password</button>
             </form>
+            <button onClick={() => handleLogout()} type="submit">Log out</button>
           </div>
   
           {/* <div className="purchase-history">

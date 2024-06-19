@@ -8,6 +8,7 @@ const SingleRecord = ({ token }) => {
   const [record, setRecord] = useState([]);
   const [message, setMessage] = useState("");
   const [addedToCart, setAddedToCart] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     async function getSingleRecord() {
@@ -64,6 +65,7 @@ const SingleRecord = ({ token }) => {
             )
             }
             {message && <h3>{message}</h3>}
+            <button onClick={() => navigate('/home')} type="submit">Return to Home</button>
           </div>
         </div>
         }

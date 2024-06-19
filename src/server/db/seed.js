@@ -70,7 +70,7 @@ const records = [
     title: "Midnights",
     price: "24.95",
     new: true,
-    img: "https://i.scdn.co/image/ab67616d0000b273fa747621a53c8e2cc436dee",
+    img: "https://i.scdn.co/image/ab67616d0000b273fa747621a53c8e2cc436dee0",
   },
   {
     artist: "John Coltrane",

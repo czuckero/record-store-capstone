@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import './CSS/Checkout.css';
 import { fetchUserCartItems } from '../API';
 import { useNavigate } from 'react-router-dom';
+import { clearUserCart } from '../API';
 
 const Checkout = ({ token }) => {
   const [cartItems, setCartItems] = useState([])
@@ -20,6 +21,14 @@ const Checkout = ({ token }) => {
     }
     getUserCartItems();
   }, []);
+
+  const handleClearCart = async () => {
+    try {
+      await clearUserCart(token);
+    } catch (error) {
+      throw error;
+    };
+  };
 
   const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
@@ -84,7 +93,10 @@ const Checkout = ({ token }) => {
             </div>
           </div>
 
-          <button onClick={() => navigate('/success')} type="submit">Place Order</button>
+          <button onClick={() => {
+            handleClearCart();
+            navigate('/success');
+          }} type="submit">Place Order</button>
         </form>
       </div>
     </>

@@ -122,7 +122,9 @@ const dropTables = async () => {
       DROP TABLE IF EXISTS records;
       DROP TABLE IF EXISTS users;
     `);
+    console.log("Tables dropped successfully.");
   } catch (err) {
+    console.log("Error dropping tables:", err);
     throw err;
   }
 };
@@ -158,7 +160,9 @@ const createTables = async () => {
         price DECIMAL(10,2) NOT NULL
       );
     `);
+    console.log("Tables created successfully.");
   } catch (err) {
+    console.log("Error creating tables:", err);
     throw err;
   }
 };
@@ -170,7 +174,7 @@ const insertUsers = async () => {
         username: user.username,
         email: user.email,
         password: user.password,
-        is_admin: user.admin,
+        is_admin: user.is_admin,
       });
     }
     console.log("Seed user data inserted successfully.");
@@ -221,7 +225,8 @@ const insertCartItems = async () => {
     const { rows: carts } = await db.query(
       `--sql
       SELECT *
-      FROM carts;
+      FROM carts
+      WHERE user_id IS NOT NULL;
       `
     );
 
@@ -256,6 +261,18 @@ const seedDatabase = async () => {
     await insertRecords();
     await insertCarts();
     await insertCartItems();
+
+    const { rows: carts } = await db.query(
+      `--sql
+    SELECT *
+    FROM carts;
+    `
+    );
+    if (carts.length > 0) {
+      console.log("Carts seeded successfully:", carts);
+    } else {
+      console.error("No carts found after seeding.");
+    }
   } catch (err) {
     console.error("Error seeding database:", err);
   } finally {

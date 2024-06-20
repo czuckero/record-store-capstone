@@ -10,11 +10,11 @@ const {
   deleteRecordById,
 } = require("../db/records");
 const { getAllUsers } = require("../db/admin");
-const { isLoggedIn, isAdmin } = require("../middleware/auth");
+const { isLoggedIn, is_admin } = require("../middleware/auth");
 
 // GET /api/admin (admin only)
 // admin can view a list of users
-adminRouter.get("/", isLoggedIn, isAdmin, async (req, res, next) => {
+adminRouter.get("/", isLoggedIn, is_admin, async (req, res, next) => {
   try {
     console.log("viewing all users");
     const users = await getAllUsers();
@@ -30,7 +30,7 @@ adminRouter.get("/", isLoggedIn, isAdmin, async (req, res, next) => {
 
 // POST /api/admin/records (admin only)
 // admin can create a record
-adminRouter.post("/records", isAdmin, async (req, res, next) => {
+adminRouter.post("/records", is_admin, async (req, res, next) => {
   const { genre, artist, title, price, description, img } = req.body;
   try {
     const record = await createRecord({
@@ -48,7 +48,7 @@ adminRouter.post("/records", isAdmin, async (req, res, next) => {
 });
 
 // PUT /api/admin/records (admin only)
-adminRouter.put("/records/:recordId", isAdmin, async (req, res, next) => {
+adminRouter.put("/records/:recordId", is_admin, async (req, res, next) => {
   const recordId = req.params.recordId;
   const { genre, artist, title, price, description, img } = req.body;
   try {
@@ -73,7 +73,7 @@ adminRouter.put("/records/:recordId", isAdmin, async (req, res, next) => {
 
 // DELETE /api/admin/records/:recordId (admin only)
 // admin can delete a record by id
-adminRouter.delete("/records/:recordId", isAdmin, async (req, res, next) => {
+adminRouter.delete("/records/:recordId", is_admin, async (req, res, next) => {
   try {
     const recordId = req.params.recordId;
     console.log(`Deleting record with ID: ${recordId}`);

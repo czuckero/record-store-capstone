@@ -9,25 +9,25 @@ const users = [
     username: "czuck",
     email: "zuck@gmail.com",
     password: "password1",
-    isAdmin: true,
+    is_admin: true,
   },
   {
     username: "gcurtis",
     email: "gcurtis@gmail.com",
     password: "password2",
-    isAdmin: true,
+    is_admin: true,
   },
   {
     username: "choang",
     email: "choang@gmail.com",
     password: "password3",
-    isAdmin: true,
+    is_admin: true,
   },
   {
     username: "lincoln",
     email: "lincoln@gmail.com",
     password: "lincolnrocks",
-    isAdmin: false,
+    is_admin: false,
   },
 ];
 
@@ -135,7 +135,7 @@ const createTables = async () => {
         username VARCHAR(255) NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
-        isAdmin BOOLEAN DEFAULT false
+        is_admin BOOLEAN DEFAULT false
       );
       CREATE TABLE records(
         id UUID PRIMARY KEY,
@@ -170,7 +170,7 @@ const insertUsers = async () => {
         username: user.username,
         email: user.email,
         password: user.password,
-        isAdmin: user.admin,
+        is_admin: user.admin,
       });
     }
     console.log("Seed user data inserted successfully.");

@@ -17,14 +17,14 @@ const isLoggedIn = async (req, res, next) => {
   }
 };
 
-const isAdmin = (req, res, next) => {
+const is_admin = (req, res, next) => {
   console.log("is Admin");
   console.log("user:", req.user);
-  console.log("admin:", req.user.isadmin);
-  if (!req.user || !req.user.isadmin) {
+  console.log("admin:", req.user.is_admin);
+  if (!req.user || !req.user.is_admin) {
     return res.status(403).json({ message: "Unauthorized: Admin only." });
   }
   next();
 };
 
-module.exports = { isLoggedIn, isAdmin };
+module.exports = { isLoggedIn, is_admin };

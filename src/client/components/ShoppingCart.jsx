@@ -19,7 +19,7 @@ const ShoppingCart = ({ token }) => {
         console.log(response);
         setCartItems(response);
       } catch (error) {
-        throw error
+        throw error;
       }
     }
     getUserCartItems();

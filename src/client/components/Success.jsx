@@ -11,6 +11,7 @@ const Success = ({ purchasedItems, totalCost }) => {
           <li key={index} className="purchased-item">
             <span>{item.title}</span>
             <span>{item.artist}</span>
+            <span>x{item.quantity}</span>
             <span>{item.price}</span>
           </li>
         ))}

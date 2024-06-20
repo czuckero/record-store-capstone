@@ -170,7 +170,7 @@ const insertUsers = async () => {
         username: user.username,
         email: user.email,
         password: user.password,
-        is_admin: user.admin,
+        is_admin: user.is_admin,
       });
     }
     console.log("Seed user data inserted successfully.");

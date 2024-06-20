@@ -6,16 +6,16 @@ const uuid = require("uuid");
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET;
 
-const createUser = async ({ username, email, password, isAdmin = false }) => {
+const createUser = async ({ username, email, password, is_admin = false }) => {
   try {
     const hashedPassword = await bcrypt.hash(password, 5);
     const {
       rows: [user],
     } = await db.query(
-      `INSERT INTO users (id, username, email, password, isAdmin)
+      `INSERT INTO users (id, username, email, password, is_admin)
        VALUES ($1, $2, $3, $4, $5)
        RETURNING *`,
-      [uuid.v4(), username, email, hashedPassword, isAdmin]
+      [uuid.v4(), username, email, hashedPassword, is_admin]
     );
     return user;
   } catch (err) {
@@ -43,7 +43,7 @@ const findUserByToken = async (token) => {
     throw error;
   }
   const SQL = `--sql
-    SELECT id, username, email, isAdmin FROM users WHERE id=$1;
+    SELECT id, username, email, is_admin FROM users WHERE id=$1;
   `;
   const response = await db.query(SQL, [id]);
   if (!response.rows.length) {

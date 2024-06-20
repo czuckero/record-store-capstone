@@ -20,7 +20,7 @@ const {
 // POST /api/users/register
 // handles user registration
 usersRouter.post("/register", async (req, res, next) => {
-  const { username, email, password, isAdmin } = req.body;
+  const { username, email, password, is_admin } = req.body;
 
   try {
     res.send(await createUserAndGenerateToken(req.body));
@@ -37,7 +37,7 @@ usersRouter.post("/register", async (req, res, next) => {
       username,
       email,
       password,
-      isAdmin,
+      is_admin,
     });
 
     const token = jwt.sign(

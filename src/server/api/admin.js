@@ -12,8 +12,6 @@ const {
 const { getAllUsers } = require("../db/admin");
 const { isLoggedIn, isAdmin } = require("../middleware/auth");
 
-//pie
-
 // GET /api/admin (admin only)
 // admin can view a list of users
 adminRouter.get("/", isLoggedIn, isAdmin, async (req, res, next) => {
@@ -33,14 +31,14 @@ adminRouter.get("/", isLoggedIn, isAdmin, async (req, res, next) => {
 // POST /api/admin/records (admin only)
 // admin can create a record
 adminRouter.post("/records", isAdmin, async (req, res, next) => {
-  const { genre, artist, title, price, newRecord, img } = req.body;
+  const { genre, artist, title, price, description, img } = req.body;
   try {
     const record = await createRecord({
       genre,
       artist,
       title,
       price,
-      newRecord,
+      description,
       img,
     });
     res.json(record);
@@ -52,7 +50,7 @@ adminRouter.post("/records", isAdmin, async (req, res, next) => {
 // PUT /api/admin/records (admin only)
 adminRouter.put("/records/:recordId", isAdmin, async (req, res, next) => {
   const recordId = req.params.recordId;
-  const { genre, artist, title, price, newRecord, img } = req.body;
+  const { genre, artist, title, price, description, img } = req.body;
   try {
     console.log(`Updating record with ID: ${recordId}`);
     console.log("Received data:", req.body);
@@ -62,7 +60,7 @@ adminRouter.put("/records/:recordId", isAdmin, async (req, res, next) => {
       artist,
       title,
       price,
-      newRecord,
+      description,
       img,
     });
     console.log("Updated record:", updatedRecord);

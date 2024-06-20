@@ -8,7 +8,7 @@ const createRecord = async ({
   genre = "",
   title,
   price,
-  newRecord = true,
+  description,
   img = "",
 }) => {
   try {
@@ -16,11 +16,11 @@ const createRecord = async ({
       rows: [record],
     } = await db.query(
       `--sql
-      INSERT INTO records (id, artist, genre, title, price, new, img)
+      INSERT INTO records (id, artist, genre, title, price, description, img)
       VALUES ($1, $2, $3, $4, $5, $6, $7)
       RETURNING *;
     `,
-      [uuid.v4(), artist, genre, title, price, newRecord, img]
+      [uuid.v4(), artist, genre, title, price, description, img]
     );
     return record;
   } catch (err) {
@@ -66,7 +66,7 @@ const updateRecord = async ({
   genre,
   title,
   price,
-  newRecord,
+  description,
   img,
 }) => {
   try {
@@ -79,12 +79,12 @@ const updateRecord = async ({
       genre = $3,
       title = $4,
       price = $5,
-      new = $6,
+      description = $6,
       img = $7
       WHERE id = $1
       RETURNING *
       `,
-      [id, artist, genre, title, price, newRecord, img]
+      [id, artist, genre, title, price, description, img]
     );
     return record;
   } catch (error) {

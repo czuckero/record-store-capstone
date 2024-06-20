@@ -37,7 +37,7 @@ const records = [
     genre: "Pop/R&B",
     title: "Thriller",
     price: "26.99",
-    new: true,
+    description: "(Description)",
     img: "https://m.media-amazon.com/images/M/MV5BODhhZjJlYTktZDQ2MS00Yzk4LWFlOTQtYTgyOGE1ZGE5YWEyL2ltYWdlXkEyXkFqcGdeQXVyMzA5MjgyMjI@._V1_.jpg",
   },
   {
@@ -45,7 +45,7 @@ const records = [
     genre: "Rock",
     title: "Metallica",
     price: "35.99",
-    new: true,
+    description: "(Description)",
     img: "https://i.ebayimg.com/images/g/6vcAAOSwXHpca1W1/s-l1600.jpg",
   },
   {
@@ -53,7 +53,7 @@ const records = [
     genre: "Indie",
     title: "Dreamland",
     price: "23.99",
-    new: true,
+    description: "(Description)",
     img: "https://i.scdn.co/image/ab67616d0000b27360d9f3955a8cc8eb67265a38",
   },
   {
@@ -61,7 +61,7 @@ const records = [
     genre: "Hip-Hop/Rap",
     title: "good kid, m.A.A.d city",
     price: "35.99",
-    new: true,
+    description: "(Description)",
     img: "https://m.media-amazon.com/images/I/71YMac+JmAL._UF1000,1000_QL80_.jpg",
   },
   {
@@ -69,7 +69,7 @@ const records = [
     genre: "Pop",
     title: "Midnights",
     price: "24.95",
-    new: true,
+    description: "(Description)",
     img: "https://i.scdn.co/image/ab67616d0000b273fa747621a53c8e2cc436dee0",
   },
   {
@@ -77,7 +77,7 @@ const records = [
     genre: "Jazz",
     title: "Blue Train",
     price: "29.95",
-    new: false,
+    description: "(Description)",
     img: "https://cdn11.bigcommerce.com/s-w8qmypftv/images/stencil/1280x1280/products/1642082/4036926/NjctNDc5OC5qcGVn__44909.1680473732.jpg?c=2",
   },
   {
@@ -85,7 +85,7 @@ const records = [
     genre: "Neo Soul",
     title: "Voodoo",
     price: "54.99",
-    new: true,
+    description: "(Description)",
     img: "https://m.media-amazon.com/images/I/4118ZBDVFVL._UF1000,1000_QL80_.jpg",
   },
   {
@@ -93,7 +93,7 @@ const records = [
     genre: "Country",
     title: "At Folsom Prison",
     price: "24.99",
-    new: false,
+    description: "(Description)",
     img: "https://m.media-amazon.com/images/I/91cgDY8ocrL._UF1000,1000_QL80_.jpg",
   },
   {
@@ -101,7 +101,7 @@ const records = [
     genre: "Folk",
     title: "Songs of Love and Hate",
     price: "24.99",
-    new: false,
+    description: "(Description)",
     img: "https://cdn-p.smehost.net/sites/81c947ec3e5441a5a09cf933b1bfcf4f/wp-content/uploads/2021/03/LeonardCohen50thHeader.jpg",
   },
   {
@@ -109,7 +109,7 @@ const records = [
     genre: "Disco",
     title: "Gold",
     price: "38.99",
-    new: true,
+    description: "(Description)",
     img: "https://m.media-amazon.com/images/I/91cPxQP9NmL._UF1000,1000_QL80_.jpg",
   },
 ];
@@ -143,7 +143,7 @@ const createTables = async () => {
         genre VARCHAR(255),
         title VARCHAR(255) NOT NULL,
         price DECIMAL(10,2) NOT NULL,
-        new BOOLEAN DEFAULT true,
+        description VARCHAR(1000),
         img TEXT
       );
       CREATE TABLE carts(
@@ -187,7 +187,7 @@ const insertRecords = async () => {
         genre: record.genre,
         title: record.title,
         price: record.price,
-        new: record.newRecord,
+        description: record.description,
         img: record.img,
       });
     }

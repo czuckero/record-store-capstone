@@ -170,12 +170,15 @@ const createTables = async () => {
 const insertUsers = async () => {
   try {
     for (const user of users) {
-      await createUser({
+      const insertedUser = await createUser({
         username: user.username,
         email: user.email,
         password: user.password,
         is_admin: user.is_admin,
       });
+      console.log(
+        `User inserted: ${insertedUser.id} - ${insertedUser.username}`
+      );
     }
     console.log("Seed user data inserted successfully.");
   } catch (error) {
@@ -194,6 +197,7 @@ const insertRecords = async () => {
         description: record.description,
         img: record.img,
       });
+      console.log(`Record inserted: ${record.title}`);
     }
     console.log("Seed record data inserted successfully.");
   } catch (error) {
@@ -224,9 +228,7 @@ const insertCartItems = async () => {
   try {
     const { rows: carts } = await db.query(
       `--sql
-      SELECT *
-      FROM carts
-      WHERE user_id IS NOT NULL;
+      SELECT * FROM carts WHERE user_id IS NOT NULL;
       `
     );
 
@@ -239,7 +241,7 @@ const insertCartItems = async () => {
     for (const cart of carts) {
       for (const record of records) {
         await addToCart({
-          cart_id: cart.id,
+          user_id: cart.user_id,
           record_id: record.id,
           quantity: 1,
           price: record.price,

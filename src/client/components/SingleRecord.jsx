@@ -64,8 +64,8 @@ const SingleRecord = ({ token }) => {
               <button disabled>Added to Cart!</button>
             )
             }
-            {message && <h3>{message}</h3>}
             <button onClick={() => navigate('/home')} type="submit">Return to Home</button>
+            {message && <h3>{message}</h3>}
           </div>
         </div>
         }

@@ -112,6 +112,38 @@ const records = [
     description: "(Description)",
     img: "https://m.media-amazon.com/images/I/91cPxQP9NmL._UF1000,1000_QL80_.jpg",
   },
+  {
+    artist: "QUEEN",
+    genre: "Rock",
+    title: "Bohemian Rhapsody",
+    price: "38.99",
+    description: "(Description)",
+    img: " ",
+  },
+  {
+    artist: "Lana Del Rey",
+    genre: "Pop",
+    title: "Born To Die",
+    price: "24.95",
+    description: "(Description)",
+    img: " ",
+  },
+  {
+    artist: "Bon Iver",
+    genre: "Folk",
+    title: "Bon Iver",
+    price: "24.95",
+    description: "(Description)",
+    img: " ",
+  },
+  {
+    artist: "Ramones",
+    genre: "Punk",
+    title: "End of the Century",
+    price: "28.99",
+    description: "(Description)",
+    img: " ",
+  },
 ];
 
 const dropTables = async () => {

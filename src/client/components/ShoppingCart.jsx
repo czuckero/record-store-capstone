@@ -44,6 +44,12 @@ const ShoppingCart = ({ token }) => {
     }
   };
 
+  const handleCheckout = () => {
+    if (cartItems.length > 0) {
+      navigate('/checkout')
+    }
+  }
+
   if (token) {
     const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
@@ -68,7 +74,7 @@ const ShoppingCart = ({ token }) => {
           </ul>
           <div className="cart-total">
             <h2>Total: ${totalAmount.toFixed(2)}</h2>
-            <button onClick={() => navigate('/checkout')} className="checkout-button">Proceed to Checkout</button>
+            <button onClick={() => handleCheckout()} className="checkout-button">Proceed to Checkout</button>
           </div>
         </div>
       </>

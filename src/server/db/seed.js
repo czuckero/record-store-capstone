@@ -144,6 +144,14 @@ const records = [
     description: "(Description)",
     img: "https://i.discogs.com/tNmlix7kpG5HFFA3kTTO4iHjDvIyAFqIaPIhZDa4leM/rs:fit/g:sm/q:90/h:600/w:599/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNDU1/MzczLTE1OTU2ODQ3/MjYtMTg4Mi5qcGVn.jpeg",
   },
+  {
+    artist: "Bjork",
+    genre: "Art Pop",
+    title: "Post",
+    price: "29.99",
+    description: "(Description)",
+    img: "https://f4.bcbits.com/img/a4040590719_65",
+  },
 ];
 
 const dropTables = async () => {

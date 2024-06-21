@@ -115,10 +115,10 @@ const records = [
   {
     artist: "QUEEN",
     genre: "Rock",
-    title: "Bohemian Rhapsody",
+    title: "A Night at the Opera",
     price: "38.99",
     description: "(Description)",
-    img: " ",
+    img: "https://i.scdn.co/image/ab67616d0000b2735a0356dd4c5822509208f525",
   },
   {
     artist: "Lana Del Rey",
@@ -126,7 +126,7 @@ const records = [
     title: "Born To Die",
     price: "24.95",
     description: "(Description)",
-    img: " ",
+    img: "https://m.media-amazon.com/images/I/71v9YKQxm2L._UF1000,1000_QL80_.jpg",
   },
   {
     artist: "Bon Iver",
@@ -134,7 +134,7 @@ const records = [
     title: "Bon Iver",
     price: "24.95",
     description: "(Description)",
-    img: " ",
+    img: "https://images.genius.com/268e1d3caaaaa96597807788cf81e46d.600x600x1.jpg",
   },
   {
     artist: "Ramones",
@@ -142,7 +142,7 @@ const records = [
     title: "End of the Century",
     price: "28.99",
     description: "(Description)",
-    img: " ",
+    img: "https://i.discogs.com/tNmlix7kpG5HFFA3kTTO4iHjDvIyAFqIaPIhZDa4leM/rs:fit/g:sm/q:90/h:600/w:599/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNDU1/MzczLTE1OTU2ODQ3/MjYtMTg4Mi5qcGVn.jpeg",
   },
 ];
 

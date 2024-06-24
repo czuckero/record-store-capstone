@@ -19,7 +19,6 @@ const [token, setToken] = useState(null);
 const [purchasedItems, setPurchasedItems] = useState([]);
 const [totalCost, setTotalCost] = useState("")
 
-<<<<<<< christian-react
   return (
     <>
     <div className='App'>
@@ -45,32 +44,6 @@ const [totalCost, setTotalCost] = useState("")
     </div>
     </>
   );
-=======
-return (
-<>
-<div>
-<NavBar />
-</div>
-<div>
-<Routes>
-<Route path='/home' element={ <Records /> } />
-<Route path='/about' element={ <About /> } />
-<Route path='/records/
-' element={ <SingleRecord token={token} /> } />
-<Route path='/register' element={ <Registration setToken={setToken} /> } />
-<Route path='/login' element={ <Login setToken={setToken} /> } />
-<Route path='/account' element={ <Account token={token} setToken={setToken} /> } />
-<Route path='/cart' element={ <ShoppingCart token={token} />} />
-<Route path='/checkout' element={ <Checkout token={token} setPurchasedItems={setPurchasedItems} setTotalCost={setTotalCost} /> } />
-<Route path='/success' element={ <Success purchasedItems={purchasedItems} totalCost={totalCost} />} />
-</Routes>
-</div>
-<div>
-<Footer />
-</div>
-</>
-);
->>>>>>> main
 }
 
 export default App;

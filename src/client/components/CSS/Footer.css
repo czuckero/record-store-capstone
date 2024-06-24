@@ -1,7 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400&display=swap');
+html, body {
+  height: 100%vh;
+  margin: 0;
+}
 
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+/* Existing styles for your footer */
 .footer {
-  background-color: #000000; 
+  background-color: #37474F; 
   color: #FFFFFF; 
   padding: 20px;
   text-align: center;
@@ -136,6 +150,8 @@
     margin: 0 5px;
   }
 }
+
+
 
 
 

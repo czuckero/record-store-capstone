@@ -2,14 +2,14 @@
 
 .record-container {
   padding: 20px;
-  margin-top: 60px; 
+  margin-top: 60px;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  background-color: #000000; 
-  color: #37474F; 
-  border: 2px solid #2c2c2c; 
+  background-color: #000000;
+  color: #37474F;
+  border: 2px solid #2c2c2c;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: 'Merriweather', serif;
@@ -18,7 +18,7 @@
 .record-container h1 {
   font-size: 36px;
   margin-bottom: 20px;
-  color: #ffffff; 
+  color: #ffffff;
 }
 
 .record-image {
@@ -26,7 +26,7 @@
   max-width: 400px;
   height: auto;
   margin-bottom: 20px;
-  border: 1px solid #607D8B; 
+  border: 1px solid #607D8B;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -39,14 +39,39 @@
 .record-details h2 {
   font-size: 24px;
   margin-bottom: 10px;
-  color: #ffffff; 
+  color: #ffffff;
+}
+
+.record-details h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #ffffff;
 }
 
 .record-details p {
   font-size: 18px;
   line-height: 1.6;
   margin-bottom: 20px;
-  color: #d49c45; 
+  color: #d49c45;
+}
+
+.record-details button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #00796B;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.record-details button:hover {
+  background-color: #005b4f;
+}
+
+.record-details button:disabled {
+  background-color: #B0BEC5;
+  cursor: not-allowed;
 }
 
 /* Media Queries */
@@ -119,6 +144,7 @@
     font-size: 12px;
   }
 }
+
 
 
 

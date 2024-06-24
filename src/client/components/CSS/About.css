@@ -1,5 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400&display=swap');
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
 .about-container {
   padding: 20px;
   margin-top: 60px; 
@@ -12,6 +27,7 @@
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: 'Merriweather', serif;
+  flex: 1;  /* Ensure it takes up available space */
 }
 
 .about-container h1 {
@@ -73,6 +89,145 @@
     font-size: 12px;
   }
 }
+
+/* Existing styles for your footer */
+.footer {
+  background-color: #37474F; 
+  color: #FFFFFF; 
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #607D8B; 
+  font-family: 'Merriweather', serif;
+  margin-top: auto; /* Ensure the footer sticks to the bottom */
+}
+
+.newsletter {
+  margin-bottom: 20px;
+}
+
+.newsletter label {
+  display: block;
+  margin-bottom: 5px;
+  color: #FFFFFF; 
+  font-size: 16px;
+}
+
+.newsletter input {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #607D8B; 
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.newsletter button {
+  padding: 10px 20px;
+  background-color: #00796B; 
+  color: #FFFFFF; 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.newsletter button:hover {
+  background-color: #005b4f; 
+}
+
+.footer-links {
+  margin-top: 10px;
+}
+
+.footer-links a {
+  color: #FFFFFF; 
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+  .footer {
+    padding: 15px;
+  }
+
+  .newsletter label {
+    font-size: 14px;
+  }
+
+  .newsletter input {
+    padding: 8px;
+    margin-right: 8px;
+  }
+
+  .newsletter button {
+    padding: 8px 16px;
+  }
+
+  .footer-links a {
+    margin: 0 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 10px;
+  }
+
+  .newsletter label {
+    font-size: 12px;
+  }
+
+  .newsletter input {
+    padding: 6px;
+    margin-right: 6px;
+  }
+
+  .newsletter button {
+    padding: 6px 12px;
+  }
+
+  .footer-links a {
+    margin: 0 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 5px;
+  }
+
+  .newsletter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .newsletter label {
+    font-size: 12px;
+  }
+
+  .newsletter input {
+    padding: 5px;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .newsletter button {
+    padding: 5px 10px;
+  }
+
+  .footer-links {
+    margin-top: 5px;
+  }
+
+  .footer-links a {
+    margin: 0 5px;
+  }
+}
+
 
 
 

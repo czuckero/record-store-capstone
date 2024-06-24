@@ -5,11 +5,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #0b0835; 
+  background-color: #37474F; 
   color: white;
   position: sticky;
   top: 0;
   width: 100%;
+  box-sizing: border-box; 
   z-index: 1000;
   border-bottom: 2px solid #623c87; 
   font-family: 'Merriweather', serif;

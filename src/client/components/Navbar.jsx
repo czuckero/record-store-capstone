@@ -26,9 +26,6 @@ const Navbar = () => {
         <li>
           <Link to="/cart">View Cart</Link>
         </li>
-        <li>
-          <input type="text" placeholder="Search..." />
-        </li>
       </ul>
     </nav>
   );

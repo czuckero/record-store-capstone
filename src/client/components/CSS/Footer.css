@@ -21,7 +21,7 @@ main {
   text-align: center;
   border-top: 1px solid #607D8B; 
   font-family: 'Merriweather', serif;
-  margin-top: auto; /* Ensure the footer sticks to the bottom */
+  margin-top: auto;
 }
 
 .newsletter {

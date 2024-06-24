@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import './CSS/SingleRecord.css';
-import { fetchAllRecords } from "../API";
+import { fetchSingleRecord } from "../API";
 
 const SingleRecord = ({ token }) => {
   const { recordId } = useParams();
@@ -46,7 +46,6 @@ const SingleRecord = ({ token }) => {
   }
 
   return (
-<<<<<<< christian-react
     <>
       <div className="record-container">
         {record && 
@@ -67,27 +66,9 @@ const SingleRecord = ({ token }) => {
             <button onClick={() => navigate('/home')} type="submit">Return to Home</button>
             {message && <h3>{message}</h3>}
           </div>
-=======
-    <div className="record-container">
-      <div>
-        <h1>{record.title}</h1>
-        <img src={record.img} alt="Album Cover" className="record-image" />
-        <div className="record-details">
-          <h2>{record.artist}</h2>
-          <h3>{record.genre}</h3>
-          <p>{record.description}</p>
-          <h3>${record.price}</h3>
-          {!addedToCart ? (
-            <button onClick={handleAddToCart} type="button">Add to Cart</button>
-          ) : (
-            <button disabled>Added to Cart!</button>
-          )}
-          <button onClick={() => navigate('/home')} type="button">Return to Home</button>
-          {message && <h3>{message}</h3>}
->>>>>>> main
-        </div>
+        </div>}
       </div>
-    </div>
+    </>
   );
 };
 

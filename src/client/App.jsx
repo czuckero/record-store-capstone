@@ -21,10 +21,11 @@ function App() {
 
   return (
     <>
+    <div className='App'>
       <div>
         <NavBar />
       </div>
-      <div>
+      <div className='content'>
         <Routes>
           <Route path='/home' element={ <Records /> } />
           <Route path='/about' element={ <About /> } />
@@ -40,6 +41,7 @@ function App() {
       <div>
         <Footer />
       </div>
+    </div>
     </>
   );
 }

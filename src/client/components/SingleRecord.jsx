@@ -51,12 +51,7 @@ const SingleRecord = ({ token }) => {
           <div className="record-details">
             <h2>{record.artist}</h2>
             <h3>{record.genre}</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum auctor vel velit a ullamcorper. Aenean venenatis risus in lectus convallis, nec auctor urna interdum. Duis id ex ac libero placerat gravida.
-            </p>
-            <p>
-              Nulla facilisi. Phasellus convallis lacinia sapien, id vehicula metus varius in. Mauris accumsan tincidunt dui, ut feugiat arcu ultrices id. Morbi tristique lacinia massa, id sagittis velit vehicula ut. Integer vitae nisl vitae neque tempus malesuada.
-            </p>
+            <p>{record.description}</p>
             <h3>{record.price}</h3>
             {!addedToCart ? (
               <button onClick={() => handleAddToCart()} type="submit">Add to Cart</button>

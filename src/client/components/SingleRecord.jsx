@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import './CSS/SingleRecord.css';
-import { fetchSingleRecord } from "../API";
+import { fetchSingleRecord, addItemToUserCart } from "../API";
 
 const SingleRecord = ({ token }) => {
   const { recordId } = useParams();

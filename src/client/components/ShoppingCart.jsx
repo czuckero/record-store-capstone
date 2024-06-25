@@ -84,7 +84,16 @@ const ShoppingCart = ({ token }) => {
       <>
         <div className="shopping-cart-container">
           <h1>Shopping Cart</h1>
-          <h2>Create an account or log in to add to your cart!</h2>
+          <h3>{' '}
+              <span onClick={() => navigate('/register')} style={{ textDecoration: 'underline', cursor: 'pointer' }}>
+              Create an account
+              </span>{' '}
+              <span>or </span>
+              <span onClick={() => navigate('/login')} style={{ textDecoration: 'underline', cursor: 'pointer' }}>
+              log in
+              </span>{' '}
+              to add items to your cart!
+            </h3>
         </div>
       </>
     );

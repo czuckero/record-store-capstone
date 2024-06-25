@@ -65,7 +65,17 @@ const SingleRecord = ({ token }) => {
             }
             <button onClick={() => navigate('/home')} type="submit">Return to Home</button>
             <button onClick={() => navigate('/cart')} type="submit">View Cart</button>
-            {message && <h3>{message}</h3>}
+            {message && 
+            <h3>{' '}
+              <span onClick={() => navigate('/register')} style={{ textDecoration: 'underline', cursor: 'pointer' }}>
+              Create an account
+              </span>{' '}
+              <span>or </span>
+              <span onClick={() => navigate('/login')} style={{ textDecoration: 'underline', cursor: 'pointer' }}>
+              log in
+              </span>{' '}
+              to add items to your cart!
+            </h3>}
           </div>
         </div>}
       </div>

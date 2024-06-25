@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./CSS/Account.css";
-import { fetchUserData, fetchAllUsers, fetchAllRecords, updateRecord, deleteRecord } from "../API";
+import { 
+  fetchUserData, 
+  fetchAllUsers, 
+  fetchAllRecords, 
+  updateRecord, 
+  deleteRecord,
+  createRecord
+} from "../API";
 import { useNavigate } from "react-router-dom";
 
 const Account = ({ token, setToken }) => {
@@ -17,7 +24,12 @@ const Account = ({ token, setToken }) => {
   const [listOfUsers, setListOfUsers] = useState([]);
   const [listOfRecords, setListOfRecords] = useState([]);
   const [newPrice, setNewPrice] = useState('');
-  const [inputValue, setInputValue] = useState("");
+  const [genre, setGenre] = useState('');
+  const [artist, setArtist] = useState('');
+  const [title, setTitle] = useState('');
+  const [price, setPrice] = useState('');
+  const [description, setDescription] = useState('');
+  const [image, setImage] = useState('');
   const navigate = useNavigate();
 
   const [passwordData, setPasswordData] = useState({
@@ -85,6 +97,32 @@ const Account = ({ token, setToken }) => {
     } catch (error) {
       throw error;
     }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = {
+      genre: genre,
+      artist: artist,
+      title: title,
+      price: price,
+      description: description,
+      img: image
+    }
+
+    try {
+      const response = await createRecord(token, formData);
+      console.log(response);
+      setListOfRecords([...listOfRecords, response]);
+    } catch (error) {
+      throw error
+    }
+    setArtist('');
+    setGenre('');
+    setTitle('');
+    setPrice('');
+    setDescription('');
+    setImage('');
   };
 
   const handleLogout = () => {
@@ -214,6 +252,18 @@ const Account = ({ token, setToken }) => {
             </ul>
           </div>
           <div>
+            <div>
+              <h2>Add New Record</h2>
+              <form onSubmit={handleSubmit}>
+                <input value={genre} onChange={(e) => setGenre(e.target.value)} />
+                <input value={artist} onChange={(e) => setArtist(e.target.value)} />
+                <input value={title} onChange={(e) => setTitle(e.target.value)} />
+                <input value={price} onChange={(e) => setPrice(e.target.value)} />
+                <input value={description} onChange={(e) => setDescription(e.target.value)} />
+                <input value={image} onChange={(e) => setImage(e.target.value)} />
+                <button type="submit" />
+              </form>
+            </div>
             <h2>All Records</h2>
             <ul>
               {listOfRecords.map(record => (

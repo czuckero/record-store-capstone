@@ -173,3 +173,17 @@ export async function updateRecord(token, record_id, genre, artist, title, price
   const result = await response.json();
   return result;
 };
+
+//Admin only: Create a record
+export async function createRecord(token, formData) {
+  const response = await fetch(`${APIURL}/api/admin/records`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify(formData)
+  });
+  const result = await response.json();
+  return result;
+}

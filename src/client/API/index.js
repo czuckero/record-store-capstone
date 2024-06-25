@@ -1,5 +1,5 @@
-// const APIURL = "http://localhost:3000"
-const APIURL = "https://record-store-capstone.onrender.com"
+const APIURL = "http://localhost:3000"
+// const APIURL = "https://record-store-capstone.onrender.com"
 
 
 // Fetches the list of records
@@ -126,3 +126,64 @@ export async function clearUserCart(token) {
     },
   });
 };
+
+// Admin only: Fetch all users
+export async function fetchAllUsers(token) {
+  const response = await fetch(`${APIURL}/api/admin`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  const result = await response.json();
+  return result;
+};
+
+//Admin only: Delete a single record
+export async function deleteRecord(token, recordId) {
+  const response = await fetch(`${APIURL}/api/admin/records/${recordId}`, {
+    method: 'DELETE', 
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  const result = response.json();
+  return result;
+};
+
+//Admin only: Edit a record's info
+export async function updateRecord(token, record_id, genre, artist, title, price, description, img ) {
+  const response = await fetch(`${APIURL}/api/admin/records/${record_id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      id: record_id,
+      genre: genre,
+      artist: artist,
+      title: title,
+      price: price,
+      description: description,
+      img: img,
+    })
+  });
+  const result = await response.json();
+  return result;
+};
+
+//Admin only: Create a record
+export async function createRecord(token, formData) {
+  const response = await fetch(`${APIURL}/api/admin/records`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify(formData)
+  });
+  const result = await response.json();
+  return result;
+}

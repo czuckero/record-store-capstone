@@ -113,6 +113,13 @@ const updateQuantity = async (newQuantity, record_id) => {
 
 const deleteRecordById = async (record_id) => {
   try {
+   
+    await db.query(
+      `DELETE FROM cart_items
+       WHERE record_id = $1`,
+      [record_id]
+    );
+    
     const result = await db.query(
       `--sql
       DELETE FROM records

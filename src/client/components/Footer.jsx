@@ -4,6 +4,7 @@ import React from 'react';
 import './CSS/Footer.css';
 
 const Footer = () => {
+  const navigate = useNavigate()
   return (
     <footer className="footer">
       <div className="newsletter">
@@ -12,7 +13,7 @@ const Footer = () => {
         <button>Subscribe</button>
       </div>
       <div className="footer-links">
-        <a href="/about">About Us</a>
+        <a onClick={() => navigate('/about')}>About Us</a>
       </div>
     </footer>
   );

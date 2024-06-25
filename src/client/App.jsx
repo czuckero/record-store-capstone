@@ -23,7 +23,7 @@ const [totalCost, setTotalCost] = useState("")
     <>
     <div className='App'>
       <div>
-        <NavBar />
+        <NavBar token={token} setToken={setToken} />
       </div>
       <div className='content'>
         <Routes>

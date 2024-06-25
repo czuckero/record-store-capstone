@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import './CSS/ShoppingCart.css';
 import { deleteItemFromUserCart, fetchUserCartItems, updateCartItemQuantity } from '../API';
 
-const ShoppingCart = ({ token }) => {
+const ShoppingCart = ({ token, addedToCart, setAddedToCart }) => {
   const navigate = useNavigate();
 
   const [cartItems, setCartItems] = useState([
@@ -17,6 +17,7 @@ const ShoppingCart = ({ token }) => {
       try {
         const response = await fetchUserCartItems(token);
         console.log(response);
+
         setCartItems(response);
       } catch (error) {
         throw error;
@@ -84,7 +85,16 @@ const ShoppingCart = ({ token }) => {
       <>
         <div className="shopping-cart-container">
           <h1>Shopping Cart</h1>
-          <h2>Create an account or log in to add to your cart!</h2>
+          <h3>{' '}
+              <span onClick={() => navigate('/register')} style={{ textDecoration: 'underline', cursor: 'pointer' }}>
+              Create an account
+              </span>{' '}
+              <span>or </span>
+              <span onClick={() => navigate('/login')} style={{ textDecoration: 'underline', cursor: 'pointer' }}>
+              log in
+              </span>{' '}
+              to add items to your cart!
+            </h3>
         </div>
       </>
     );

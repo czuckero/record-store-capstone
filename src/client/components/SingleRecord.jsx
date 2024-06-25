@@ -3,11 +3,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import './CSS/SingleRecord.css';
 import { fetchSingleRecord, addItemToUserCart } from "../API";
 
-const SingleRecord = ({ token }) => {
+const SingleRecord = ({ token, addedToCart, setAddedToCart }) => {
   const { recordId } = useParams();
   const [record, setRecord] = useState(null);
   const [message, setMessage] = useState("");
-  const [addedToCart, setAddedToCart] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -63,8 +62,8 @@ const SingleRecord = ({ token }) => {
               <button disabled>Added to Cart!</button>
             )
             }
-            <button onClick={() => navigate('/home')} type="submit">Return to Home</button>
             <button onClick={() => navigate('/cart')} type="submit">View Cart</button>
+            <button onClick={() => navigate('/home')} type="submit">Return to Home</button>
             {message && 
             <h3>{' '}
               <span onClick={() => navigate('/register')} style={{ textDecoration: 'underline', cursor: 'pointer' }}>

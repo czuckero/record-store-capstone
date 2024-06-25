@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import './CSS/ShoppingCart.css';
 import { deleteItemFromUserCart, fetchUserCartItems, updateCartItemQuantity } from '../API';
 
-const ShoppingCart = ({ token }) => {
+const ShoppingCart = ({ token, addedToCart, setAddedToCart }) => {
   const navigate = useNavigate();
 
   const [cartItems, setCartItems] = useState([
@@ -17,6 +17,7 @@ const ShoppingCart = ({ token }) => {
       try {
         const response = await fetchUserCartItems(token);
         console.log(response);
+
         setCartItems(response);
       } catch (error) {
         throw error;

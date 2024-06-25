@@ -77,6 +77,11 @@ button[type="submit"]:hover {
   background-color: #d49c45; 
 }
 
+.button-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .purchase-history ul {
   list-style-type: none;
   padding: 0;

@@ -255,13 +255,13 @@ const Account = ({ token, setToken }) => {
             <div>
               <h2>Add New Record</h2>
               <form onSubmit={handleSubmit}>
-                <input value={genre} onChange={(e) => setGenre(e.target.value)} />
-                <input value={artist} onChange={(e) => setArtist(e.target.value)} />
-                <input value={title} onChange={(e) => setTitle(e.target.value)} />
-                <input value={price} onChange={(e) => setPrice(e.target.value)} />
-                <input value={description} onChange={(e) => setDescription(e.target.value)} />
-                <input value={image} onChange={(e) => setImage(e.target.value)} />
-                <button type="submit" />
+                <input placeholder="genre" value={genre} onChange={(e) => setGenre(e.target.value)} />
+                <input placeholder="artist" value={artist} onChange={(e) => setArtist(e.target.value)} />
+                <input placeholder="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                <input placeholder="price" value={price} onChange={(e) => setPrice(e.target.value)} />
+                <input placeholder="description" value={description} onChange={(e) => setDescription(e.target.value)} />
+                <input placeholder="image url" value={image} onChange={(e) => setImage(e.target.value)} />
+                <button type="submit">Create Record</button>
               </form>
             </div>
             <h2>All Records</h2>

@@ -24,6 +24,8 @@ const Account = ({ token, setToken }) => {
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
+  const [searchParams, setSearchParams] = useState('');
+  const [userSearchParams, setUserSearchParams] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -118,6 +120,14 @@ const Account = ({ token, setToken }) => {
     navigate("/login");
   };
 
+  const recordsToDisplay = searchParams
+  ? listOfRecords.filter((record) => record.title.toLowerCase().includes(searchParams))
+  : listOfRecords;
+
+  const usersToDisplay = userSearchParams
+  ? listOfUsers.filter((user) => user.username.toLowerCase().includes(userSearchParams))
+  : listOfUsers;
+
   if (token && userData.is_admin === false) {
     return (
       <>
@@ -155,8 +165,12 @@ const Account = ({ token, setToken }) => {
 
           <div>
             <h2>Registered Users</h2>
+            <label className="record-search-bar">
+            Search:
+              <input type="text" onChange={(e) => setUserSearchParams(e.target.value.toLowerCase())} />
+            </label>
             <ul>
-              {listOfUsers.map(user => (
+              {usersToDisplay.map(user => (
                 <li key={user.id} className="cart-item">
                   <span>Username: {user.username}</span>
                   <span>Email: {user.email}</span>
@@ -225,8 +239,12 @@ const Account = ({ token, setToken }) => {
               <button type="submit">Create Record</button>
             </form>
             <h2>All Records</h2>
+            <label className="record-search-bar">
+            Search:
+              <input type="text" onChange={(e) => setSearchParams(e.target.value.toLowerCase())} />
+            </label>
             <ul>
-              {listOfRecords.map(record => (
+              {recordsToDisplay.map(record => (
                 <li key={record.id} className="cart-item">
                   <span>{record.title}</span>
                   <span>{record.artist}</span>

@@ -3,7 +3,8 @@ import './CSS/Success.css';
 import { useNavigate } from 'react-router-dom';
 
 const Success = ({ purchasedItems, totalCost }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  
   return (
     <div className="success-container">
       <h1>Purchase Successful!</h1>
@@ -21,9 +22,10 @@ const Success = ({ purchasedItems, totalCost }) => {
       <div className="total-cost">
         <h2>Total Cost: {totalCost}</h2>
       </div>
-      <button onClick={() => navigate('/home')}>Continue Shopping</button>
+      <button className="continue-shopping-button" onClick={() => navigate('/home')}>Continue Shopping</button>
     </div>
   );
 };
 
 export default Success;
+

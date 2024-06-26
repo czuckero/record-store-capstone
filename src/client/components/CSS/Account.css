@@ -21,7 +21,7 @@
   color: #ffffff; 
 }
 
-.user-info, .update-password, .purchase-history {
+.user-info, .update-password, .purchase-history, .record-form, .registered-users {
   margin-bottom: 30px;
 }
 
@@ -31,19 +31,19 @@
   color: #607D8B; 
 }
 
-.update-password h2, .purchase-history h2 {
+.update-password h2, .purchase-history h2, .record-form h2, .registered-users h2 {
   font-size: 24px;
   margin-bottom: 10px;
   color: #ffffff; 
 }
 
-.update-password form {
+.update-password form, .record-form form {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.update-password label {
+.update-password label, .record-form label {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -51,7 +51,7 @@
   color: #ffffff; 
 }
 
-.update-password input {
+.update-password input, .record-form input, .record-form textarea {
   width: 100%;
   padding: 10px;
   margin-top: 5px;
@@ -74,7 +74,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background-color: #d49c45; 
+  background-color: #b8860b; 
 }
 
 .button-container {
@@ -87,7 +87,7 @@ button[type="submit"]:hover {
   padding: 0;
 }
 
-.purchase-history li {
+.purchase-history li, .registered-users li, .record-item {
   padding: 10px;
   border: 2px solid #607D8B; 
   border-radius: 5px;
@@ -110,15 +110,15 @@ button[type="submit"]:hover {
     font-size: 16px;
   }
 
-  .update-password h2, .purchase-history h2 {
+  .update-password h2, .purchase-history h2, .record-form h2, .registered-users h2 {
     font-size: 22px;
   }
 
-  .update-password label {
+  .update-password label, .record-form label {
     font-size: 16px;
   }
 
-  .update-password input {
+  .update-password input, .record-form input, .record-form textarea {
     padding: 8px;
   }
 
@@ -142,15 +142,15 @@ button[type="submit"]:hover {
     font-size: 14px;
   }
 
-  .update-password h2, .purchase-history h2 {
+  .update-password h2, .purchase-history h2, .record-form h2, .registered-users h2 {
     font-size: 20px;
   }
 
-  .update-password label {
+  .update-password label, .record-form label {
     font-size: 14px;
   }
 
-  .update-password input {
+  .update-password input, .record-form input, .record-form textarea {
     padding: 6px;
   }
 
@@ -175,15 +175,15 @@ button[type="submit"]:hover {
     font-size: 12px;
   }
 
-  .update-password h2, .purchase-history h2 {
+  .update-password h2, .purchase-history h2, .record-form h2, .registered-users h2 {
     font-size: 18px;
   }
 
-  .update-password label {
+  .update-password label, .record-form label {
     font-size: 12px;
   }
 
-  .update-password input {
+  .update-password input, .record-form input, .record-form textarea {
     padding: 4px;
   }
 
@@ -192,6 +192,7 @@ button[type="submit"]:hover {
     font-size: 12px;
   }
 }
+
 
 
 

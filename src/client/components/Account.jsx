@@ -24,6 +24,7 @@ const Account = ({ token, setToken }) => {
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
+  const [searchParams, setSearchParams] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -117,6 +118,10 @@ const Account = ({ token, setToken }) => {
     setToken(null);
     navigate("/login");
   };
+
+  const recordsToDisplay = searchParams
+  ? listOfRecords.filter((record) => record.title.toLowerCase().includes(searchParams))
+  : listOfRecords;
 
   if (token && userData.is_admin === false) {
     return (
@@ -225,8 +230,12 @@ const Account = ({ token, setToken }) => {
               <button type="submit">Create Record</button>
             </form>
             <h2>All Records</h2>
+            <label className="record-search-bar">
+            Search:
+              <input type="text" onChange={(e) => setSearchParams(e.target.value.toLowerCase())} />
+            </label>
             <ul>
-              {listOfRecords.map(record => (
+              {recordsToDisplay.map(record => (
                 <li key={record.id} className="cart-item">
                   <span>{record.title}</span>
                   <span>{record.artist}</span>

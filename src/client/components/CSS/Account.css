@@ -95,6 +95,11 @@ button[type="submit"]:hover {
   background-color: #ECEFF1; 
 }
 
+.record-search-bar {
+  color: white;
+  padding: 10px
+}
+
 /* Media Queries */
 @media (max-width: 1200px) {
   .account-container {

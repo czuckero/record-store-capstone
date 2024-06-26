@@ -171,7 +171,6 @@ const Account = ({ token, setToken }) => {
                 Genre:
                 <input 
                   type="text" 
-                  placeholder="Genre" 
                   value={genre} 
                   onChange={(e) => setGenre(e.target.value)} 
                   required 
@@ -180,8 +179,7 @@ const Account = ({ token, setToken }) => {
               <label>
                 Artist:
                 <input 
-                  type="text" 
-                  placeholder="Artist" 
+                  type="text"
                   value={artist} 
                   onChange={(e) => setArtist(e.target.value)} 
                   required 
@@ -191,7 +189,6 @@ const Account = ({ token, setToken }) => {
                 Title:
                 <input 
                   type="text" 
-                  placeholder="Title" 
                   value={title} 
                   onChange={(e) => setTitle(e.target.value)} 
                   required 
@@ -201,7 +198,6 @@ const Account = ({ token, setToken }) => {
                 Price:
                 <input 
                   type="number" 
-                  placeholder="Price" 
                   value={price} 
                   onChange={(e) => setPrice(e.target.value)} 
                   min="0" 
@@ -211,8 +207,7 @@ const Account = ({ token, setToken }) => {
               </label>
               <label>
                 Description:
-                <textarea 
-                  placeholder="Description" 
+                <textarea  
                   value={description} 
                   onChange={(e) => setDescription(e.target.value)} 
                   required 
@@ -221,8 +216,7 @@ const Account = ({ token, setToken }) => {
               <label>
                 Image URL:
                 <input 
-                  type="url" 
-                  placeholder="Image URL" 
+                  type="url"  
                   value={image} 
                   onChange={(e) => setImage(e.target.value)} 
                   required 

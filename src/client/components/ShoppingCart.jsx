@@ -5,6 +5,7 @@ import { deleteItemFromUserCart, fetchUserCartItems, updateCartItemQuantity } fr
 
 const ShoppingCart = ({ token, addedToCart, setAddedToCart }) => {
   const navigate = useNavigate();
+  const [message, setMessage] = useState('');
 
   const [cartItems, setCartItems] = useState([
     // { id: 1, name: 'Album A', price: 40.00, quantity: 1 },
@@ -48,6 +49,8 @@ const ShoppingCart = ({ token, addedToCart, setAddedToCart }) => {
   const handleCheckout = () => {
     if (cartItems.length > 0) {
       navigate('/checkout')
+    } else {
+      setMessage("Your cart is empty.")
     }
   }
 
@@ -76,6 +79,7 @@ const ShoppingCart = ({ token, addedToCart, setAddedToCart }) => {
           <div className="cart-total">
             <h2>Total: ${totalAmount.toFixed(2)}</h2>
             <button onClick={() => handleCheckout()} className="checkout-button">Proceed to Checkout</button>
+            {message && <h3>{message}</h3>}
           </div>
         </div>
       </>

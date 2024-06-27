@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import './CSS/ShoppingCart.css';
 import { deleteItemFromUserCart, fetchUserCartItems, updateCartItemQuantity } from '../API';
 
-const ShoppingCart = ({ token, addedToCart, setAddedToCart }) => {
+const ShoppingCart = ({ token }) => {
   const navigate = useNavigate();
   const [message, setMessage] = useState('');
 

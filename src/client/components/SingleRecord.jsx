@@ -17,8 +17,8 @@ const SingleRecord = ({ token }) => {
         setRecord(response);
       } catch (error) {
         console.error("Error fetching record:", error);
-      }
-    }
+      };
+    };
     getSingleRecord();
   }, [recordId]);
 

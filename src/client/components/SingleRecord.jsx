@@ -3,11 +3,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import './CSS/SingleRecord.css';
 import { fetchSingleRecord, addItemToUserCart } from "../API";
 
-const SingleRecord = ({ token, addedToCart, setAddedToCart }) => {
+const SingleRecord = ({ token }) => {
   const { recordId } = useParams();
   const [record, setRecord] = useState(null);
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+  const [addedToCart, setAddedToCart] = useState(false);
 
   useEffect(() => {
     async function getSingleRecord() {
@@ -16,8 +17,8 @@ const SingleRecord = ({ token, addedToCart, setAddedToCart }) => {
         setRecord(response);
       } catch (error) {
         console.error("Error fetching record:", error);
-      }
-    }
+      };
+    };
     getSingleRecord();
   }, [recordId]);
 
